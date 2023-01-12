@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {getSprites} from './Requests';
+import {getSprites} from '../Requests';
 
 export const SpritesFromPokemon = props => {
 	const [sprites, setSprites] = useState([]);

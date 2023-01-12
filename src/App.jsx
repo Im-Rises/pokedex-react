@@ -1,4 +1,4 @@
-import {SpritesFromPokemon} from './App/SpritesFromPokemon';
+import {SpritesFromPokemon} from './App/Components/SpritesFromPokemon';
 import {useState} from 'react';
 
 const App = () => {
