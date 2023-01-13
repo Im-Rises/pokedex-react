@@ -29,12 +29,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Components
 
-|    Components Name     |                          its purpose                          |                   How to use it                   |
-|:----------------------:|:-------------------------------------------------------------:|:-------------------------------------------------:|
-|     CommonSprites      |      show all common sprites by given the pokemon wanted      |     `<CommonSprites pokemon={"charmander"}>`      |
-|   DreamWorldSprites    |   show all Dream World sprites by given the pokemon wanted    |   `<DreamWorldSprites pokemon={"charmander"}>`    |
-|      HomeSprites       |       show all Home sprites by given the pokemon wanted       |      `<HomeSprites pokemon={"charmander"}>`       |
-| OfficialArtworkSprites | show all Official Artwork sprites by given the pokemon wanted | `<OfficialArtworkSprites pokemon={"charmander"}>` |
+|    Components Name     |                          its purpose                          |                    How to use it                    |
+|:----------------------:|:-------------------------------------------------------------:|:---------------------------------------------------:|
+|     CommonSprites      |      show all common sprites by given the pokemon wanted      |      `<CommonSprites pokemon={"charmander"}>`       |
+|   DreamWorldSprites    |   show all Dream World sprites by given the pokemon wanted    |    `<DreamWorldSprites pokemon={"charmander"}>`     |
+|      HomeSprites       |       show all Home sprites by given the pokemon wanted       |       `<HomeSprites pokemon={"charmander"}>`        |
+| OfficialArtworkSprites | show all Official Artwork sprites by given the pokemon wanted |  `<OfficialArtworkSprites pokemon={"charmander"}>`  |
+| ShowAllSpriteOfObject  |   show all url with their name in caption from object given   | `<ShowAllSpriteOfObject ObjectOfUrl={ObjectOfUrl}>` |
+|         Sprite         |           show an image by its URL with its legend            |          `<Sprite url={url} name={name}/>`          |
+|     VersionSprite      |       show all pokemon sprites generation by generation       |        `<VersionSprite pokemon={pokemon}/>`         |
 
 <!--
 ## Available Scripts
