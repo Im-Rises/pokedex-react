@@ -25,6 +25,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## API used
 
 - [pokepedia](https://pokeapi.co)
+- [react-gh-pages](https://github.com/gitname/react-gh-pages)
 
 ## Components
 

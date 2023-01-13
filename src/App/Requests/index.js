@@ -1,4 +1,4 @@
-import {POKEPEDIA_URL} from './constant';
+import {POKEPEDIA_URL} from '../Constants/constant';
 
 const initRequest = {
 	method: 'GET',
@@ -13,7 +13,7 @@ const makeRequest = url => fetch(url, initRequest)
 
 const getAllInfoOfPokemon = pokemon => makeRequest(`${POKEPEDIA_URL}/${pokemon}`);
 
-const getAbilities = pokemon =>	getAllInfoOfPokemon(pokemon)
+const getAbilities = pokemon => getAllInfoOfPokemon(pokemon)
 	.then(info => info.abilities);
 
 const getSprites = pokemon => getAllInfoOfPokemon(pokemon)
