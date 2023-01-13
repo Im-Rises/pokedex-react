@@ -35,6 +35,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 |   DreamWorldSprites    |   show all Dream World sprites by given the pokemon wanted    |   `<DreamWorldSprites pokemon={"charmander"}>`    |
 |      HomeSprites       |       show all Home sprites by given the pokemon wanted       |      `<HomeSprites pokemon={"charmander"}>`       |
 | OfficialArtworkSprites | show all Official Artwork sprites by given the pokemon wanted | `<OfficialArtworkSprites pokemon={"charmander"}>` |
+|         Sprite         |           show an image by its URL with its legend            |         `<Sprite url={url} name={name}/>`         |
 
 <!--
 ## Available Scripts
