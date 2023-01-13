@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {getSprites} from '../../Requests';
 import PropTypes from 'prop-types';
-import ShowAllSpriteOfObject from './ShowAllSpriteOfArrays';
+import ShowAllSpriteOfObject from './ShowAllSpriteOfObject';
 
 const HomeSprites = ({pokemon}) => {
 	const [state, setState] = useState([]);
