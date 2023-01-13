@@ -9,9 +9,7 @@ const App = () => {
 
 	return (
 		<div>
-			{ }
 			<input type={'text'} value={search} onChange={handleSearch}/>
-			{ }
 			<SpritesFromPokemon pokemon={search}/>
 		</div>
 	);

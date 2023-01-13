@@ -14,10 +14,10 @@ const makeRequest = url => fetch(url, initRequest)
 const getAllInfoOfPokemon = pokemon => makeRequest(`${POKEPEDIA_URL}/${pokemon}`);
 
 const getAbilities = pokemon => getAllInfoOfPokemon(pokemon)
-	.then(info => info.abilities);
+	.then(({abilities}) => abilities);
 
 const getSprites = pokemon => getAllInfoOfPokemon(pokemon)
-	.then(info => Object.values(info.sprites))
+	.then(({sprites}) => Object.values(sprites))
 	.then(obj => obj.filter(value => typeof value === 'string'));
 
 export {getAllInfoOfPokemon, getAbilities, getSprites};
