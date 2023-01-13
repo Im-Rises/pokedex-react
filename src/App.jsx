@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import VersionSprites from './App/Components/Sprites/VersionSprites';
 import CommonSprites from './App/Components/Sprites/CommonSprites';
-import HomeSprites from './App/Components/Sprites/HomeSprites';
 import DreamWorldSprites from './App/Components/Sprites/DreamWorldSprites';
+import HomeSprites from './App/Components/Sprites/HomeSprites';
 import OfficialArtworkSprites from './App/Components/Sprites/OfficialArtworkSprites';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
 			<DreamWorldSprites pokemon={pokemon}/>
 			<HomeSprites pokemon={pokemon}/>
 			<OfficialArtworkSprites pokemon={pokemon}/>
+			<VersionSprites pokemon={pokemon}/>
 		</div>
 	);
 };
