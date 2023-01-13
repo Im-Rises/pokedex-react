@@ -1,8 +1,9 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
 import {getSprites} from '../Requests';
+import PropTypes from 'prop-types';
 
-export const SpritesFromPokemon = props => {
+const SpritesFromPokemon = props => {
 	const [sprites, setSprites] = useState([]);
 
 	useEffect(() => {
@@ -14,3 +15,9 @@ export const SpritesFromPokemon = props => {
 			{sprites.map(link => <img src={link} alt={'image of a pokemon'} key={Math.random()}/>)}
 		</div>);
 };
+
+SpritesFromPokemon.propTypes = {
+	pokemon: PropTypes.string.isRequired,
+};
+
+export default SpritesFromPokemon;

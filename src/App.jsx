@@ -1,6 +1,6 @@
 import React from 'react';
-import {SpritesFromPokemon} from './App/Components/SpritesFromPokemon';
 import {useState} from 'react';
+import SpritesFromPokemon from './App/Components/SpritesFromPokemon';
 
 const App = () => {
 	const [search, setSearch] = useState('');
