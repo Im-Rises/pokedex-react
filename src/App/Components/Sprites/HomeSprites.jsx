@@ -3,12 +3,16 @@ import {useEffect, useState} from 'react';
 import {convertObjectToList, getAllStringsFromList, getSprites} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const DreamWorldSprites = ({pokemon}) => {
+const HomeSprites = ({pokemon}) => {
 	const [sprites, setSprites] = useState([]);
 
 	useEffect(() => {
 		getSprites(pokemon)
-			.then(({other}) => other.dream_world)
+			.then(r => {
+				console.log(r);
+				return r;
+			})
+			.then(({other}) => other.home)
 			.then(convertObjectToList)
 			.then(getAllStringsFromList)
 			.then(setSprites);
@@ -20,8 +24,8 @@ const DreamWorldSprites = ({pokemon}) => {
 		</div>);
 };
 
-DreamWorldSprites.propTypes = {
+HomeSprites.propTypes = {
 	pokemon: PropTypes.string.isRequired,
 };
 
-export default DreamWorldSprites;
+export default HomeSprites;
