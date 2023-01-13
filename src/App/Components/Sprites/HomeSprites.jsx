@@ -8,10 +8,6 @@ const HomeSprites = ({pokemon}) => {
 
 	useEffect(() => {
 		getSprites(pokemon)
-			.then(r => {
-				console.log(r);
-				return r;
-			})
 			.then(({other}) => other.home)
 			.then(convertObjectToList)
 			.then(getAllStringsFromList)
