@@ -1,16 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {getAllStringsValuesFromObject, getSprites} from '../../Requests';
+import {getSprites} from '../../Requests';
 import PropTypes from 'prop-types';
-import * as R from 'ramda';
-import Sprite from './Sprite';
-
-const ShowAllSpriteOfAnArray = props => {
-	const zippedUrlName = R.zip(getAllStringsValuesFromObject(props.v), Object.keys(props.v));
-	return zippedUrlName.map(([url, name], i) => <Sprite key={i} name={name} url={url}/>);
-};
+import ShowAllSpriteOfObject from './ShowAllSpriteOfArrays';
 
 const Version = props => Object.keys(props.v).map(k => <><h1>{k}</h1>
-	<ShowAllSpriteOfAnArray v={props.v[k]}/>
+	<ShowAllSpriteOfObject ObjectOfUrl={props.v[k]}/>
 </>);
 
 const Generation = props => <>

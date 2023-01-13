@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {getAllStringsValuesFromObject, getSprites} from '../../Requests';
+import {getSprites} from '../../Requests';
 import PropTypes from 'prop-types';
-import * as R from 'ramda';
-import Sprite from './Sprite';
+import ShowAllSpriteOfObject from './ShowAllSpriteOfArrays';
 
 const DreamWorldSprites = ({pokemon}) => {
 	const [state, setState] = useState([]);
@@ -10,17 +9,10 @@ const DreamWorldSprites = ({pokemon}) => {
 	useEffect(() => {
 		getSprites(pokemon)
 			.then(({other}) => other['official-artwork'])
-			.then(R.juxt([getAllStringsValuesFromObject, R.keys]))
-			.then(([url, name]) => R.zip(url, name))
 			.then(setState);
 	}, [pokemon]);
 
-	return (
-		<ul>
-			{state.map(
-				([url, name]) => <Sprite key={Math.random()} name={name} url={url}/>)
-			}
-		</ul>);
+	return <ShowAllSpriteOfObject ObjectOfUrl={state}/>;
 };
 
 DreamWorldSprites.propTypes = {

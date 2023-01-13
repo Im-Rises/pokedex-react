@@ -9,13 +9,7 @@ const initRequest = {
 
 const getJsonFromRequest = resp => resp.json();
 
-const convertObjectToList = obj => Object.values(obj);
-
-const getAllStringsFromList = list => list.filter(value => typeof value === 'string');
-
 const isString = value => typeof value === 'string';
-
-const isObject = value => typeof value === 'object';
 
 const getAllStringsValuesFromObject = R.pipe(R.values, R.filter(isString));
 
@@ -32,10 +26,7 @@ const getSprites = pokemon => getAllInfoOfPokemon(pokemon)
 
 export {
 	getAllStringsValuesFromObject,
-	getAllStringsFromList,
-	convertObjectToList,
 	getAllInfoOfPokemon,
 	getAbilities,
 	getSprites,
-	isObject,
 };
