@@ -31,7 +31,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 |  Components Name   |                 its purpose                  |                 How to use it                 |
 |:------------------:|:--------------------------------------------:|:---------------------------------------------:|
-| SpritesFromPokemon | show all sprites by given the pokemon wanted | `<SpritesFromPokemon pokemon={"charmander"}>` |
+| CommonSprites | show all sprites by given the pokemon wanted | `<CommonSprites pokemon={"charmander"}>` |
 
 <!--
 ## Available Scripts

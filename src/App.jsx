@@ -1,16 +1,16 @@
 import React from 'react';
 import {useState} from 'react';
-import SpritesFromPokemon from './App/Components/SpritesFromPokemon';
+import CommonSprites from './App/Components/Sprites/CommonSprites';
 
 const App = () => {
-	const [search, setSearch] = useState('');
+	const [pokemon, setPokemon] = useState('');
 
-	const handleSearch = event => setSearch(event.target.value);
+	const handleSearch = event => setPokemon(event.target.value);
 
 	return (
 		<div>
-			<input type={'text'} value={search} onChange={handleSearch}/>
-			<SpritesFromPokemon pokemon={search}/>
+			<input type={'text'} value={pokemon} onChange={handleSearch}/>
+			<CommonSprites pokemon={pokemon.toLowerCase()}/>
 		</div>
 	);
 };

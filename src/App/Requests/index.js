@@ -17,7 +17,6 @@ const getAbilities = pokemon => getAllInfoOfPokemon(pokemon)
 	.then(({abilities}) => abilities);
 
 const getSprites = pokemon => getAllInfoOfPokemon(pokemon)
-	.then(({sprites}) => Object.values(sprites))
-	.then(obj => obj.filter(value => typeof value === 'string'));
+	.then(({sprites}) => sprites);
 
 export {getAllInfoOfPokemon, getAbilities, getSprites};
