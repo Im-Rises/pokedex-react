@@ -1,4 +1,5 @@
 import {POKEPEDIA_URL} from '../Constants/constant';
+import * as R from 'ramda';
 
 const initRequest = {
 	method: 'GET',
@@ -8,16 +9,33 @@ const initRequest = {
 
 const getJsonFromRequest = resp => resp.json();
 
+const convertObjectToList = obj => Object.values(obj);
+
+const getAllStringsFromList = list => list.filter(value => typeof value === 'string');
+
+const isString = value => typeof value === 'string';
+
+const isObject = value => typeof value === 'object';
+
+const getAllStringsValuesFromObject = R.pipe(R.values, R.filter(isString));
+
 const makeRequest = url => fetch(url, initRequest)
 	.then(getJsonFromRequest);
 
 const getAllInfoOfPokemon = pokemon => makeRequest(`${POKEPEDIA_URL}/${pokemon}`);
 
 const getAbilities = pokemon => getAllInfoOfPokemon(pokemon)
-	.then(info => info.abilities);
+	.then(({abilities}) => abilities);
 
 const getSprites = pokemon => getAllInfoOfPokemon(pokemon)
-	.then(info => Object.values(info.sprites))
-	.then(obj => obj.filter(value => typeof value === 'string'));
+	.then(({sprites}) => sprites);
 
-export {getAllInfoOfPokemon, getAbilities, getSprites};
+export {
+	getAllStringsValuesFromObject,
+	getAllStringsFromList,
+	convertObjectToList,
+	getAllInfoOfPokemon,
+	getAbilities,
+	getSprites,
+	isObject,
+};

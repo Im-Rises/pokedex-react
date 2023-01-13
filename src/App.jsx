@@ -1,18 +1,21 @@
-import React from 'react';
-import {SpritesFromPokemon} from './App/Components/SpritesFromPokemon';
-import {useState} from 'react';
+import React, {useState} from 'react';
+import CommonSprites from './App/Components/Sprites/CommonSprites';
+import HomeSprites from './App/Components/Sprites/HomeSprites';
+import DreamWorldSprites from './App/Components/Sprites/DreamWorldSprites';
+import OfficialArtworkSprites from './App/Components/Sprites/OfficialArtworkSprites';
 
 const App = () => {
-	const [search, setSearch] = useState('');
+	const [pokemon, setPokemon] = useState('');
 
-	const handleSearch = event => setSearch(event.target.value);
+	const handleSearch = event => setPokemon(event.target.value.toLowerCase());
 
 	return (
 		<div>
-			{ }
-			<input type={'text'} value={search} onChange={handleSearch}/>
-			{ }
-			<SpritesFromPokemon pokemon={search}/>
+			<input type={'text'} value={pokemon} onChange={handleSearch}/>
+			<CommonSprites pokemon={pokemon}/>
+			<DreamWorldSprites pokemon={pokemon}/>
+			<HomeSprites pokemon={pokemon}/>
+			<OfficialArtworkSprites pokemon={pokemon}/>
 		</div>
 	);
 };
