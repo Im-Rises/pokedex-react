@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# pokedex-react
+
+## Description
+
+Pokédex made in React using the Pokepedia API.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -28,6 +32,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 |:------------------:|:--------------------------------------------:|:---------------------------------------------:|
 | SpritesFromPokemon | show all sprites by given the pokemon wanted | `<SpritesFromPokemon pokemon={"charmander"}>` |
 
+<!--
 ## Available Scripts
 
 In the project directory, you can run:
@@ -107,3 +112,4 @@ here: [https://facebook.github.io/create-react-app/docs/deployment](https://face
 
 This section has moved
 here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-->
