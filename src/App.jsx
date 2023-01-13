@@ -1,10 +1,8 @@
-import React from 'react';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import CommonSprites from './App/Components/Sprites/CommonSprites';
 import HomeSprites from './App/Components/Sprites/HomeSprites';
 import DreamWorldSprites from './App/Components/Sprites/DreamWorldSprites';
-// import DreamWorldSprites from './App/Components/Sprites/DreamWorldSprites';
-// import HomeSprites from './App/Components/Sprites/HomeSprites';
+import OfficialArtworkSprites from './App/Components/Sprites/OfficialArtworkSprites';
 
 const App = () => {
 	const [pokemon, setPokemon] = useState('');
@@ -17,6 +15,7 @@ const App = () => {
 			<CommonSprites pokemon={pokemon}/>
 			<DreamWorldSprites pokemon={pokemon}/>
 			<HomeSprites pokemon={pokemon}/>
+			<OfficialArtworkSprites pokemon={pokemon}/>
 		</div>
 	);
 };
