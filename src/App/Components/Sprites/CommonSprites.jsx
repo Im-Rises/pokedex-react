@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
-import {getSprites} from '../../Requests';
+import {convertObjectToList, getAllStringsFromList, getSprites} from '../../Requests';
 import PropTypes from 'prop-types';
 
 const CommonSprites = ({pokemon}) => {
@@ -8,10 +8,9 @@ const CommonSprites = ({pokemon}) => {
 
 	useEffect(() => {
 		if (pokemon !== '') {
-			console.log(pokemon);
 			getSprites(pokemon)
-				.then(resp => Object.values(resp))
-				.then(obj => obj.filter(value => typeof value === 'string'))
+				.then(convertObjectToList)
+				.then(getAllStringsFromList)
 				.then(setSprites);
 		}
 	}, [pokemon]);

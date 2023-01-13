@@ -1,14 +1,16 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
-import {getSprites} from '../../Requests';
+import {convertObjectToList, getAllStringsFromList, getSprites} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const ThreeDimSprites = props => {
+const DreamWorldSprites = ({pokemon}) => {
 	const [sprites, setSprites] = useState([]);
 
 	useEffect(() => {
-		getSprites(props.pokemon)
-			.then(obj => obj.filter(value => typeof value === 'string'))
+		getSprites(pokemon)
+			.then(({other}) => other.dream_world)
+			.then(convertObjectToList)
+			.then(getAllStringsFromList)
 			.then(setSprites);
 	});
 
@@ -18,8 +20,8 @@ const ThreeDimSprites = props => {
 		</div>);
 };
 
-ThreeDimSprites.propTypes = {
+DreamWorldSprites.propTypes = {
 	pokemon: PropTypes.string.isRequired,
 };
 
-export default ThreeDimSprites;
+export default DreamWorldSprites;

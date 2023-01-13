@@ -8,6 +8,10 @@ const initRequest = {
 
 const getJsonFromRequest = resp => resp.json();
 
+const convertObjectToList = obj => Object.values(obj);
+
+const getAllStringsFromList = list => list.filter(value => typeof value === 'string');
+
 const makeRequest = url => fetch(url, initRequest)
 	.then(getJsonFromRequest);
 
@@ -19,4 +23,4 @@ const getAbilities = pokemon => getAllInfoOfPokemon(pokemon)
 const getSprites = pokemon => getAllInfoOfPokemon(pokemon)
 	.then(({sprites}) => sprites);
 
-export {getAllInfoOfPokemon, getAbilities, getSprites};
+export {getAllStringsFromList, convertObjectToList, getAllInfoOfPokemon, getAbilities, getSprites};
