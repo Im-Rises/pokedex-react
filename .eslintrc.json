@@ -21,7 +21,8 @@
       "error",
       "always"
     ],
-    "capitalized-comments": "off"
+    "capitalized-comments": "off",
+    "react/prop-types": "off"
     // 'max-param': 'off',
     // 'max-params': [
     // 	'error',

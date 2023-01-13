@@ -6,7 +6,6 @@ export const SpritesFromPokemon = props => {
 	const [sprites, setSprites] = useState([]);
 
 	useEffect(() => {
-		// eslint-disable-next-line react/prop-types
 		getSprites(props.pokemon).then(setSprites);
 	});
 
