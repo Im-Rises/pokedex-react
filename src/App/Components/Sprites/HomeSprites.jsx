@@ -1,23 +1,26 @@
-import React from 'react';
-import {useEffect, useState} from 'react';
-import {convertObjectToList, getAllStringsFromList, getSprites} from '../../Requests';
+import React, {useEffect, useState} from 'react';
+import {getAllStringsValuesFromObject, getSprites} from '../../Requests';
 import PropTypes from 'prop-types';
+import * as R from 'ramda';
+import Sprite from './Sprite';
 
 const HomeSprites = ({pokemon}) => {
-	const [sprites, setSprites] = useState([]);
+	const [state, setState] = useState([]);
 
 	useEffect(() => {
 		getSprites(pokemon)
 			.then(({other}) => other.home)
-			.then(convertObjectToList)
-			.then(getAllStringsFromList)
-			.then(setSprites);
+			.then(R.juxt([getAllStringsValuesFromObject, R.keys]))
+			.then(([url, name]) => R.zip(url, name))
+			.then(setState);
 	}, [pokemon]);
 
 	return (
-		<div>
-			{sprites.map(link => <img src={link} alt={'image of a pokemon'} key={Math.random()}/>)}
-		</div>);
+		<ul>
+			{state.map(
+				([url, name]) => <Sprite key={Math.random()} name={name} url={url}/>)
+			}
+		</ul>);
 };
 
 HomeSprites.propTypes = {

@@ -17,7 +17,7 @@ const isString = value => typeof value === 'string';
 
 const isObject = value => typeof value === 'object';
 
-const getAllStringsValuesFromObject = R.pipe(R.values, R.filter(isString), R.tap(console.log));
+const getAllStringsValuesFromObject = R.pipe(R.values, R.filter(isString));
 
 const makeRequest = url => fetch(url, initRequest)
 	.then(getJsonFromRequest);

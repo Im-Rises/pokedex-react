@@ -3,7 +3,7 @@ import React from 'react';
 
 const Sprite = ({url, name}) => <figure key={Math.random()}>
 	<img src={url} alt={'img of a pkm'}/>
-	<figcaption>{name}</figcaption>
+	<figcaption>{name.replace(/_/g, ' ')}</figcaption>
 </figure>;
 
 Sprite.propTypes = {
