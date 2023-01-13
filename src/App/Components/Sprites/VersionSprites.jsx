@@ -19,10 +19,8 @@ const VersionSprites = ({pokemon}) => {
 			.then(({versions}) => versions)
 			.then(setState);
 	}, [pokemon]);
-	return (
-		<ul>
-			<Generation resp={state}/>
-		</ul>);
+
+	return <Generation resp={state}/>;
 };
 
 VersionSprites.propTypes = {
