@@ -122,4 +122,24 @@ here: [https://facebook.github.io/create-react-app/docs/deployment](https://face
 This section has moved
 here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 -->
+
+## GitHub Actions
+
+[![CodeQL](https://github.com/Im-Rises/pokedex-react/actions/workflows/codeql.yml/badge.svg)](https://github.com/Im-Rises/pokedex-react/actions/workflows/codeql.yml)
+[![ESLint](https://github.com/Im-Rises/pokedex-react/actions/workflows/eslint.yml/badge.svg)](https://github.com/Im-Rises/pokedex-react/actions/workflows/eslint.yml)
+[![Node.js CI](https://github.com/Im-Rises/pokedex-react/actions/workflows/node.js.yml/badge.svg)](https://github.com/Im-Rises/pokedex-react/actions/workflows/node.js.yml)
+[![gh-pages-publish](https://github.com/Im-Rises/pokedex-react/actions/workflows/gh-pages-publish.yml/badge.svg)](https://github.com/Im-Rises/pokedex-react/actions/workflows/gh-pages-publish.yml)
+[![pages-build-deployment](https://github.com/Im-Rises/pokedex-react/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Im-Rises/pokedex-react/actions/workflows/pages/pages-build-deployment)
+
+- CodeQL: Code scanning alerts
+- ESLint: Linting
+- Node.js CI: Continuous Integration (CI) for Node.js
+- gh-pages-publish: Publish to gh-pages branch
+- pages-build-deployment: Build and deploy to pages
+
+## Authors
+
+- [@clementreiffers](https://www.github.com/clementreiffers)
+- [@im-rises](https://www.github.com/im-rises)
+
 [![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/pokedex-react)](https://github.com/Im-Rises/pokedex-react/graphs/contributors)
