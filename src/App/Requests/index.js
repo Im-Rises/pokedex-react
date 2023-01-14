@@ -21,6 +21,8 @@ const makeRequest = url => fetch(url, initRequest)
 
 const getAllInfoOfPokemon = pokemon => makeRequest(`${POKEPEDIA_URL}/pokemon/${pokemon}`);
 
+const getLanguageIdentifiers = makeRequest(`${POKEPEDIA_URL}/language/`).then(({results}) => results);
+
 /* -------------------------------------POKEMON ABILITIES------------------------------------- */
 
 const getAbilities = pokemon => getAllInfoOfPokemon(pokemon)
@@ -42,33 +44,39 @@ const getIsMythical = pokemon => getPokemonSpecies(pokemon).then(({is_mythical})
 const getPokedexNumbers = (pokemonTarget, pokedexTarget) => getPokemonSpecies(pokemonTarget).then(({pokedex_numbers}) =>
 	pokedex_numbers.filter(({pokedex}) => pokedex.name === pokedexTarget)).then(a => a[0].entry_number);
 
-const getColor = pokemon => getPokemonSpecies(pokemon).then(({color}) => color);
+const getName = (pokemon, targetLanguage) => getPokemonSpecies(pokemon).then(({names}) =>
+	names.filter(({language}) => language.name === targetLanguage)).then(a => a[0].name);
 
-const getShape = pokemon => getPokemonSpecies(pokemon).then(({shape}) => shape);
-
-const getEvolvesFromSpecies = pokemon => getPokemonSpecies(pokemon).then(({evolves_from_species}) => evolves_from_species);
-
-// const getEvolutionChain = pokemon => getPokemonSpecies(pokemon).then(({evolution_chain}) => evolution_chain);
+const getFlavorTextEntry = (pokemon, targetLanguage) => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
+	flavor_text_entries.filter(({language}) => language.name === targetLanguage)).then(a => a[0].flavor_text);
 
 const getGeneration = pokemon => getPokemonSpecies(pokemon).then(({generation}) => generation);
 
-const getNames = pokemon => getPokemonSpecies(pokemon).then(({names}) => names);
-
-const getFlavourTextEntries = pokemon => getPokemonSpecies(pokemon).then(({flavor_text_entries}) => flavor_text_entries);
-
 const getFormDescriptions = pokemon => getPokemonSpecies(pokemon).then(({form_descriptions}) => form_descriptions);
 
-const getGenera = pokemon => getPokemonSpecies(pokemon).then(({genera}) => genera);
-
-const getVarieties = pokemon => getPokemonSpecies(pokemon).then(({varieties}) => varieties);
-
 export {
+	getLanguageIdentifiers,
 	getAllStringsValuesFromObject,
 	getAllInfoOfPokemon,
 	getAbilities,
 	getSprites,
-	getFlavourTextEntries,
+	getFlavorTextEntry,
 	getIsLegendary,
 	getIsMythical,
 	getPokedexNumbers,
+	getName,
 };
+
+/* -------------------------------------TRASH DON'T DELETE------------------------------------- */
+
+// const getColor = pokemon => getPokemonSpecies(pokemon).then(({color}) => color);
+
+// const getShape = pokemon => getPokemonSpecies(pokemon).then(({shape}) => shape);
+
+// const getEvolvesFromSpecies = pokemon => getPokemonSpecies(pokemon).then(({evolves_from_species}) => evolves_from_species);
+
+// const getEvolutionChain = pokemon => getPokemonSpecies(pokemon).then(({evolution_chain}) => evolution_chain);
+
+// const getGenera = pokemon => getPokemonSpecies(pokemon).then(({genera}) => genera);
+
+// const getVarieties = pokemon => getPokemonSpecies(pokemon).then(({varieties}) => varieties);
