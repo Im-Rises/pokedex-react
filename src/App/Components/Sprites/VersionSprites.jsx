@@ -3,13 +3,19 @@ import {getSprites} from '../../Requests';
 import PropTypes from 'prop-types';
 import ShowAllSpriteOfObject from './ShowAllSpriteOfObject';
 
-const Version = props => Object.keys(props.v).map(k => <><h1>{k}</h1>
-	<ShowAllSpriteOfObject ObjectOfUrl={props.v[k]}/>
+const Version = props => Object.keys(props.version).map(k => <><h1>{k}</h1>
+	<ShowAllSpriteOfObject ObjectOfUrl={props.version[k]}/>
 </>);
 
+Version.propTypes = {version: PropTypes.object.isRequired};
+
 const Generation = props => <>
-	{Object.keys(props.resp).map((v, i) => <Version key={i} v={props.resp[v]}/>)}
+	{Object.keys(props.resp).map((version, i) => <Version key={i} version={props.resp[version]}/>)}
 </>;
+
+Generation.propTypes = {
+	resp: PropTypes.object.isRequired,
+};
 
 const VersionSprites = ({pokemon}) => {
 	const [state, setState] = useState([]);
