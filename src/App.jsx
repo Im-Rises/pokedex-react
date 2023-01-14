@@ -5,7 +5,7 @@ import DreamWorldSprites from './App/Components/Sprites/DreamWorldSprites';
 import HomeSprites from './App/Components/Sprites/HomeSprites';
 import OfficialArtworkSprites from './App/Components/Sprites/OfficialArtworkSprites';
 // import Description from './App/Components/Descriptions/Description';
-import {getDescriptions} from './App/Requests';
+import {getFlavourTextEntries} from './App/Requests';
 
 const App = () => {
 	const [pokemon, setPokemon] = useState('');
