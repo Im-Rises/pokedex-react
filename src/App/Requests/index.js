@@ -39,7 +39,8 @@ const getIsLegendary = pokemon => getPokemonSpecies(pokemon).then(({is_legendary
 
 const getIsMythical = pokemon => getPokemonSpecies(pokemon).then(({is_mythical}) => is_mythical);
 
-const getPokedexNumbers = pokemon => getPokemonSpecies(pokemon).then(({pokedex_numbers}) => pokedex_numbers);
+const getPokedexNumbers = (pokemonTarget, pokedexTarget) => getPokemonSpecies(pokemonTarget).then(({pokedex_numbers}) =>
+	pokedex_numbers.filter(({pokedex}) => pokedex.name === pokedexTarget)).then(a => a[0].entry_number);
 
 const getColor = pokemon => getPokemonSpecies(pokemon).then(({color}) => color);
 

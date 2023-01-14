@@ -6,6 +6,7 @@ import HomeSprites from './App/Components/Sprites/HomeSprites';
 import OfficialArtworkSprites from './App/Components/Sprites/OfficialArtworkSprites';
 import LegendaryState from './App/Components/Descriptions/LegendaryState';
 import MythicalState from './App/Components/Descriptions/MythicalState';
+import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
 
 const App = () => {
 	const [pokemon, setPokemon] = useState('');
@@ -22,6 +23,7 @@ const App = () => {
 			<VersionSprites pokemon={pokemon}/>
 			<LegendaryState pokemon={pokemon}/>
 			<MythicalState pokemon={pokemon}/>
+			<PokemonNumber pokemon={pokemon} pokedex={'national'}/>
 		</div>
 	);
 };
