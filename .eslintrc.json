@@ -23,7 +23,9 @@
     ],
     "capitalized-comments": "off",
     "react/prop-types": 1,
-    "no-trailing-spaces": 0
+    "no-trailing-spaces": 0,
+    "no-unused-vars": "off"
+    //TODO: remove "no-unused-vars" when merge to main
     // 'max-param': 'off',
     // 'max-params': [
     // 	'error',
