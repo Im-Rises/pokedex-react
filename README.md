@@ -1,13 +1,12 @@
 # pokedex-react
 
-## Description
+## LegendaryState
 
 Pokedex made in React using the Pokepedia API.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## 🚀🚀[you can try the pokedex by clicking here](https://im-rises.github.io/pokedex-react/) 🚀🚀
-
 
 ## Overview
 

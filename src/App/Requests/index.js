@@ -67,4 +67,7 @@ export {
 	getAbilities,
 	getSprites,
 	getFlavourTextEntries,
+	getIsLegendary,
+	getIsMythical,
+	getPokedexNumbers,
 };

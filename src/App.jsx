@@ -4,8 +4,8 @@ import CommonSprites from './App/Components/Sprites/CommonSprites';
 import DreamWorldSprites from './App/Components/Sprites/DreamWorldSprites';
 import HomeSprites from './App/Components/Sprites/HomeSprites';
 import OfficialArtworkSprites from './App/Components/Sprites/OfficialArtworkSprites';
-// import Description from './App/Components/Descriptions/Description';
-import {getFlavourTextEntries} from './App/Requests';
+import LegendaryState from './App/Components/Descriptions/LegendaryState';
+import MythicalState from './App/Components/Descriptions/MythicalState';
 
 const App = () => {
 	const [pokemon, setPokemon] = useState('');
@@ -20,8 +20,8 @@ const App = () => {
 			<HomeSprites pokemon={pokemon}/>
 			<OfficialArtworkSprites pokemon={pokemon}/>
 			<VersionSprites pokemon={pokemon}/>
-			{/* <Description pokemon={pokemon}/> */}
-			{/* <p>{getDescriptions(2).then(console.log)}</p> */}
+			<LegendaryState pokemon={pokemon}/>
+			<MythicalState pokemon={pokemon}/>
 		</div>
 	);
 };
