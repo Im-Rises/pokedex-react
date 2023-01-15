@@ -3,15 +3,15 @@ import {getIsLegendary} from '../../Requests';
 import PropTypes from 'prop-types';
 
 const PokemonLegendaryState = ({pokemon}) => {
-	const [state, setState] = React.useState([]);
+	const [isLengendary, setIsLengendary] = React.useState(Boolean);
 	React.useEffect(() => {
 		getIsLegendary(pokemon)
-			.then(setState);
+			.then(setIsLengendary);
 	}, [pokemon]);
 
 	return (
 		<div>
-			<p>Is legendary: {state ? 'Yes' : 'No'}</p>
+			<p>Is legendary: {isLengendary ? 'Yes' : 'No'}</p>
 		</div>
 	);
 };
