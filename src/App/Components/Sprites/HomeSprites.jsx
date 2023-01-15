@@ -12,7 +12,10 @@ const HomeSprites = ({pokemon}) => {
 			.then(setState);
 	}, [pokemon]);
 
-	return <ShowAllSpriteOfObject ObjectOfUrl={state} />;
+	return <details>
+		<summary>Home Sprites</summary>
+		<ShowAllSpriteOfObject ObjectOfUrl={state} />
+	</details>;
 };
 
 HomeSprites.propTypes = {
