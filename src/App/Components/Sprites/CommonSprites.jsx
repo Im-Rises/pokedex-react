@@ -13,10 +13,10 @@ const CommonSprites = ({pokemon}) => {
 		}
 	}, [pokemon]);
 
-	return <div>
-		<h1>Common Sprites</h1>
+	return <details>
+		<summary>Common Sprites</summary>
 		<ShowAllSpriteOfObject ObjectOfUrl={state}/>
-	</div>;
+	</details>;
 };
 
 CommonSprites.propTypes = {

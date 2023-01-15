@@ -12,10 +12,10 @@ const DreamWorldSprites = ({pokemon}) => {
 			.then(setState);
 	}, [pokemon]);
 
-	return <div>
-		<h1>Dream World Sprites</h1>
+	return <details>
+		<summary>Dream World Sprites</summary>
 		<ShowAllSpriteOfObject ObjectOfUrl={state}/>
-	</div>;
+	</details>;
 };
 
 DreamWorldSprites.propTypes = {
