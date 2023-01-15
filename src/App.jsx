@@ -10,16 +10,19 @@ import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
 import PokemonName from './App/Components/Descriptions/PokemonName';
 import PokemonDescription from './App/Components/Descriptions/PokemonDescription';
 import LanguageSelector from './App/Components/Language/LanguageSelector';
-// import {getLanguageIdentifiers} from './App/Requests';
 
 const App = () => {
 	const [pokemon, setPokemon] = useState('');
+	const [language, setLanguage] = useState('en');
+	// const [state, setState] = useState({
+	// 	pokemon: '',
+	// 	language: 'en',
+	// });
 
 	const handleSearch = event => setPokemon(event.target.value.toLowerCase());
-	// getLanguageIdentifiers.then(console.log);
 	return (
 		<div>
-			<LanguageSelector/>
+			<LanguageSelector initLanguage={language} setLanguage={setLanguage}/>
 			<input type={'text'} value={pokemon} onChange={handleSearch}/>
 			<CommonSprites pokemon={pokemon}/>
 			<DreamWorldSprites pokemon={pokemon}/>
@@ -29,8 +32,8 @@ const App = () => {
 			<LegendaryState pokemon={pokemon}/>
 			<MythicalState pokemon={pokemon}/>
 			<PokemonNumber pokemon={pokemon} pokedex={'national'}/>
-			<PokemonName pokemon={pokemon} language={'ko'}/>
-			<PokemonDescription pokemon={pokemon} language={'fr'}/>
+			<PokemonName pokemon={pokemon} language={language}/>
+			<PokemonDescription pokemon={pokemon} language={language}/>
 		</div>
 	);
 };
