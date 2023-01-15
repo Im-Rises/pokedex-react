@@ -1,6 +1,6 @@
 # pokedex-react
 
-## LegendaryState
+## PokemonLegendaryState
 
 Pokédex made in React using the Poképedia API.
 
@@ -31,18 +31,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Components
 
-|    Components Name     |                          its purpose                          |                    How to use it                    |
-|:----------------------:|:-------------------------------------------------------------:|:---------------------------------------------------:|
-|     CommonSprites      |      show all common sprites by given the pokemon wanted      |      `<CommonSprites pokemon={"charmander"}>`       |
-|   DreamWorldSprites    |   show all Dream World sprites by given the pokemon wanted    |    `<DreamWorldSprites pokemon={"charmander"}>`     |
-|      HomeSprites       |       show all Home sprites by given the pokemon wanted       |       `<HomeSprites pokemon={"charmander"}>`        |
+| Components Name        |                          its purpose                          |                    How to use it                    |
+|:-----------------------|:-------------------------------------------------------------:|:---------------------------------------------------:|
+| CommonSprites          |      show all common sprites by given the pokemon wanted      |      `<CommonSprites pokemon={"charmander"}>`       |
+| DreamWorldSprites      |   show all Dream World sprites by given the pokemon wanted    |    `<DreamWorldSprites pokemon={"charmander"}>`     |
+| HomeSprites            |       show all Home sprites by given the pokemon wanted       |       `<HomeSprites pokemon={"charmander"}>`        |
 | OfficialArtworkSprites | show all Official Artwork sprites by given the pokemon wanted |  `<OfficialArtworkSprites pokemon={"charmander"}>`  |
 | ShowAllSpriteOfObject  |   show all url with their name in caption from object given   | `<ShowAllSpriteOfObject ObjectOfUrl={ObjectOfUrl}>` |
-|         Sprite         |           show an image by its URL with its legend            |          `<Sprite url={url} name={name}/>`          |
-|     VersionSprite      |       show all pokemon sprites generation by generation       |        `<VersionSprite pokemon={pokemon}/>`         |
-|     PokemonNumber      |              show the pokemon number by its name              |        `<PokemonNumber pokemon={pokemon}/>`         |
-|      PokemonName       |              show the pokemon name by its number              |         `<PokemonName pokemon={pokemon}/>`          |
-|   PokemonDescription   |          show the pokemon description by its number           |      `<PokemonDescription pokemon={pokemon}/>`      |
+| Sprite                 |           show an image by its URL with its legend            |          `<Sprite url={url} name={name}/>`          |
+| VersionSprite          |       show all pokemon sprites generation by generation       |        `<VersionSprite pokemon={pokemon}/>`         |
+| PokemonNumber          |              show the pokemon number by its name              |        `<PokemonNumber pokemon={pokemon}/>`         |
+| PokemonName            |        show the pokemon name in the selected language         |         `<PokemonName pokemon={pokemon}/>`          |
+| PokemonDescription     |     show the pokemon description in the selected language     |      `<PokemonDescription pokemon={pokemon}/>`      |
+| PokemonLegendaryState  |  show the pokemon legendary boolean in the selected language  |    `<PokemonLegendaryState pokemon={pokemon}/>`     |
+| PokemonMythicalState   |  show the pokemon mythical boolean in the selected language   |     `<PokemonMythicalState pokemon={pokemon}/>`     |
 
 ## GitHub Actions
 
