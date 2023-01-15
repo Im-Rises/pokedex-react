@@ -15,7 +15,7 @@ const App = () => {
 	const [state, setState] = useState({pokemon: String, language: 'en'});
 
 	const handlePokemon = event => setState({...state, pokemon: event.target.value.toLowerCase()});
-	const handleLanguage = lang => setState({...state, language: lang});
+	const handleLanguage = event => setState({...state, language: event.target.value});
 
 	return (
 		<div>
