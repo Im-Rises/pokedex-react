@@ -2,7 +2,7 @@ import React from 'react';
 import {getIsMythical} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const MythicalState = ({pokemon}) => {
+const PokemonMythicalState = ({pokemon}) => {
 	const [state, setState] = React.useState([]);
 	React.useEffect(() => {
 		getIsMythical(pokemon)
@@ -16,8 +16,8 @@ const MythicalState = ({pokemon}) => {
 	);
 };
 
-MythicalState.propTypes = {
+PokemonMythicalState.propTypes = {
 	pokemon: PropTypes.string.isRequired,
 };
 
-export default MythicalState;
+export default PokemonMythicalState;

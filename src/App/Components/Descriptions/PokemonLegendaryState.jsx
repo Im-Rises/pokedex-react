@@ -2,7 +2,7 @@ import React from 'react';
 import {getIsLegendary} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const LegendaryState = ({pokemon}) => {
+const PokemonLegendaryState = ({pokemon}) => {
 	const [state, setState] = React.useState([]);
 	React.useEffect(() => {
 		getIsLegendary(pokemon)
@@ -16,8 +16,8 @@ const LegendaryState = ({pokemon}) => {
 	);
 };
 
-LegendaryState.propTypes = {
+PokemonLegendaryState.propTypes = {
 	pokemon: PropTypes.string.isRequired,
 };
 
-export default LegendaryState;
+export default PokemonLegendaryState;
