@@ -3,15 +3,15 @@ import {getIsMythical} from '../../Requests';
 import PropTypes from 'prop-types';
 
 const PokemonMythicalState = ({pokemon}) => {
-	const [state, setState] = React.useState([]);
+	const [isMythical, setIsMythical] = React.useState(Boolean);
 	React.useEffect(() => {
 		getIsMythical(pokemon)
-			.then(setState);
+			.then(setIsMythical);
 	}, [pokemon]);
 
 	return (
 		<div>
-			<p>Is mythical: {state ? 'Yes' : 'No'}</p>
+			<p>Is mythical: {isMythical ? 'Yes' : 'No'}</p>
 		</div>
 	);
 };
