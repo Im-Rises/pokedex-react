@@ -2,16 +2,17 @@ import React from 'react';
 import {getPokedexNumbers} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const PokemonNumber = props => {
-	const [state, setState] = React.useState([]);
+const PokemonNumber = ({pokemon, pokedex}) => {
+	const [pokedexNumber, setPokedexNumber] = React.useState(Number);
+
 	React.useEffect(() => {
-		getPokedexNumbers(props.pokemon, props.pokedex)
-			.then(setState);
-	}, [props]);
+		getPokedexNumbers(pokemon, pokedex)
+			.then(setPokedexNumber);
+	}, [pokemon, pokedex]);
 
 	return (
 		<div>
-			<p>Pokemon number: {state}</p>
+			<p>Pokemon number: {pokedexNumber}</p>
 		</div>
 	);
 };
