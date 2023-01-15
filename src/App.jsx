@@ -9,15 +9,17 @@ import MythicalState from './App/Components/Descriptions/MythicalState';
 import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
 import PokemonName from './App/Components/Descriptions/PokemonName';
 import PokemonDescription from './App/Components/Descriptions/PokemonDescription';
-import {getLanguageIdentifiers} from './App/Requests';
+import LanguageSelector from './App/Components/Language/LanguageSelector';
+// import {getLanguageIdentifiers} from './App/Requests';
 
 const App = () => {
 	const [pokemon, setPokemon] = useState('');
 
 	const handleSearch = event => setPokemon(event.target.value.toLowerCase());
-	getLanguageIdentifiers.then(console.log);
+	// getLanguageIdentifiers.then(console.log);
 	return (
 		<div>
+			<LanguageSelector/>
 			<input type={'text'} value={pokemon} onChange={handleSearch}/>
 			<CommonSprites pokemon={pokemon}/>
 			<DreamWorldSprites pokemon={pokemon}/>
