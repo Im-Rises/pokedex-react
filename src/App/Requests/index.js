@@ -21,7 +21,11 @@ const makeRequest = url => fetch(url, initRequest)
 
 const getAllInfoOfPokemon = pokemon => makeRequest(`${POKEPEDIA_URL}/pokemon/${pokemon}`);
 
-const getLanguageIdentifiers = makeRequest(`${POKEPEDIA_URL}/language/`).then(({results}) => results);
+/* -------------------------------------POKEDEX API LANGUAGES------------------------------------- */
+
+const getLanguageData = makeRequest(`${POKEPEDIA_URL}/language/`);
+
+const getLanguageIdentifiers = () => getLanguageData.then(({results}) => results);
 
 /* -------------------------------------POKEMON ABILITIES------------------------------------- */
 
