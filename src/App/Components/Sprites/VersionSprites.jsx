@@ -3,14 +3,17 @@ import {getSprites} from '../../Requests';
 import PropTypes from 'prop-types';
 import ShowAllSpriteOfObject from './ShowAllSpriteOfObject';
 
-const Version = props => Object.keys(props.version).map(k => <><h1>{k}</h1>
-	<ShowAllSpriteOfObject ObjectOfUrl={props.version[k]}/>
-</>);
+const Version = props =>
+	Object.keys(props.version).map(k => <><h2>{k}</h2>
+		<ShowAllSpriteOfObject ObjectOfUrl={props.version[k]}/>
+	</>);
 
 Version.propTypes = {version: PropTypes.object.isRequired};
 
 const Generation = props => <>
-	{Object.keys(props.resp).map((version, i) => <Version key={i} version={props.resp[version]}/>)}
+	{Object.keys(props.resp).map((version, i) => <div key={i}>
+		<h1>{version}</h1>
+		<Version version={props.resp[version]}/></div>)}
 </>;
 
 Generation.propTypes = {
