@@ -1,39 +1,53 @@
-import React, {useState} from 'react';
-import VersionSprites from './App/Components/Sprites/VersionSprites';
-import CommonSprites from './App/Components/Sprites/CommonSprites';
-import DreamWorldSprites from './App/Components/Sprites/DreamWorldSprites';
-import HomeSprites from './App/Components/Sprites/HomeSprites';
-import OfficialArtworkSprites from './App/Components/Sprites/OfficialArtworkSprites';
-import PokemonLegendaryState from './App/Components/Descriptions/PokemonLegendaryState';
-import PokemonMythicalState from './App/Components/Descriptions/PokemonMythicalState';
-import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
-import PokemonName from './App/Components/Descriptions/PokemonName';
-import PokemonDescription from './App/Components/Descriptions/PokemonDescription';
+import React, {useEffect, useState} from 'react';
 import LanguageSelector from './App/Components/Language/LanguageSelector';
+import {POKEPEDIA_URL} from './App/Constants/constant';
+import {makeRequest} from './App/Requests';
+import ShowAllSpriteOfObject from './App/Components/Sprites/ShowAllSpriteOfObject';
 
 const App = () => {
-	const [state, setState] = useState({pokemon: String, language: 'en'});
+	const [state, setState] = useState({
+		pokemon: String,
+		language: 'en',
+		// eslint-disable-next-line camelcase
+		search: {sprites: {other: {dream_world: {}, home: {}, 'official-artwork': {}}}},
+	});
 
-	const handlePokemon = event => setState({...state, pokemon: event.target.value.toLowerCase()});
-	const handleLanguage = event => setState({...state, language: event.target.value});
+	const handlePokemon = event => setState({
+		...state,
+		pokemon: event.target.value.toLowerCase(),
+	});
+
+	const handleLanguage = event => setState({
+		...state,
+		language: event.target.value,
+	});
+
+	const handleSearch = res => setState({...state, search: res});
+
+	useEffect(() => {
+		makeRequest(`${POKEPEDIA_URL}/pokemon/${state.pokemon}`)
+			.then(handleSearch);
+
+		// make request here for language and fill state
+	}, [state.pokemon, state.language]);
 
 	return (
 		<div>
 			<form>
 				<LanguageSelector initLanguage={state.language} setLanguage={handleLanguage}/>
-				<input type={'text'} value={state.pokemon} onChange={handlePokemon} />
+				<input type={'text'} value={state.pokemon} onChange={handlePokemon}/>
 			</form>
 			<div>
-				<CommonSprites pokemon={state.pokemon}/>
-				<DreamWorldSprites pokemon={state.pokemon}/>
-				<HomeSprites pokemon={state.pokemon}/>
-				<OfficialArtworkSprites pokemon={state.pokemon}/>
-				<VersionSprites pokemon={state.pokemon}/>
-				<PokemonLegendaryState pokemon={state.pokemon}/>
-				<PokemonMythicalState pokemon={state.pokemon}/>
-				<PokemonNumber pokemon={state.pokemon} pokedex={'national'}/>
-				<PokemonName pokemon={state.pokemon} language={state.language}/>
-				<PokemonDescription pokemon={state.pokemon} language={state.language}/>
+				<ShowAllSpriteOfObject ObjectOfUrl={state.search.sprites} title={'common'}/>
+				<ShowAllSpriteOfObject ObjectOfUrl={state.search.sprites.other.dream_world} title={'dream_world'}/>
+				<ShowAllSpriteOfObject ObjectOfUrl={state.search.sprites.other.home} title={'home'}/>
+				<ShowAllSpriteOfObject ObjectOfUrl={state.search.sprites.other['official-artwork']} title={'official-artwork'}/>
+				{/* <VersionSprites pokemon={state.pokemon}/> */}
+				{/* <PokemonLegendaryState pokemon={state.pokemon}/> */}
+				{/* <PokemonMythicalState pokemon={state.pokemon}/> */}
+				{/* <PokemonNumber pokemon={state.pokemon} pokedex={'national'}/> */}
+				{/* <PokemonName pokemon={state.pokemon} language={state.language}/> */}
+				{/* <PokemonDescription pokemon={state.pokemon} language={state.language}/> */}
 			</div>
 		</div>
 	);

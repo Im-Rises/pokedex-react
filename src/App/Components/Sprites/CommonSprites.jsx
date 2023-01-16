@@ -1,21 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {getSprites} from '../../Requests';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ShowAllSpriteOfObject from './ShowAllSpriteOfObject';
 
-const CommonSprites = ({pokemon}) => {
-	const [sprites, setSprites] = useState(Object);
-
-	useEffect(() => {
-		getSprites(pokemon)
-			.then(setSprites);
-	}, [pokemon]);
-
-	return <ShowAllSpriteOfObject ObjectOfUrl={sprites} title={'common sprites'}/>;
-};
+const CommonSprites = ({sprites}) => <ShowAllSpriteOfObject ObjectOfUrl={sprites} title={'common sprites'}/>;
 
 CommonSprites.propTypes = {
-	pokemon: PropTypes.string.isRequired,
+	sprites: PropTypes.string.isRequired,
 };
 
 export default CommonSprites;

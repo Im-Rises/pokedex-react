@@ -16,7 +16,7 @@ const ShowAllSpriteOfObject = ({ObjectOfUrl, title}) => {
 
 ShowAllSpriteOfObject.propTypes = {
 	ObjectOfUrl: PropTypes.object.isRequired,
-	title: PropTypes.string.isRequired,
+	title: PropTypes.string,
 };
 
 export default ShowAllSpriteOfObject;
