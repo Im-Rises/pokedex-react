@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import {getSprites} from '../../Requests';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ShowAllSpriteOfObject from './ShowAllSpriteOfObject';
 
@@ -9,31 +8,21 @@ const Version = props =>
 
 Version.propTypes = {version: PropTypes.object.isRequired};
 
-const Generation = props => <details>
+const Generation = ({resp}) => <details>
 	<summary>generation sprites</summary>
-	{Object.keys(props.resp).map((version, i) => <details key={i}>
+	{Object.keys(resp).map((version, i) => <details key={i}>
 		<summary>{version}</summary>
-		<Version version={props.resp[version]}/></details>)}
+		<Version version={resp[version]}/></details>)}
 </details>;
 
 Generation.propTypes = {
 	resp: PropTypes.object.isRequired,
 };
 
-const VersionSprites = ({pokemon}) => {
-	const [state, setState] = useState([]);
-
-	useEffect(() => {
-		getSprites(pokemon)
-			.then(({versions}) => versions)
-			.then(setState);
-	}, [pokemon]);
-
-	return <Generation resp={state}/>;
-};
+const VersionSprites = ({versions}) => <Generation resp={versions}/>;
 
 VersionSprites.propTypes = {
-	pokemon: PropTypes.string.isRequired,
+	versions: PropTypes.string.isRequired,
 };
 
 export default VersionSprites;
