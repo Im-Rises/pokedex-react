@@ -26,9 +26,23 @@ const getAllInfoOfPokemon = pokemon => makeRequest(`${POKEPEDIA_URL}/pokemon/${p
 
 /* -------------------------------------POKEDEX API LANGUAGES------------------------------------- */
 
-const getLanguageData = makeRequest(`${POKEPEDIA_URL}/language/`);
+const getLanguageData = language => makeRequest(`${POKEPEDIA_URL}/language/${language}`);
 
-const getLanguageIdentifiers = () => getLanguageData.then(({results}) => results);
+const getLanguageIdentifiers = () => getLanguageData('').then(({results}) => results);
+
+// const getLanguageRealName = inputLanguage => getLanguageData(inputLanguage).then(({names}) =>
+// 	names.filter(({language}) => language.name === inputLanguage)).then(a => a[0].name);
+//
+// getLanguageRealName('en').then(console.log); //OK
+// getLanguageRealName('fr').then(console.log); //OK
+// getLanguageRealName('es').then(console.log); //OK
+// getLanguageRealName('it').then(console.log); //NOK
+
+/* -------------------------------------POKEDEX VERSIONS------------------------------------- */
+
+const getPokedexData = pokedex => makeRequest(`${POKEPEDIA_URL}/pokedex/${pokedex}`);
+
+const getPokedexIdentifiers = () => getPokedexData('').then(({results}) => results);
 
 /* -------------------------------------POKEMON ABILITIES------------------------------------- */
 
@@ -61,6 +75,13 @@ const getGeneration = pokemon => getPokemonSpecies(pokemon).then(({generation}) 
 
 const getFormDescriptions = pokemon => getPokemonSpecies(pokemon).then(({form_descriptions}) => form_descriptions);
 
+/* -------------------------------------POKEMON GAMEVERSION------------------------------------- */
+
+const getPokemonGameVersionsIdentifiers = pokemon => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
+	flavor_text_entries.map(({version}) => version));
+
+// getPokemonGameVersionsIdentifiers('pikachu').then(console.log);
+
 export {
 	makeRequest,
 	getLanguageIdentifiers,
@@ -73,6 +94,7 @@ export {
 	getIsMythical,
 	getPokedexNumbers,
 	getName,
+	getPokedexIdentifiers,
 };
 
 /* -------------------------------------TRASH DON'T DELETE------------------------------------- */

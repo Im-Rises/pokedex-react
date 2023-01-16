@@ -9,6 +9,7 @@ import PokemonMythicalState from './App/Components/Descriptions/PokemonMythicalS
 import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
 import PokemonName from './App/Components/Descriptions/PokemonName';
 import PokemonDescription from './App/Components/Descriptions/PokemonDescription';
+import {PokedexSelector} from './App/Components/PokedexSelector/PokedexSelector';
 
 const App = () => {
 	const [state, setState] = useState({
@@ -29,6 +30,7 @@ const App = () => {
 	});
 
 	const handleSearch = res => setState({...state, search: res});
+	const handlePokedex = event => setState({...state, pokedex: event.target.value});
 
 	useEffect(() => {
 		makeRequest(`${POKEPEDIA_URL}/pokemon/${state.pokemon}`)
@@ -40,6 +42,7 @@ const App = () => {
 	return (
 		<div>
 			<form>
+				<PokedexSelector initPokedex={state.pokedex} setPokedex={handlePokedex}/>
 				<LanguageSelector initLanguage={state.language} setLanguage={handleLanguage}/>
 				<input type={'text'} value={state.pokemon} onChange={handlePokemon}/>
 			</form>
