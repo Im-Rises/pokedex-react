@@ -72,6 +72,13 @@ const getGeneration = pokemon => getPokemonSpecies(pokemon).then(({generation}) 
 
 const getFormDescriptions = pokemon => getPokemonSpecies(pokemon).then(({form_descriptions}) => form_descriptions);
 
+/* -------------------------------------POKEMON GAMEVERSION------------------------------------- */
+
+const getPokemonGameVersionsIdentifiers = pokemon => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
+	flavor_text_entries.map(({version}) => version));
+
+// getPokemonGameVersionsIdentifiers('pikachu').then(console.log);
+
 export {
 	getLanguageIdentifiers,
 	getAllStringsValuesFromObject,
