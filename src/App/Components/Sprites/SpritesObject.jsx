@@ -4,8 +4,8 @@ import Sprite from './Sprite';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ShowAllSpriteOfObject = ({ObjectOfUrl, title}) => {
-	const zippedUrlName = R.zip(getAllStringsValuesFromObject(ObjectOfUrl), Object.keys(ObjectOfUrl));
+const SpritesObject = ({obj, title}) => {
+	const zippedUrlName = R.zip(getAllStringsValuesFromObject(obj), Object.keys(obj));
 	return <details>
 		<summary>{title}</summary>
 		<div style={{display: 'inline-flex'}}>
@@ -14,9 +14,9 @@ const ShowAllSpriteOfObject = ({ObjectOfUrl, title}) => {
 	</details>;
 };
 
-ShowAllSpriteOfObject.propTypes = {
-	ObjectOfUrl: PropTypes.object.isRequired,
+SpritesObject.propTypes = {
+	obj: PropTypes.object.isRequired,
 	title: PropTypes.string,
 };
 
-export default ShowAllSpriteOfObject;
+export default SpritesObject;

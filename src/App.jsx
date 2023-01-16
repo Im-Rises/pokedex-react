@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import LanguageSelector from './App/Components/Language/LanguageSelector';
 import {POKEPEDIA_URL} from './App/Constants/constant';
 import {makeRequest} from './App/Requests';
-import ShowAllSpriteOfObject from './App/Components/Sprites/ShowAllSpriteOfObject';
+import SpritesObject from './App/Components/Sprites/SpritesObject';
 import VersionSprites from './App/Components/Sprites/VersionSprites';
 import PokemonLegendaryState from './App/Components/Descriptions/PokemonLegendaryState';
 import PokemonMythicalState from './App/Components/Descriptions/PokemonMythicalState';
@@ -44,10 +44,10 @@ const App = () => {
 				<input type={'text'} value={state.pokemon} onChange={handlePokemon}/>
 			</form>
 			<div>
-				<ShowAllSpriteOfObject ObjectOfUrl={state.search.sprites} title={'common'}/>
-				<ShowAllSpriteOfObject ObjectOfUrl={state.search.sprites.other.dream_world} title={'dream_world'}/>
-				<ShowAllSpriteOfObject ObjectOfUrl={state.search.sprites.other.home} title={'home'}/>
-				<ShowAllSpriteOfObject ObjectOfUrl={state.search.sprites.other['official-artwork']}
+				<SpritesObject obj={state.search.sprites} title={'common'}/>
+				<SpritesObject obj={state.search.sprites.other.dream_world} title={'dream_world'}/>
+				<SpritesObject obj={state.search.sprites.other.home} title={'home'}/>
+				<SpritesObject obj={state.search.sprites.other['official-artwork']}
 					title={'official-artwork'}/>
 				<VersionSprites versions={state.search.sprites.versions}/>
 				<PokemonLegendaryState pokemon={state.pokemon}/>

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShowAllSpriteOfObject from './ShowAllSpriteOfObject';
+import SpritesObject from './SpritesObject';
 
 const Version = props =>
 	Object.keys(props.version).map((v, i) =>
-		<ShowAllSpriteOfObject key={i} ObjectOfUrl={props.version[v]} title={v}/>);
+		<SpritesObject key={i} obj={props.version[v]} title={v}/>);
 
 Version.propTypes = {version: PropTypes.object.isRequired};
 
