@@ -8,13 +8,16 @@ const initRequest = {
 	method: 'GET',
 	mode: 'cors',
 	cache: 'default',
+	headers: {'Content-Type': 'application/json'},
 };
+
+const isGetOk = R.prop('ok');
 
 const getJsonFromRequest = resp => resp.json();
 
-const isString = value => typeof value === 'string';
+const getJsonIfOk = R.ifElse(isGetOk, getJsonFromRequest, R.identity);
 
-const getAllStringsValuesFromObject = R.pipe(R.values, R.filter(isString));
+const getAllStringsValuesFromObject = R.pipe(R.values, R.filter(R.is(String)));
 
 const makeRequest = url => fetch(url, initRequest)
 	.then(getJsonFromRequest);
@@ -80,6 +83,7 @@ const getPokemonGameVersionsIdentifiers = pokemon => getPokemonSpecies(pokemon).
 // getPokemonGameVersionsIdentifiers('pikachu').then(console.log);
 
 export {
+	makeRequest,
 	getLanguageIdentifiers,
 	getAllStringsValuesFromObject,
 	getAllInfoOfPokemon,

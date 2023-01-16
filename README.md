@@ -46,6 +46,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 | PokemonLegendaryState  |  show the pokemon legendary boolean in the selected language  |    `<PokemonLegendaryState pokemon={pokemon}/>`     |
 | PokemonMythicalState   |  show the pokemon mythical boolean in the selected language   |     `<PokemonMythicalState pokemon={pokemon}/>`     |
 
+
 ## GitHub Actions
 
 [![CodeQL](https://github.com/Im-Rises/pokedex-react/actions/workflows/codeql.yml/badge.svg)](https://github.com/Im-Rises/pokedex-react/actions/workflows/codeql.yml)
