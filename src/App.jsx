@@ -10,18 +10,21 @@ import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
 import PokemonName from './App/Components/Descriptions/PokemonName';
 import PokemonDescription from './App/Components/Descriptions/PokemonDescription';
 import LanguageSelector from './App/Components/Language/LanguageSelector';
+import {PokedexSelector} from './App/Components/PokedexSelector/PokedexSelector';
 
 const App = () => {
-	const [state, setState] = useState({pokemon: String, language: 'en'});
+	const [state, setState] = useState({pokemon: String, language: 'en', pokedex: 'national'});
 
 	const handlePokemon = event => setState({...state, pokemon: event.target.value.toLowerCase()});
 	const handleLanguage = event => setState({...state, language: event.target.value});
+	const handlePokedex = event => setState({...state, pokedex: event.target.value});
 
 	return (
 		<div>
 			<form>
+				<PokedexSelector initPokedex={state.pokedex} setPokedex={handlePokedex}/>
 				<LanguageSelector initLanguage={state.language} setLanguage={handleLanguage}/>
-				<input type={'text'} value={state.pokemon} onChange={handlePokemon} />
+				<input type={'text'} value={state.pokemon} onChange={handlePokemon}/>
 			</form>
 			<div>
 				<CommonSprites pokemon={state.pokemon}/>
