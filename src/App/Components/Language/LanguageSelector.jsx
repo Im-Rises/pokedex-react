@@ -1,6 +1,7 @@
 import React from 'react';
 import {getLanguageIdentifiers} from '../../Requests/index';
 import PropTypes from 'prop-types';
+import LanguageOption from './LanguageOption';
 
 const LanguageSelector = props => {
 	const [languages, setLanguages] = React.useState([]);
@@ -9,14 +10,8 @@ const LanguageSelector = props => {
 	});
 
 	return (
-		<select onChange={e => {
-			props.setLanguage(e.target.value);
-		}}>
-			{languages.map(language => (
-				<option key={language.id} value={language.id}>
-					{language.name}
-				</option>
-			))}
+		<select onChange={props.setLanguage}>
+			{languages.map(({name}, i) => <LanguageOption name={name} key={i}/>)}
 		</select>
 	);
 };
@@ -27,3 +22,4 @@ LanguageSelector.propTypes = {
 };
 
 export default LanguageSelector;
+

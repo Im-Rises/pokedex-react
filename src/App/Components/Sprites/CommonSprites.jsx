@@ -4,19 +4,14 @@ import PropTypes from 'prop-types';
 import ShowAllSpriteOfObject from './ShowAllSpriteOfObject';
 
 const CommonSprites = ({pokemon}) => {
-	const [state, setState] = useState([]);
+	const [sprites, setSprites] = useState(Object);
 
 	useEffect(() => {
-		if (pokemon !== '') {
-			getSprites(pokemon)
-				.then(setState);
-		}
+		getSprites(pokemon)
+			.then(setSprites);
 	}, [pokemon]);
 
-	return <details>
-		<summary>Common Sprites</summary>
-		<ShowAllSpriteOfObject ObjectOfUrl={state}/>
-	</details>;
+	return <ShowAllSpriteOfObject ObjectOfUrl={sprites} title={'common sprites'}/>;
 };
 
 CommonSprites.propTypes = {

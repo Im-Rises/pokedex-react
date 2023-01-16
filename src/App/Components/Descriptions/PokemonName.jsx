@@ -2,16 +2,17 @@ import React from 'react';
 import {getName} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const PokemonName = props => {
-	const [state, setState] = React.useState([]);
+const PokemonName = ({pokemon, language}) => {
+	const [name, setName] = React.useState(String);
+
 	React.useEffect(() => {
-		getName(props.pokemon, props.language)
-			.then(setState);
-	}, [props]);
+		getName(pokemon, language)
+			.then(setName);
+	}, [pokemon, language]);
 
 	return (
 		<div>
-			<p>Pokemon name in {props.language}: {state}</p>
+			<p>Pokemon name in {language}: {name}</p>
 		</div>
 	);
 };

@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 import ShowAllSpriteOfObject from './ShowAllSpriteOfObject';
 
 const Version = props =>
-	Object.keys(props.version).map((k, i) => <details key={i}>
-		<summary>{k}</summary>
-		<ShowAllSpriteOfObject ObjectOfUrl={props.version[k]}/>
-	</details>);
+	Object.keys(props.version).map((v, i) =>
+		<ShowAllSpriteOfObject key={i} ObjectOfUrl={props.version[v]} title={v}/>);
 
 Version.propTypes = {version: PropTypes.object.isRequired};
 
