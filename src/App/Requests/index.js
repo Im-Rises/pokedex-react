@@ -73,14 +73,10 @@ const getName = (pokemon, targetLanguage) => getPokemonSpecies(pokemon).then(({n
 const getPokemonGameVersionsIdentifiers = pokemon => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
 	flavor_text_entries.map(({version}) => version));
 
-// const getFlavorTextEntry = (pokemon, targetLanguage, version) => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
-// 	flavor_text_entries.filter(({language}) => language.name === targetLanguage)).then(a => a[0].flavor_text.replace('\u000c', ' '));
-
-const getFlavorEntry = (pokemon, targetLanguage, targetVersion) => getPokemonSpecies(pokemon).then(({flavor_text_entries}) => {
-	const flavorText = flavor_text_entries.filter(({language}) => language.name === targetLanguage);
-	const flavorTextVersion = flavorText.filter(({version}) => version.name === targetVersion);
-	return flavorTextVersion[0].flavor_text.replace('\u000c', ' ');
-});
+const getFlavorEntry = (pokemon, targetLanguage, targetVersion) => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
+	flavor_text_entries.filter(({language}) => language.name === targetLanguage)
+		.filter(({version}) => version.name === targetVersion)
+		.map(({flavor_text}) => flavor_text.replace('\u000c', ' ')));
 
 export {
 	makeRequest,

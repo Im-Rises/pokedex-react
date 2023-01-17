@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const PokemonDescription = ({pokemon, language}) => {
 	const [description, setDescription] = React.useState('');
 	React.useEffect(() => {
-		getFlavorEntry(pokemon, language, 'x')
+		getFlavorEntry(pokemon, language, 'y')
 			.then(setDescription);
 	}, [pokemon, language]);
 
