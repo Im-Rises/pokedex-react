@@ -1,11 +1,11 @@
 import React from 'react';
-import {getFlavorTextEntry} from '../../Requests';
+import {getFlavorEntry} from '../../Requests';
 import PropTypes from 'prop-types';
 
 const PokemonDescription = ({pokemon, language}) => {
 	const [description, setDescription] = React.useState('');
 	React.useEffect(() => {
-		getFlavorTextEntry(pokemon, language)
+		getFlavorEntry(pokemon, language, 'y')
 			.then(setDescription);
 	}, [pokemon, language]);
 
