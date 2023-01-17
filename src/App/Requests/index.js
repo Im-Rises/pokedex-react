@@ -69,7 +69,7 @@ const getName = (pokemon, targetLanguage) => getPokemonSpecies(pokemon).then(({n
 	names.filter(({language}) => language.name === targetLanguage)).then(a => a[0].name);
 
 const getFlavorTextEntry = (pokemon, targetLanguage) => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
-	flavor_text_entries.filter(({language}) => language.name === targetLanguage)).then(a => a[0].flavor_text);
+	flavor_text_entries.filter(({language}) => language.name === targetLanguage)).then(a => a[0].flavor_text.replace('\u000c', ' '));
 
 const getGeneration = pokemon => getPokemonSpecies(pokemon).then(({generation}) => generation);
 
