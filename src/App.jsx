@@ -34,10 +34,7 @@ const App = () => {
 	const handleSearch = res => setState({...state, search: res});
 	const handleSearchSpecie = res => setState({...state, pokemonSpecies: res});
 
-	const handleHasOpened = () => {
-		setState({...state, hasOpened: true});
-		console.log('click');
-	};
+	const handleHasOpened = () => setState({...state, hasOpened: true});
 
 	const filterLanguageAndVersion = () => state.pokemonSpecies.flavor_text_entries.filter(
 		({language: {name}}) => name === state.language).filter(
