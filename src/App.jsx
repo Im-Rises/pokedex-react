@@ -43,11 +43,16 @@ const App = () => {
 		console.log('click');
 	};
 
-	const filterLanguageAndVersion = () => state.pokemonSpecies.flavor_text_entries.filter(
-		({language: {name}}) => name === state.language).filter(
-		({version: {name}}) => name === state.gameVersion);
+	// const filterLanguageAndVersion = () => state.pokemonSpecies.flavor_text_entries.filter(
+	// 	({language: {name}}) => name === state.language).filter(
+	// 	({version: {name}}) => name === state.gameVersion);
 	const filterLanguage = target => target.filter(
 		({language: {name}}) => name === state.language);
+
+	const filterVersion = target => target.filter(
+		({version: {name}}) => name === state.gameVersion);
+
+	const filterLanguageAndVersion = target => filterLanguage(filterVersion(target));
 
 	const filterPokedex = target => target.filter(
 		({pokedex: {name}}) => name === 'national');
@@ -75,7 +80,8 @@ const App = () => {
 					<PokemonNumber obj={filterPokedex(state.pokemonSpecies.pokedex_numbers)[0]?.entry_number}
 								   title={'number'}/>
 					<PokemonDescription
-						obj={filterLanguageAndVersion()[0]?.flavor_text} title={'description'}/>
+						obj={filterLanguageAndVersion(state.pokemonSpecies.flavor_text_entries)[0]?.flavor_text}
+						title={'description'}/>
 					<PokemonMythicalState obj={state.pokemonSpecies.is_mythical} title={'Mythical'}/>
 					<PokemonLegendaryState obj={state.pokemonSpecies.is_legendary} title={'Legendary'}/>
 				</div>
