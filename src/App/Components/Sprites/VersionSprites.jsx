@@ -19,6 +19,7 @@ Generation.propTypes = {
 	resp: PropTypes.object.isRequired,
 };
 
+// todo : changer nom par "GenerationSprite"
 const VersionSprites = ({versions}) => <Generation resp={versions}/>;
 
 VersionSprites.propTypes = {

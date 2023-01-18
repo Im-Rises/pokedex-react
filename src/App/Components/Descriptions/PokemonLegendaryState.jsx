@@ -16,7 +16,7 @@ PokemonLegendaryState.propTypes = {
 	pokemon: PropTypes.string.isRequired,
 };
 
-PokemonLegendaryState.props = {
+PokemonLegendaryState.propTypes = {
 	obj: PropTypes.bool.isRequired,
 	title: PropTypes.string,
 };

@@ -12,7 +12,7 @@ const PokemonMythicalState = ({obj, title}) => (
 	</details>
 );
 
-PokemonMythicalState.props = {
+PokemonMythicalState.propTypes = {
 	obj: PropTypes.bool.isRequired,
 	title: PropTypes.string,
 };
