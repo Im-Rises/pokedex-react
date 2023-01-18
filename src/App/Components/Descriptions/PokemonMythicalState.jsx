@@ -1,23 +1,24 @@
 import React from 'react';
-import {getIsMythical} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const PokemonMythicalState = ({pokemon}) => {
-	const [isMythical, setIsMythical] = React.useState(Boolean);
-	React.useEffect(() => {
-		getIsMythical(pokemon)
-			.then(setIsMythical);
-	}, [pokemon]);
-
-	return (
-		<div>
-			<p>Is mythical: {isMythical ? 'Yes' : 'No'}</p>
+const PokemonMythicalState = ({obj, title}) => (
+	<details>
+		<summary>{title}</summary>
+		<div style={{display: 'inline-flex'}}>
+			{
+				obj ? 'Mythical' : 'Not Mythical'
+			}
 		</div>
-	);
-};
+	</details>
+);
 
 PokemonMythicalState.propTypes = {
 	pokemon: PropTypes.string.isRequired,
+};
+
+PokemonMythicalState.props = {
+	obj: PropTypes.bool.isRequired,
+	title: PropTypes.string,
 };
 
 export default PokemonMythicalState;
