@@ -45,8 +45,6 @@ const App = () => {
 			.then(handleSearchSpecie);
 	}, [state.pokemon, state.language]);
 
-	const description = filterLanguageAndVersion()[0]?.flavor_text;
-
 	return (
 		<div>
 			<form>
@@ -60,7 +58,7 @@ const App = () => {
 				<SpritesObject obj={state.search.sprites.other['official-artwork']} title={'official-artwork'}/>
 				<VersionSprites versions={state.search.sprites.versions}/>
 				<PokemonDescription
-					obj={description} title={'description'}/>
+					obj={filterLanguageAndVersion()[0]?.flavor_text} title={'description'}/>
 				<PokemonMythicalState obj={state.pokemonSpecies.is_mythical} title={'Mythical'}/>
 				<PokemonLegendaryState obj={state.pokemonSpecies.is_legendary} title={'Legendary'}/>
 			</div>
