@@ -3,6 +3,7 @@ import './index.css';
 import PropTypes from 'prop-types';
 import {TopOpening} from './TopOpening';
 import {BtmOpening} from './BtmOpening';
+import {GithubBar} from './GithubBar';
 
 const Opening = ({hasClicked, handleHasOpened}) => <div className={'opening'}>
 	<TopOpening hasOpened={hasClicked} />
@@ -11,6 +12,7 @@ const Opening = ({hasClicked, handleHasOpened}) => <div className={'opening'}>
 			console.log('click');
 			handleHasOpened();
 		}}/>
+	<GithubBar hasClicked={hasClicked} />
 	<BtmOpening hasOpened={hasClicked}/>
 </div>;
 
