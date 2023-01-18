@@ -46,10 +46,10 @@ const App = () => {
 	const filterLanguageAndVersion = () => state.pokemonSpecies.flavor_text_entries.filter(
 		({language: {name}}) => name === state.language).filter(
 		({version: {name}}) => name === state.gameVersion);
-	const filterLanguage = () => state.pokemonSpecies.names.filter(
+	const filterLanguage = target => target.filter(
 		({language: {name}}) => name === state.language);
 
-	const filterPokedexNumbers = () => state.pokemonSpecies.pokedex_numbers.filter(
+	const filterPokedex = target => target.filter(
 		({pokedex: {name}}) => name === 'national');
 
 	useEffect(() => {
@@ -71,8 +71,9 @@ const App = () => {
 					<SpritesObject obj={state.search.sprites.other.home} title={'home'}/>
 					<SpritesObject obj={state.search.sprites.other['official-artwork']} title={'official-artwork'}/>
 					<VersionSprites versions={state.search.sprites.versions}/>
-					<PokemonName obj={filterLanguage()[0]?.name} title={'name'}/>
-					<PokemonNumber obj={filterPokedexNumbers()[0]?.entry_number} title={'number'}/>
+					<PokemonName obj={filterLanguage(state.pokemonSpecies.names)[0]?.name} title={'name'}/>
+					<PokemonNumber obj={filterPokedex(state.pokemonSpecies.pokedex_numbers)[0]?.entry_number}
+								   title={'number'}/>
 					<PokemonDescription
 						obj={filterLanguageAndVersion()[0]?.flavor_text} title={'description'}/>
 					<PokemonMythicalState obj={state.pokemonSpecies.is_mythical} title={'Mythical'}/>
