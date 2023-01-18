@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PokemonName = ({obj, title}) => {
-	console.log('PokemonName: ', obj);
-	return (
-		<div>
-			<h1>{title}</h1>
-			{/* <h2>{obj}</h2> */}
-		</div>
+const PokemonName = ({obj, title}) =>
+	(
+		<details>
+			<summary>{title}</summary>
+			<div style={{display: 'inline-flex'}}>
+				{obj}
+			</div>
+		</details>
 	);
-};
 
 PokemonName.propTypes = {
 	obj: PropTypes.string.isRequired,

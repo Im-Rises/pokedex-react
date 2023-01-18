@@ -10,6 +10,7 @@ import PokemonDescription from './App/Components/Descriptions/PokemonDescription
 import PokemonLegendaryState from './App/Components/Descriptions/PokemonLegendaryState';
 import Opening from './App/Components/Opening/Opening';
 import PokemonName from './App/Components/Descriptions/PokemonName';
+import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
 
 const App = () => {
 	const [state, setState] = useState({
@@ -18,7 +19,7 @@ const App = () => {
 		search: {sprites: {other: {dream_world: {}, home: {}, 'official-artwork': {}}, versions: {}}},
 		pokemonSpecies: {
 			flavor_text_entries: [], is_legendary: Boolean, is_mythical: Boolean,
-			names: [],
+			pokedex_numbers: [], names: [],
 		},
 		gameVersion: 'x',
 		hasOpened: false,
@@ -48,6 +49,9 @@ const App = () => {
 	const filterLanguage = () => state.pokemonSpecies.names.filter(
 		({language: {name}}) => name === state.language);
 
+	const filterPokedexNumbers = () => state.pokemonSpecies.pokedex_numbers.filter(
+		({pokedex: {name}}) => name === 'national');
+
 	useEffect(() => {
 		makeRequest(`${POKEPEDIA_URL}/pokemon/${state.pokemon}`)
 			.then(handleSearch);
@@ -68,6 +72,7 @@ const App = () => {
 					<SpritesObject obj={state.search.sprites.other['official-artwork']} title={'official-artwork'}/>
 					<VersionSprites versions={state.search.sprites.versions}/>
 					<PokemonName obj={filterLanguage()[0]?.name} title={'name'}/>
+					<PokemonNumber obj={filterPokedexNumbers()[0]?.entry_number} title={'number'}/>
 					<PokemonDescription
 						obj={filterLanguageAndVersion()[0]?.flavor_text} title={'description'}/>
 					<PokemonMythicalState obj={state.pokemonSpecies.is_mythical} title={'Mythical'}/>
