@@ -23,11 +23,7 @@
     ],
     "capitalized-comments": "off",
     "react/prop-types": 1,
-    "no-trailing-spaces": 0
-    // 'max-param': 'off',
-    // 'max-params': [
-    // 	'error',
-    // 	6,
-    // ],
+    "no-trailing-spaces": 0,
+    "no-mixed-spaces-and-tabs": "off"
   }
 }
