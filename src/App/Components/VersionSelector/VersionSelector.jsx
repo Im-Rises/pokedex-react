@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const VersionSelector = props => {
-	const [versions, setVersion] = React.useState();
-	React.useEffect(() => {
-		setVersion(selectedVersion);
-	});
-
+const VersionSelector = () => {
+	console.log('VersionSelector');
 	return (
-		<select onChange={props.setVersion}>
-			{versions.map((version, i) => <option value={version} key={i}>{version}</option>)}
+		<select>
+
 		</select>
 	);
 };
