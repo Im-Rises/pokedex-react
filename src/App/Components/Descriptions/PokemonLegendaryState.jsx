@@ -1,23 +1,24 @@
 import React from 'react';
-import {getIsLegendary} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const PokemonLegendaryState = ({pokemon}) => {
-	const [isLengendary, setIsLengendary] = React.useState(Boolean);
-	React.useEffect(() => {
-		getIsLegendary(pokemon)
-			.then(setIsLengendary);
-	}, [pokemon]);
-
-	return (
-		<div>
-			<p>Is legendary: {isLengendary ? 'Yes' : 'No'}</p>
+const PokemonLegendaryState = ({obj, title}) => (
+	<details>
+		<summary>{title}</summary>
+		<div style={{display: 'inline-flex'}}>
+			{
+				obj ? 'Legendary' : 'Not Legendary'
+			}
 		</div>
-	);
-};
+	</details>
+);
 
 PokemonLegendaryState.propTypes = {
 	pokemon: PropTypes.string.isRequired,
+};
+
+PokemonLegendaryState.props = {
+	obj: PropTypes.bool.isRequired,
+	title: PropTypes.string,
 };
 
 export default PokemonLegendaryState;

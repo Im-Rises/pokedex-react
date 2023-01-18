@@ -4,12 +4,11 @@ import {POKEPEDIA_URL} from './App/Constants/constant';
 import {makeRequest} from './App/Requests';
 import SpritesObject from './App/Components/Sprites/SpritesObject';
 import VersionSprites from './App/Components/Sprites/VersionSprites';
-import PokemonLegendaryState from './App/Components/Descriptions/PokemonLegendaryState';
 import PokemonMythicalState from './App/Components/Descriptions/PokemonMythicalState';
-import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
-import PokemonName from './App/Components/Descriptions/PokemonName';
+// import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
+// import PokemonName from './App/Components/Descriptions/PokemonName';
 import PokemonDescription from './App/Components/Descriptions/PokemonDescription';
-import {PokedexSelector} from './App/Components/PokedexSelector/PokedexSelector';
+import PokemonLegendaryState from './App/Components/Descriptions/PokemonLegendaryState';
 
 const App = () => {
 	const [state, setState] = useState({
@@ -17,6 +16,9 @@ const App = () => {
 		language: 'en',
 		// eslint-disable-next-line camelcase
 		search: {sprites: {other: {dream_world: {}, home: {}, 'official-artwork': {}}, versions: {}}},
+		// eslint-disable-next-line camelcase
+		pokemonSpecies: {flavor_text_entries: [], is_legendary: Boolean, is_mythical: Boolean},
+		gameVersion: 'x',
 	});
 
 	const handlePokemon = event => setState({
@@ -30,19 +32,22 @@ const App = () => {
 	});
 
 	const handleSearch = res => setState({...state, search: res});
-	const handlePokedex = event => setState({...state, pokedex: event.target.value});
+	const handleSearchSpecie = res => setState({...state, pokemonSpecies: res});
+
+	const filterLanguageAndVersion = () => state.pokemonSpecies.flavor_text_entries.filter(
+		({language: {name}}) => name === state.language).filter(
+		({version: {name}}) => name === state.gameVersion);
 
 	useEffect(() => {
 		makeRequest(`${POKEPEDIA_URL}/pokemon/${state.pokemon}`)
 			.then(handleSearch);
-
-		// make request here for language and fill state
+		makeRequest(`${POKEPEDIA_URL}/pokemon-species/${state.pokemon}`)
+			.then(handleSearchSpecie);
 	}, [state.pokemon, state.language]);
 
 	return (
 		<div>
 			<form>
-				<PokedexSelector initPokedex={state.pokedex} setPokedex={handlePokedex}/>
 				<LanguageSelector initLanguage={state.language} setLanguage={handleLanguage}/>
 				<input type={'text'} value={state.pokemon} onChange={handlePokemon}/>
 			</form>
@@ -50,14 +55,12 @@ const App = () => {
 				<SpritesObject obj={state.search.sprites} title={'common'}/>
 				<SpritesObject obj={state.search.sprites.other.dream_world} title={'dream_world'}/>
 				<SpritesObject obj={state.search.sprites.other.home} title={'home'}/>
-				<SpritesObject obj={state.search.sprites.other['official-artwork']}
-					title={'official-artwork'}/>
+				<SpritesObject obj={state.search.sprites.other['official-artwork']} title={'official-artwork'}/>
 				<VersionSprites versions={state.search.sprites.versions}/>
-				<PokemonLegendaryState pokemon={state.pokemon}/>
-				<PokemonMythicalState pokemon={state.pokemon}/>
-				<PokemonNumber pokemon={state.pokemon} pokedex={'national'}/>
-				<PokemonName pokemon={state.pokemon} language={state.language}/>
-				<PokemonDescription pokemon={state.pokemon} language={state.language}/>
+				<PokemonDescription
+					obj={filterLanguageAndVersion()[0]?.flavor_text} title={'description'}/>
+				<PokemonMythicalState obj={state.pokemonSpecies.is_mythical} title={'Mythical'}/>
+				<PokemonLegendaryState obj={state.pokemonSpecies.is_legendary} title={'Legendary'}/>
 			</div>
 		</div>
 	);
