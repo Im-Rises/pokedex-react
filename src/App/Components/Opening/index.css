@@ -17,12 +17,15 @@
         background-color: white;
     }
 }
+
 .top-fixed {
     position: absolute;
     width: 100%;
     height: 50%;
     background-color: red;
+    text-align: center;
 }
+
 .top-move {
     position: absolute;
     width: 100%;
@@ -30,6 +33,7 @@
     background-color: red;
     animation: to-the-top 1s linear;
     animation-fill-mode: forwards;
+    text-align: center;
 }
 
 .bottom-fixed {
@@ -65,4 +69,46 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+
+.pokedex-logo {
+    width: 40%;
+    padding-top: 10%;
+}
+
+.opening-github {
+    width: 100%;
+    text-align: center;
+    background-color: navy;
+    display: inline-flex;
+    color: white;
+
+}
+
+.left {
+    width: 50%;
+    left: 0;
+}
+
+
+.right {
+    width: 50%;
+    right: 0;
+}
+
+
+.github-repo {
+    color:white;
+}
+
+.github-links {
+    text-decoration: none;
+    color:white;
+    padding:5px;
+}
+
+.github-links:hover {
+    background-color: white;
+    color:black;
 }
