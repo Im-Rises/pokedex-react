@@ -1,0 +1,68 @@
+@keyframes to-the-top {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: -100%;
+        background-color: white;
+    }
+}
+
+@keyframes to-the-bottom {
+    0% {
+        bottom: 0;
+    }
+    100% {
+        bottom: -100%;
+        background-color: white;
+    }
+}
+.top-fixed {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: red;
+}
+.top-move {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: red;
+    animation: to-the-top 1s linear;
+    animation-fill-mode: forwards;
+}
+
+.bottom-fixed {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    background-color: blue;
+}
+
+.bottom-move {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    background-color: blue;
+    animation: to-the-bottom 1s linear;
+    animation-fill-mode: forwards;
+}
+
+.opening-btn {
+    border: #666 1px solid;
+    font-size: 24px;
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: white;
+    font-family: "Bauhaus 93", fantasy;
+    word-break: break-all;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
