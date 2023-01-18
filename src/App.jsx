@@ -1,3 +1,4 @@
+/* eslint camelcase: 0 */
 import React, {useEffect, useState} from 'react';
 import LanguageSelector from './App/Components/Language/LanguageSelector';
 import {POKEPEDIA_URL} from './App/Constants/constant';
@@ -8,15 +9,17 @@ import PokemonMythicalState from './App/Components/Descriptions/PokemonMythicalS
 import PokemonDescription from './App/Components/Descriptions/PokemonDescription';
 import PokemonLegendaryState from './App/Components/Descriptions/PokemonLegendaryState';
 import Opening from './App/Components/Opening/Opening';
+import PokemonName from './App/Components/Descriptions/PokemonName';
 
 const App = () => {
 	const [state, setState] = useState({
 		pokemon: String,
 		language: 'en',
-		// eslint-disable-next-line camelcase
 		search: {sprites: {other: {dream_world: {}, home: {}, 'official-artwork': {}}, versions: {}}},
-		// eslint-disable-next-line camelcase
-		pokemonSpecies: {flavor_text_entries: [], is_legendary: Boolean, is_mythical: Boolean},
+		pokemonSpecies: {
+			flavor_text_entries: [], is_legendary: Boolean, is_mythical: Boolean,
+			names: [],
+		},
 		gameVersion: 'x',
 		hasOpened: false,
 	});
@@ -42,6 +45,8 @@ const App = () => {
 	const filterLanguageAndVersion = () => state.pokemonSpecies.flavor_text_entries.filter(
 		({language: {name}}) => name === state.language).filter(
 		({version: {name}}) => name === state.gameVersion);
+	const filterLanguage = () => state.pokemonSpecies.names.filter(
+		({language: {name}}) => name === state.language);
 
 	useEffect(() => {
 		makeRequest(`${POKEPEDIA_URL}/pokemon/${state.pokemon}`)
@@ -62,6 +67,7 @@ const App = () => {
 					<SpritesObject obj={state.search.sprites.other.home} title={'home'}/>
 					<SpritesObject obj={state.search.sprites.other['official-artwork']} title={'official-artwork'}/>
 					<VersionSprites versions={state.search.sprites.versions}/>
+					<PokemonName obj={filterLanguage()[0]?.name} title={'name'}/>
 					<PokemonDescription
 						obj={filterLanguageAndVersion()[0]?.flavor_text} title={'description'}/>
 					<PokemonMythicalState obj={state.pokemonSpecies.is_mythical} title={'Mythical'}/>

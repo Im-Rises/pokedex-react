@@ -46,6 +46,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 | PokemonLegendaryState  |  show the pokemon legendary boolean in the selected language  |    `<PokemonLegendaryState pokemon={pokemon}/>`     |
 | PokemonMythicalState   |  show the pokemon mythical boolean in the selected language   |     `<PokemonMythicalState pokemon={pokemon}/>`     |
 
+## Documentations
+
+- [React](https://reactjs.org/docs/getting-started.html)
+- [Pokeapi](https://pokeapi.co/docs/v2.html)
+- [React-gh-pages](https://github.com/gitname/react-gh-pages)
+- [EsLint](https://eslint.org/docs/user-guide/getting-started)
 
 ## GitHub Actions
 
