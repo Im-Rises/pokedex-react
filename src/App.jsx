@@ -45,8 +45,7 @@ const App = () => {
 			.then(handleSearchSpecie);
 	}, [state.pokemon, state.language]);
 
-	// eslint-disable-next-line camelcase
-	const description = filterLanguageAndVersion().map(({flavor_text}) => flavor_text);
+	const description = filterLanguageAndVersion()[0]?.flavor_text;
 
 	return (
 		<div>
