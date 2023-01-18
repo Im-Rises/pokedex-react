@@ -10,6 +10,7 @@ import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
 import PokemonName from './App/Components/Descriptions/PokemonName';
 import PokemonDescription from './App/Components/Descriptions/PokemonDescription';
 import {PokedexSelector} from './App/Components/PokedexSelector/PokedexSelector';
+import {Opening} from './App/Components/Opening/Opening';
 
 const App = () => {
 	const [state, setState] = useState({
@@ -40,26 +41,29 @@ const App = () => {
 	}, [state.pokemon, state.language]);
 
 	return (
-		<div>
-			<form>
-				<PokedexSelector initPokedex={state.pokedex} setPokedex={handlePokedex}/>
-				<LanguageSelector initLanguage={state.language} setLanguage={handleLanguage}/>
-				<input type={'text'} value={state.pokemon} onChange={handlePokemon}/>
-			</form>
+		<>
+			<Opening/>
 			<div>
-				<SpritesObject obj={state.search.sprites} title={'common'}/>
-				<SpritesObject obj={state.search.sprites.other.dream_world} title={'dream_world'}/>
-				<SpritesObject obj={state.search.sprites.other.home} title={'home'}/>
-				<SpritesObject obj={state.search.sprites.other['official-artwork']}
-					title={'official-artwork'}/>
-				<VersionSprites versions={state.search.sprites.versions}/>
-				<PokemonLegendaryState pokemon={state.pokemon}/>
-				<PokemonMythicalState pokemon={state.pokemon}/>
-				<PokemonNumber pokemon={state.pokemon} pokedex={'national'}/>
-				<PokemonName pokemon={state.pokemon} language={state.language}/>
-				<PokemonDescription pokemon={state.pokemon} language={state.language}/>
+				<form>
+					<PokedexSelector initPokedex={state.pokedex} setPokedex={handlePokedex}/>
+					<LanguageSelector initLanguage={state.language} setLanguage={handleLanguage}/>
+					<input type={'text'} value={state.pokemon} onChange={handlePokemon}/>
+				</form>
+				<div>
+					<SpritesObject obj={state.search.sprites} title={'common'}/>
+					<SpritesObject obj={state.search.sprites.other.dream_world} title={'dream_world'}/>
+					<SpritesObject obj={state.search.sprites.other.home} title={'home'}/>
+					<SpritesObject obj={state.search.sprites.other['official-artwork']}
+						title={'official-artwork'}/>
+					<VersionSprites versions={state.search.sprites.versions}/>
+					<PokemonLegendaryState pokemon={state.pokemon}/>
+					<PokemonMythicalState pokemon={state.pokemon}/>
+					<PokemonNumber pokemon={state.pokemon} pokedex={'national'}/>
+					<PokemonName pokemon={state.pokemon} language={state.language}/>
+					<PokemonDescription pokemon={state.pokemon} language={state.language}/>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
