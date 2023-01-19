@@ -29,7 +29,9 @@ export const List = () => {
 		</div>
 		<div className={'list-and-preview'}>
 			<div className={'left'}>
-				<img src={state.imageToShow} alt={''} style={{width: '100px'}}/>
+				<div className={'left-content'}>
+					<img src={state.imageToShow} alt={''}/>
+				</div>
 			</div>
 			<div className={'right'}>
 				<ListPkm nbrOfPkm={MAX_PKM} handlePokemonToShow={handlePokemonToShow} pokemon={state.search}/>
