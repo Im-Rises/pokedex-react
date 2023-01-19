@@ -16,13 +16,18 @@ export const List = () => {
 			.then(handleImageToShow);
 	}, [state.pokemonToShow]);
 
-	return <div className={'list-and-preview'}>
-		<div className={'left'}>
-			<span>{state.pokemonToShow}</span>
-			<img src={state.imageToShow} alt={''} style={{width: '100px'}}/>
+	return <div>
+		<div className={'name-searchbar'}>
+			<div className={'pokemon-name'}><p>{state.pokemonToShow}</p></div>
+			<div className={'pokemon-name'}><input type={'search'}/></div>
 		</div>
-		<div className={'right'}>
-			<ListPkm nbrOfPkm={MAX_PKM} handlePokemonToShow={handlePokemonToShow}/>
+		<div className={'list-and-preview'}>
+			<div className={'left'}>
+				<img src={state.imageToShow} alt={''} style={{width: '100px'}}/>
+			</div>
+			<div className={'right'}>
+				<ListPkm nbrOfPkm={MAX_PKM} handlePokemonToShow={handlePokemonToShow}/>
+			</div>
 		</div>
 	</div>;
 };

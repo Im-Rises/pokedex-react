@@ -27,6 +27,6 @@ export const ListPkm = ({nbrOfPkm, handlePokemonToShow}) => {
 };
 
 ListPkm.propTypes = {
-	nbrOfPkm: PropTypes.number.isRequired,
-	handlePokemonToShow: PropTypes.func,
+	nbrOfPkm: PropTypes.number,
+	handlePokemonToShow: PropTypes.func.isRequired,
 };

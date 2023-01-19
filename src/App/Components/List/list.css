@@ -44,3 +44,27 @@
 .list-and-preview {
     display: flex;
 }
+
+.pokemon-name {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.name-searchbar {
+    display: flex;
+    width: 100%;
+}
+
+.name-searchbar .pokemon-name {
+    width: 50%;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+
+}
+
+.name-searchbar input {
+    width: 100%;
+    height: 100%;
+}
