@@ -1,17 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {getSprites, makeRequest} from '../Requests';
+import {getAllInfoOfPokemon, makeRequest} from '../Requests';
 import TuneIcon from '@mui/icons-material/Tune';
-import {MAX_PKM} from '../Constants/constant';
+import {COLOR_BY_TYPES, MAX_PKM} from '../Constants/constant';
 import {ListPkm} from '../Components/List/ListPkm';
 
 export const List = () => {
-	const [state, setState] = useState({search: '', pokemonToShow: '', imageToShow: '', pkmList: []});
+	const [state, setState] = useState({search: '', show: {url: '', types: []}, pkmList: []});
 
 	const handlePokemonToShow = ({target: {value}}) => setState({...state, pokemonToShow: value});
 
-	const handleImageToShow = imageToShow => setState({...state, imageToShow});
-
 	const handleSearchPkm = ({target: {value}}) => setState({...state, search: value});
+	const handleShow = show => setState({...state, show});
 
 	const handlePkmList = pkmList => setState({...state, pkmList});
 
@@ -19,12 +18,13 @@ export const List = () => {
 
 	const searchPokemon = pkm => state.pkmList.filter(([pkmList]) => isStrIncludeSubsStr(pkm)(pkmList));
 
-	console.log(searchPokemon(state.search));
-
 	useEffect(() => {
-		getSprites(state.pokemonToShow)
-			.then(({other}) => other['official-artwork'].front_default)
-			.then(handleImageToShow);
+		getAllInfoOfPokemon(state.pokemonToShow)
+			.then(({sprites: {other}, types}) => ({
+				url: other['official-artwork'].front_default,
+				types: types.map(({type}) => type.name),
+			}))
+			.then(handleShow);
 
 		makeRequest(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_PKM}`)
 			.then(({results}) => results)
@@ -34,7 +34,9 @@ export const List = () => {
 
 	return <div>
 		<div className={'name-searchbar'}>
-			<div className={'pokemon-name'}><p>{state.pokemonToShow}</p></div>
+			<div className={'pokemon-name'} style={{backgroundColor: COLOR_BY_TYPES[state.show.types[0]]}}>
+				<p>{state.pokemonToShow}</p>
+			</div>
 			<div className={'pokemon-name'}>
 				<input type={'search'} onChange={handleSearchPkm} value={state.search}/>
 				<TuneIcon/>
@@ -43,7 +45,7 @@ export const List = () => {
 		<div className={'list-and-preview'}>
 			<div className={'left'}>
 				<div className={'left-content'}>
-					<img src={state.imageToShow} alt={''}/>
+					<img src={state.show.url} alt={''}/>
 				</div>
 			</div>
 			<div className={'right'}>

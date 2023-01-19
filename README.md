@@ -29,6 +29,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [pokepedia](https://pokeapi.co)
 - [react-gh-pages](https://github.com/gitname/react-gh-pages)
 
+
+- https://gist.github.com/apaleslimghost/0d25ec801ca4fc43317bcff298af43c3
 ## Components
 
 | Components Name        |                          its purpose                          |                    How to use it                    |
