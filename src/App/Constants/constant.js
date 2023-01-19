@@ -1,3 +1,5 @@
 const POKEPEDIA_URL = 'https://pokeapi.co/api/v2';
 
-export {POKEPEDIA_URL};
+const MAX_PKM = 898;
+
+export {POKEPEDIA_URL, MAX_PKM};

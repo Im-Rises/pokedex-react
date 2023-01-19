@@ -1,0 +1,46 @@
+.pkm-number-list {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 40px;
+    padding: 10px;
+    margin-top: 10px;
+    /*margin-left: 50px;*/
+    /*margin-right: 50px;*/
+    text-align: center;
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+}
+
+.pkm-number-list:hover {
+    background-color: yellow;
+    cursor: pointer;
+}
+
+.text-list {
+    width: 100%;
+    top: 50%;
+    vertical-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.pkm-number-list img {
+    margin-top: -15px;
+}
+
+
+.left {
+    width: 50%;
+}
+
+.right {
+    width: 50%;
+    overflow-y: scroll;
+    height: 400px;
+}
+
+.list-and-preview {
+    display: flex;
+}
