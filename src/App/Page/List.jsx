@@ -32,9 +32,15 @@ export const List = () => {
 			.then(handlePkmList);
 	}, [state.pokemonToShow, MAX_PKM]);
 
+	const pokemonNameStyle = {
+		background: state.show.types.length === 1
+			? COLOR_BY_TYPES[state.show.types[0]]
+			: `linear-gradient(0deg, ${COLOR_BY_TYPES[state.show.types[1]]} 0%, ${COLOR_BY_TYPES[state.show.types[1]]} 0%, ${COLOR_BY_TYPES[state.show.types[0]]} 100%)`,
+	};
+
 	return <div>
 		<div className={'name-searchbar'}>
-			<div className={'pokemon-name'} style={{backgroundColor: COLOR_BY_TYPES[state.show.types[0]]}}>
+			<div className={'pokemon-name'} style={pokemonNameStyle}>
 				<p>{state.pokemonToShow}</p>
 			</div>
 			<div className={'pokemon-name'}>
