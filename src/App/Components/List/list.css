@@ -1,3 +1,7 @@
+html {
+    background-color: #61dafb;
+}
+
 .pkm-number-list {
     background-color: white;
     border: 1px solid black;
@@ -24,6 +28,7 @@
     vertical-align: center;
     justify-content: center;
     align-content: center;
+    text-transform: capitalize;
 }
 
 .pkm-number-list img {
@@ -49,6 +54,8 @@
     padding: 10px;
     border: 1px solid black;
     display: flex;
+    box-shadow: 1px 1px 12px #555;
+    text-transform: capitalize;
 }
 
 .pokemon-name p {
@@ -87,5 +94,6 @@
 }
 
 .left img {
-    border: 1px solid black;
+    border: 10px solid white;
+    background-color: black;
 }
