@@ -2,6 +2,7 @@ import {ListPkm} from '../Components/List/ListPkm';
 import {MAX_PKM} from '../Constants/constant';
 import React, {useEffect, useState} from 'react';
 import {getSprites} from '../Requests';
+import TuneIcon from '@mui/icons-material/Tune';
 
 export const List = () => {
 	const [state, setState] = useState({search: '', pokemonToShow: '', imageToShow: ''});
@@ -21,7 +22,10 @@ export const List = () => {
 	return <div>
 		<div className={'name-searchbar'}>
 			<div className={'pokemon-name'}><p>{state.pokemonToShow}</p></div>
-			<div className={'pokemon-name'}><input type={'search'} onChange={handleSearchPkm} value={state.search}/></div>
+			<div className={'pokemon-name'}>
+				<input type={'search'} onChange={handleSearchPkm} value={state.search}/>
+				<TuneIcon />
+			</div>
 		</div>
 		<div className={'list-and-preview'}>
 			<div className={'left'}>

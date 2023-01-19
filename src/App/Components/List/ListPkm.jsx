@@ -20,7 +20,10 @@ export const ListPkm = ({nbrOfPkm, handlePokemonToShow, pokemon}) => {
 		} else {
 			console.log('here');
 			getAllInfoOfPokemon(pokemon)
-				.then(({name, id}) => [[name, id]])
+				.then(({name, id}) => {
+					handlePokemonToShow({target: {value: name}});
+					return [[name, id]];
+				})
 				.then(handlePkmList);
 		}
 	}, [nbrOfPkm, pokemon]);
