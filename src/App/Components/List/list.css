@@ -36,11 +36,11 @@ html {
 }
 
 
-.left {
+.list-and-preview .left {
     width: 50%;
 }
 
-.right {
+.list-and-preview .right {
     width: 50%;
     overflow-y: scroll;
     height: 400px;
@@ -88,7 +88,7 @@ html {
     width: 100%;
 }
 
-.left {
+.list-and-preview .left {
     padding: 10px;
     width: 50%;
     text-align: center;
