@@ -52,6 +52,9 @@ export const List = () => {
 			<div className={'left'}>
 				<div className={'left-content'}>
 					<img src={state.show.url} alt={''}/>
+					<p className={'pokemon-descr'}>
+						PUT THE DESCRIPTION OF THE POKEMON HERE
+					</p>
 				</div>
 			</div>
 			<div className={'right'}>

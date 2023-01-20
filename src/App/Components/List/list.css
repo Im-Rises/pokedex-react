@@ -43,7 +43,7 @@ html {
 .list-and-preview .right {
     width: 50%;
     overflow-y: scroll;
-    height: 400px;
+    height: 700px;
 }
 
 .list-and-preview {
@@ -97,4 +97,9 @@ html {
 .left img {
     border: 10px solid white;
     background-color: black;
+}
+.pokemon-descr {
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 40px;
 }
