@@ -1,11 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {getAllInfoOfPokemon, makeRequest} from '../Requests';
 import TuneIcon from '@mui/icons-material/Tune';
-import {COLOR_BY_TYPES, MAX_PKM} from '../Constants/constant';
+import {COLOR_BY_TYPES, MAX_PKM, POKEPEDIA_URL} from '../Constants/constant';
 import {ListPkm} from '../Components/List/ListPkm';
 
+const defaultState = {
+	search: '',
+	show: {url: '', types: []},
+	pkmList: [],
+	pokemonToShow: '',
+	pokemonSpecies: '',
+};
+
 export const List = () => {
-	const [state, setState] = useState({search: '', show: {url: '', types: []}, pkmList: []});
+	const [state, setState] = useState(defaultState);
 
 	const handlePokemonToShow = ({target: {value}}) => setState({...state, pokemonToShow: value});
 
@@ -18,25 +26,41 @@ export const List = () => {
 
 	const searchPokemon = pkm => state.pkmList.filter(([pkmList]) => isStrIncludeSubsStr(pkm)(pkmList));
 
-	useEffect(() => {
-		getAllInfoOfPokemon(state.pokemonToShow)
-			.then(({sprites: {other}, types}) => ({
-				url: other['official-artwork'].front_default,
-				types: types.map(({type}) => type.name),
-			}))
-			.then(handleShow);
+	const handleSearchSpecie = pokemonSpecies => setState({...state, pokemonSpecies});
 
-		makeRequest(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_PKM}`)
-			.then(({results}) => results)
-			.then(res => res.map(({name}, id) => [name, id]))
-			.then(handlePkmList);
-	}, [state.pokemonToShow, MAX_PKM]);
+	const getArtworkSpriteToShow = pkm => getAllInfoOfPokemon(pkm)
+		.then(({sprites: {other}, types}) => ({
+			url: other['official-artwork'].front_default,
+			types: types.map(({type}) => type.name),
+		}));
+
+	const getListOfPkmAvailable = nbr => makeRequest(`https://pokeapi.co/api/v2/pokemon?limit=${nbr}`)
+		.then(({results}) => results)
+		.then(res => res.map(({name}, id) => [name, id]));
+
+	const getDescriptionPkmToShow = pkm => makeRequest(`${POKEPEDIA_URL}/pokemon-species/${pkm}`);
+
+	const getColorType = type => COLOR_BY_TYPES[type];
+
+	const createLinearGradient = ([t1, t0]) =>
+		`linear-gradient(0deg, ${getColorType(t1)} 0%, ${getColorType(t1)} 0%, ${getColorType(t0)} 100%)`;
 
 	const pokemonNameStyle = {
 		background: state.show.types.length === 1
-			? COLOR_BY_TYPES[state.show.types[0]]
-			: `linear-gradient(0deg, ${COLOR_BY_TYPES[state.show.types[1]]} 0%, ${COLOR_BY_TYPES[state.show.types[1]]} 0%, ${COLOR_BY_TYPES[state.show.types[0]]} 100%)`,
+			? getColorType(state.show.types[0])
+			: createLinearGradient(state.show.types),
 	};
+
+	useEffect(() => {
+		getArtworkSpriteToShow(state.pokemonToShow)
+			.then(handleShow);
+
+		getListOfPkmAvailable(MAX_PKM)
+			.then(handlePkmList);
+
+		getDescriptionPkmToShow(state.pokemonToShow)
+			.then(handleSearchSpecie);
+	}, [state.pokemonToShow, MAX_PKM]);
 
 	return <div>
 		<div className={'name-searchbar'}>
@@ -53,7 +77,7 @@ export const List = () => {
 				<div className={'left-content'}>
 					<img src={state.show.url} alt={''}/>
 					<p className={'pokemon-descr'}>
-						PUT THE DESCRIPTION OF THE POKEMON HERE
+                        PUT THE DESCRIPTION OF THE POKEMON HERE
 					</p>
 				</div>
 			</div>
