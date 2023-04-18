@@ -1,3 +1,4 @@
+/* eslint camelcase: 0 */
 import React, {useEffect, useState} from 'react';
 import {POKEPEDIA_URL} from './App/Constants/constant';
 import {makeRequest} from './App/Requests';
@@ -8,10 +9,11 @@ const App = () => {
 	const [state, setState] = useState({
 		pokemon: String,
 		language: 'en',
-		// eslint-disable-next-line camelcase
 		search: {sprites: {other: {dream_world: {}, home: {}, 'official-artwork': {}}, versions: {}}},
-		// eslint-disable-next-line camelcase
-		pokemonSpecies: {flavor_text_entries: [], is_legendary: Boolean, is_mythical: Boolean},
+		pokemonSpecies: {
+			flavor_text_entries: [], is_legendary: Boolean, is_mythical: Boolean,
+			pokedex_numbers: [], names: [],
+		},
 		gameVersion: 'x',
 		hasOpened: false,
 	});
@@ -33,11 +35,6 @@ const App = () => {
 
 	const handleHasOpened = () => setState({...state, hasOpened: true});
 
-	// eslint-disable-next-line no-unused-vars
-	const filterLanguageAndVersion = () => state.pokemonSpecies.flavor_text_entries.filter(
-		({language: {name}}) => name === state.language).filter(
-		({version: {name}}) => name === state.gameVersion);
-
 	useEffect(() => {
 		makeRequest(`${POKEPEDIA_URL}/pokemon/${state.pokemon}`)
 			.then(handleSearch);
@@ -49,21 +46,6 @@ const App = () => {
 		<>
 			<Opening handleHasOpened={handleHasOpened} hasClicked={state.hasOpened}/>
 			<List />
-			{/* <div> */}
-			{/*	<LanguageSelector initLanguage={state.language} setLanguage={handleLanguage}/> */}
-			{/*	<input type={'text'} value={state.pokemon} onChange={handlePokemon}/> */}
-			{/*	<div> */}
-			{/*		<SpritesObject obj={state.search.sprites} title={'common'}/> */}
-			{/*		<SpritesObject obj={state.search.sprites.other.dream_world} title={'dream_world'}/> */}
-			{/*		<SpritesObject obj={state.search.sprites.other.home} title={'home'}/> */}
-			{/*		<SpritesObject obj={state.search.sprites.other['official-artwork']} title={'official-artwork'}/> */}
-			{/*		<VersionSprites versions={state.search.sprites.versions}/> */}
-			{/*		<PokemonDescription */}
-			{/*			obj={filterLanguageAndVersion()[0]?.flavor_text} title={'description'}/> */}
-			{/*		<PokemonMythicalState obj={state.pokemonSpecies.is_mythical} title={'Mythical'}/> */}
-			{/*		<PokemonLegendaryState obj={state.pokemonSpecies.is_legendary} title={'Legendary'}/> */}
-			{/*	</div> */}
-			{/* </div> */}
 		</>
 	);
 };

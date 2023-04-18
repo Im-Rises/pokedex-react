@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const VersionSelector = () => {
-	console.log('VersionSelector');
+	const [versions, setVersions] = React.useState([]);
+	React.useEffect(() => {
+		getVersions().then(setVersions);
+	});
 	return (
 		<select>
 
@@ -11,7 +14,7 @@ const VersionSelector = () => {
 };
 
 VersionSelector.propTypes = {
-	selectedVersion: PropTypes.string.isRequired,
+	initVersion: PropTypes.array.isRequired,
 	setVersion: PropTypes.func.isRequired,
 };
 
