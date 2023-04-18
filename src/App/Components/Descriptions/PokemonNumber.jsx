@@ -1,24 +1,18 @@
 import React from 'react';
-import {getPokedexNumbers} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const PokemonNumber = props => {
-	const [state, setState] = React.useState([]);
-	React.useEffect(() => {
-		getPokedexNumbers(props.pokemon, props.pokedex)
-			.then(setState);
-	}, [props]);
-
-	return (
-		<div>
-			<p>Pokemon number: {state}</p>
+const PokemonNumber = ({obj, title}) => (
+	<details>
+		<summary>{title}</summary>
+		<div style={{display: 'inline-flex'}}>
+			{obj}
 		</div>
-	);
-};
+	</details>
+);
 
 PokemonNumber.propTypes = {
-	pokemon: PropTypes.string.isRequired,
-	pokedex: PropTypes.string.isRequired,
+	obj: PropTypes.string.isRequired,
+	title: PropTypes.string,
 };
 
 export default PokemonNumber;

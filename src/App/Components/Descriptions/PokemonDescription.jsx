@@ -1,24 +1,25 @@
 import React from 'react';
-import {getFlavorTextEntry} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const PokemonDescription = props => {
-	const [state, setState] = React.useState([]);
-	React.useEffect(() => {
-		getFlavorTextEntry(props.pokemon, props.language)
-			.then(setState);
-	}, [props]);
+const PokemonDescription = ({obj, title}) => {
+	console.log(obj);
 
 	return (
 		<div>
-			<p>Pokemon description in {props.language}: {state}</p>
-		</div>
-	);
+			<details>
+				<summary>{title}</summary>
+				<div style={{display: 'inline-flex'}}>
+					{
+						obj
+					}
+				</div>
+			</details>
+		</div>);
 };
 
 PokemonDescription.propTypes = {
-	pokemon: PropTypes.string.isRequired,
-	language: PropTypes.string.isRequired,
+	obj: PropTypes.string.isRequired,
+	title: PropTypes.string,
 };
 
 export default PokemonDescription;

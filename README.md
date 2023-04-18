@@ -29,6 +29,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [pokepedia](https://pokeapi.co)
 - [react-gh-pages](https://github.com/gitname/react-gh-pages)
 
+
+- https://gist.github.com/apaleslimghost/0d25ec801ca4fc43317bcff298af43c3
 ## Components
 
 | Components Name        |                          its purpose                          |                    How to use it                    |
@@ -45,6 +47,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 | PokemonDescription     |     show the pokemon description in the selected language     |      `<PokemonDescription pokemon={pokemon}/>`      |
 | PokemonLegendaryState  |  show the pokemon legendary boolean in the selected language  |    `<PokemonLegendaryState pokemon={pokemon}/>`     |
 | PokemonMythicalState   |  show the pokemon mythical boolean in the selected language   |     `<PokemonMythicalState pokemon={pokemon}/>`     |
+
+## Documentations
+
+- [React](https://reactjs.org/docs/getting-started.html)
+- [Pokeapi](https://pokeapi.co/docs/v2.html)
+- [React-gh-pages](https://github.com/gitname/react-gh-pages)
+- [EsLint](https://eslint.org/docs/user-guide/getting-started)
 
 ## GitHub Actions
 

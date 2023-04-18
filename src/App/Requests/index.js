@@ -8,13 +8,16 @@ const initRequest = {
 	method: 'GET',
 	mode: 'cors',
 	cache: 'default',
+	headers: {'Content-Type': 'application/json'},
 };
+
+const isGetOk = R.prop('ok');
 
 const getJsonFromRequest = resp => resp.json();
 
-const isString = value => typeof value === 'string';
+const getJsonIfOk = R.ifElse(isGetOk, getJsonFromRequest, R.identity);
 
-const getAllStringsValuesFromObject = R.pipe(R.values, R.filter(isString));
+const getAllStringsValuesFromObject = R.pipe(R.values, R.filter(R.is(String)));
 
 const makeRequest = url => fetch(url, initRequest)
 	.then(getJsonFromRequest);
@@ -23,9 +26,23 @@ const getAllInfoOfPokemon = pokemon => makeRequest(`${POKEPEDIA_URL}/pokemon/${p
 
 /* -------------------------------------POKEDEX API LANGUAGES------------------------------------- */
 
-const getLanguageData = makeRequest(`${POKEPEDIA_URL}/language/`);
+const getLanguageData = language => makeRequest(`${POKEPEDIA_URL}/language/${language}`);
 
-const getLanguageIdentifiers = () => getLanguageData.then(({results}) => results);
+const getLanguageIdentifiers = () => getLanguageData('').then(({results}) => results);
+
+// const getLanguageRealName = inputLanguage => getLanguageData(inputLanguage).then(({names}) =>
+// 	names.filter(({language}) => language.name === inputLanguage)).then(a => a[0].name);
+//
+// getLanguageRealName('en').then(console.log); //OK
+// getLanguageRealName('fr').then(console.log); //OK
+// getLanguageRealName('es').then(console.log); //OK
+// getLanguageRealName('it').then(console.log); //NOK
+
+/* -------------------------------------POKEDEX VERSIONS------------------------------------- */
+
+const getPokedexData = pokedex => makeRequest(`${POKEPEDIA_URL}/pokedex/${pokedex}`);
+
+const getPokedexIdentifiers = () => getPokedexData('').then(({results}) => results);
 
 /* -------------------------------------POKEMON ABILITIES------------------------------------- */
 
@@ -51,24 +68,29 @@ const getPokedexNumbers = (pokemonTarget, pokedexTarget) => getPokemonSpecies(po
 const getName = (pokemon, targetLanguage) => getPokemonSpecies(pokemon).then(({names}) =>
 	names.filter(({language}) => language.name === targetLanguage)).then(a => a[0].name);
 
-const getFlavorTextEntry = (pokemon, targetLanguage) => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
-	flavor_text_entries.filter(({language}) => language.name === targetLanguage)).then(a => a[0].flavor_text);
+/* -------------------------------------POKEMON DESCRIPTION------------------------------------- */
 
-const getGeneration = pokemon => getPokemonSpecies(pokemon).then(({generation}) => generation);
+const getPokemonGameVersionsIdentifiers = pokemon => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
+	flavor_text_entries.map(({version}) => version));
 
-const getFormDescriptions = pokemon => getPokemonSpecies(pokemon).then(({form_descriptions}) => form_descriptions);
+const getFlavorEntry = (pokemon, targetLanguage, targetVersion) => getPokemonSpecies(pokemon).then(({flavor_text_entries}) =>
+	flavor_text_entries.filter(({language}) => language.name === targetLanguage)
+		.filter(({version}) => version.name === targetVersion)
+		.map(({flavor_text}) => flavor_text.replace('\u000c', ' ')));
 
 export {
+	makeRequest,
 	getLanguageIdentifiers,
 	getAllStringsValuesFromObject,
 	getAllInfoOfPokemon,
 	getAbilities,
 	getSprites,
-	getFlavorTextEntry,
+	getFlavorEntry,
 	getIsLegendary,
 	getIsMythical,
 	getPokedexNumbers,
 	getName,
+	getPokedexIdentifiers,
 };
 
 /* -------------------------------------TRASH DON'T DELETE------------------------------------- */
@@ -84,3 +106,7 @@ export {
 // const getGenera = pokemon => getPokemonSpecies(pokemon).then(({genera}) => genera);
 
 // const getVarieties = pokemon => getPokemonSpecies(pokemon).then(({varieties}) => varieties);
+
+// const getGeneration = pokemon => getPokemonSpecies(pokemon).then(({generation}) => generation);
+
+// const getFormDescriptions = pokemon => getPokemonSpecies(pokemon).then(({form_descriptions}) => form_descriptions);

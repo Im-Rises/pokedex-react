@@ -1,41 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import {getSprites} from '../../Requests';
+import React from 'react';
 import PropTypes from 'prop-types';
-import ShowAllSpriteOfObject from './ShowAllSpriteOfObject';
+import SpritesObject from './SpritesObject';
 
 const Version = props =>
-	Object.keys(props.version).map((k, i) => <details key={i}>
-		<summary>{k}</summary>
-		<ShowAllSpriteOfObject ObjectOfUrl={props.version[k]}/>
-	</details>);
+	Object.keys(props.version).map((v, i) =>
+		<SpritesObject key={i} obj={props.version[v]} title={v}/>);
 
 Version.propTypes = {version: PropTypes.object.isRequired};
 
-const Generation = props => <details>
+const Generation = ({resp}) => <details>
 	<summary>generation sprites</summary>
-	{Object.keys(props.resp).map((version, i) => <details key={i}>
+	{Object.keys(resp).map((version, i) => <details key={i}>
 		<summary>{version}</summary>
-		<Version version={props.resp[version]}/></details>)}
+		<Version version={resp[version]}/></details>)}
 </details>;
 
 Generation.propTypes = {
 	resp: PropTypes.object.isRequired,
 };
 
-const VersionSprites = ({pokemon}) => {
-	const [state, setState] = useState([]);
-
-	useEffect(() => {
-		getSprites(pokemon)
-			.then(({versions}) => versions)
-			.then(setState);
-	}, [pokemon]);
-
-	return <Generation resp={state}/>;
-};
+// todo : changer nom par "GenerationSprite"
+const VersionSprites = ({versions}) => <Generation resp={versions}/>;
 
 VersionSprites.propTypes = {
-	pokemon: PropTypes.string.isRequired,
+	versions: PropTypes.string.isRequired,
 };
 
 export default VersionSprites;

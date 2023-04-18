@@ -1,36 +1,52 @@
-import React, {useState} from 'react';
-import VersionSprites from './App/Components/Sprites/VersionSprites';
-import CommonSprites from './App/Components/Sprites/CommonSprites';
-import DreamWorldSprites from './App/Components/Sprites/DreamWorldSprites';
-import HomeSprites from './App/Components/Sprites/HomeSprites';
-import OfficialArtworkSprites from './App/Components/Sprites/OfficialArtworkSprites';
-import PokemonLegendaryState from './App/Components/Descriptions/PokemonLegendaryState';
-import PokemonMythicalState from './App/Components/Descriptions/PokemonMythicalState';
-import PokemonNumber from './App/Components/Descriptions/PokemonNumber';
-import PokemonName from './App/Components/Descriptions/PokemonName';
-import PokemonDescription from './App/Components/Descriptions/PokemonDescription';
-import LanguageSelector from './App/Components/Language/LanguageSelector';
+/* eslint camelcase: 0 */
+import React, {useEffect, useState} from 'react';
+import {POKEPEDIA_URL} from './App/Constants/constant';
+import {makeRequest} from './App/Requests';
+import Opening from './App/Components/Opening/Opening';
+import {List} from './App/Page/List';
 
 const App = () => {
-	const [pokemon, setPokemon] = useState('');
-	const [language, setLanguage] = useState('en');
+	const [state, setState] = useState({
+		pokemon: String,
+		language: 'en',
+		search: {sprites: {other: {dream_world: {}, home: {}, 'official-artwork': {}}, versions: {}}},
+		pokemonSpecies: {
+			flavor_text_entries: [], is_legendary: Boolean, is_mythical: Boolean,
+			pokedex_numbers: [], names: [],
+		},
+		gameVersion: 'x',
+		hasOpened: false,
+	});
 
-	const handleSearch = event => setPokemon(event.target.value.toLowerCase());
+	// eslint-disable-next-line no-unused-vars
+	const handlePokemon = event => setState({
+		...state,
+		pokemon: event.target.value.toLowerCase(),
+	});
+
+	// eslint-disable-next-line no-unused-vars
+	const handleLanguage = event => setState({
+		...state,
+		language: event.target.value,
+	});
+
+	const handleSearch = res => setState({...state, search: res});
+	const handleSearchSpecie = res => setState({...state, pokemonSpecies: res});
+
+	const handleHasOpened = () => setState({...state, hasOpened: true});
+
+	useEffect(() => {
+		makeRequest(`${POKEPEDIA_URL}/pokemon/${state.pokemon}`)
+			.then(handleSearch);
+		makeRequest(`${POKEPEDIA_URL}/pokemon-species/${state.pokemon}`)
+			.then(handleSearchSpecie);
+	}, [state.pokemon, state.language]);
+
 	return (
-		<div>
-			<LanguageSelector initLanguage={language} setLanguage={setLanguage}/>
-			<input type={'text'} value={pokemon} onChange={handleSearch}/>
-			<CommonSprites pokemon={pokemon}/>
-			<DreamWorldSprites pokemon={pokemon}/>
-			<HomeSprites pokemon={pokemon}/>
-			<OfficialArtworkSprites pokemon={pokemon}/>
-			<VersionSprites pokemon={pokemon}/>
-			<PokemonLegendaryState pokemon={pokemon}/>
-			<PokemonMythicalState pokemon={pokemon}/>
-			<PokemonNumber pokemon={pokemon} pokedex={'national'}/>
-			<PokemonName pokemon={pokemon} language={language}/>
-			<PokemonDescription pokemon={pokemon} language={language}/>
-		</div>
+		<>
+			<Opening handleHasOpened={handleHasOpened} hasClicked={state.hasOpened}/>
+			<List />
+		</>
 	);
 };
 

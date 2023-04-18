@@ -1,24 +1,19 @@
 import React from 'react';
-import {getName} from '../../Requests';
 import PropTypes from 'prop-types';
 
-const PokemonName = props => {
-	const [state, setState] = React.useState([]);
-	React.useEffect(() => {
-		getName(props.pokemon, props.language)
-			.then(setState);
-	}, [props]);
-
-	return (
-		<div>
-			<p>Pokemon name in {props.language}: {state}</p>
-		</div>
+const PokemonName = ({obj, title}) =>
+	(
+		<details>
+			<summary>{title}</summary>
+			<div style={{display: 'inline-flex'}}>
+				{obj}
+			</div>
+		</details>
 	);
-};
 
 PokemonName.propTypes = {
-	pokemon: PropTypes.string.isRequired,
-	language: PropTypes.string.isRequired,
+	obj: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
 };
 
 export default PokemonName;
