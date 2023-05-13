@@ -23,7 +23,7 @@ const App = () => {
 	return (<div>
 		<input type={'search'} value={state.pokemonName} onChange={handleSearch}/>
         results:
-		<code>{JSON.stringify(state)}</code>
+		<p>{JSON.stringify(state)}</p>
 	</div>);
 };
 
