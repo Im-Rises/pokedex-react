@@ -80,14 +80,14 @@ it loads all photos IN ONCE but if it's lags too much, it will be updated step b
 
 from a pokémon, we show only official artworks from pokémon (because they're cutty)
 
-- [ ] create all the function requests
+- [x] create all the function requests
     - [x] get all names C
     - [x] get all icons C
-    - [ ] get all numbers (National) Q => passed in pokémon description
-    - [ ] from a pokemon
-        - [ ] get his type Q
+    - [x] get all numbers (National) Q => passed in pokémon description
+    - [x] from a pokemon
+        - [x] get his type Q
         - [x] get his photo C
-        - [ ] get all descriptions with pkm version Q
+        - [x] get all descriptions with pkm version Q
 
 ### isolation website idea
 
