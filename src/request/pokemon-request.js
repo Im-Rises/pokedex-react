@@ -9,4 +9,9 @@ const getArtwork = setter => requestResult => {
 	return requestResult;
 };
 
-export {getPokemon, getArtwork};
+const getIcon = setter => requestResult => {
+	setter(requestResult?.sprites?.versions['generation-viii']?.icons?.front_default);
+	return requestResult;
+};
+
+export {getPokemon, getArtwork, getIcon};
