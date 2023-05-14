@@ -72,7 +72,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - gh-pages-publish: Publish to gh-pages branch
 - pages-build-deployment: Build and deploy to pages
 
-## Organization 
+## Organization
 
 it's based on the NATIONAL pokédex THE LAST VERSION
 
@@ -81,15 +81,13 @@ it loads all photos IN ONCE but if it's lags too much, it will be updated step b
 from a pokémon, we show only official artworks from pokémon (because they're cutty)
 
 - [ ] create all the function requests
-  - [ ] get all names C
-  - [ ] get all icons C
-  - [ ] get all numbers (National) Q => passed in pokémon description
-  - [ ] from a pokemon
-    - [ ] get his type Q
-    - [ ] get his photo C
-    - [ ] get all descriptions with pkm version Q
-    
-
+    - [ ] get all names C
+    - [ ] get all icons C
+    - [x] get all numbers (National) Q => transferred in pokémon description
+    - [ ] from a pokemon
+        - [x] get his type Q
+        - [ ] get his photo C
+        - [x] get all descriptions with pkm version Q
 
 ### isolation website idea
 
