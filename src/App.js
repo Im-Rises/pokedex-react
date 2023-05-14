@@ -19,15 +19,16 @@ const App = () => {
 	const handleIcon = icon => setState({...state, icon});
 	const handleSearch = event => setState({...state, pokemonName: event.target.value});
 	const handleType = type => setState({...state, type});
+	const handleFlavourEntries = flavourEntries => setState({...state, flavourEntries});
 
 	console.log(getPokemonNumber('charizard').then(console.log));
-	console.log(getPokemonFlavourEntryWithVersion('charizard', 'flavorText').then(console.log));
 	useEffect(() => {
 		// todo : voir pour les err 404 (axios)
 		getPokemon(state.pokemonName)
 			.then(getArtwork(handleOfficialArtwork))
 			.then(getIcon(handleIcon))
-			.then(getPokemonTypes(handleType));
+			.then(getPokemonTypes(handleType))
+			.then(getPokemonFlavourEntryWithVersion(handleFlavourEntries));
 
 		getListOfPkmAvailable(MAX_PKM).then(console.log);
 	}, [state.pokemonName]);
