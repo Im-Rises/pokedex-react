@@ -12,14 +12,20 @@ const getPokemonTypes = pokemonName =>
 			return [];
 		}).then(types => types.map(type => type.type.name));
 
-const getPokemonFlavorText = pokemonName =>
+const getPokemonFlavourEntryWithVersion = pokemonName =>
 	getPokemon(pokemonName)
 		.then(data => data.species.url)
 		.then(url => fetch(url))
 		.then(jsonify)
 		.then(data => data.flavor_text_entries)
-		.then(flavorTextEntries => flavorTextEntries.filter(flavorTextEntry => flavorTextEntry.language.name === LANGUAGE_NAME))
-		.then(flavorTextEntries => flavorTextEntries.map(flavorTextEntry => flavorTextEntry.flavor_text)
-			.map(flavorText => flavorText.replace(/[\n\f\r]/g, ' ')));
+		.then(flavorTextEntries => {
+			const filteredEntries = flavorTextEntries.filter(flavorTextEntry => flavorTextEntry.language.name === LANGUAGE_NAME);
+			return {
+				gameVersion: filteredEntries.map(flavorTextEntry => flavorTextEntry.version.name)
+					.map(gameVersion => gameVersion.replace(/[\n\f\r]/g, ' ')),
+				flavorText: filteredEntries.map(flavorTextEntry => flavorTextEntry.flavor_text)
+					.map(flavorText => flavorText.replace(/[\n\f\r]/g, ' ')),
+			};
+		});
 
-export {getPokemonTypes, getPokemonFlavorText};
+export {getPokemonTypes, getPokemonFlavourEntryWithVersion};

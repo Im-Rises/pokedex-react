@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.scss';
-import {getPokemonFlavorText, getPokemonTypes} from './request/pokemon-request';
-import {getPokemonNumber} from './request/pokedex-request';
+import {
+	getPokemonFlavourEntryWithVersion,
+	getPokemonTypes,
+} from './requests/pokemon-request';
+import {getPokemonNumber} from './requests/pokedex-request';
 
 console.log(getPokemonTypes('charizard').then(console.log));
-console.log(getPokemonFlavorText('charizard').then(console.log));
 console.log(getPokemonNumber('charizard').then(console.log));
+console.log(getPokemonFlavourEntryWithVersion('charizard', 'flavorText').then(console.log));
 
 const App = () =>
 // const defaultState = {
