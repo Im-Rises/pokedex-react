@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import './App.scss';
-import {getArtwork, getIcon, getPokemon} from './request/pokemon-request';
+import {getArtwork, getIcon, getListOfPkmAvailable, getPokemon} from './request/pokemon-request';
 
+const MAX_PKM = 1281;
 const App = () => {
 	const defaultState = {
 		pokemonName: '',
@@ -20,6 +21,7 @@ const App = () => {
 		getPokemon(state.pokemonName)
 			.then(getArtwork(handleOfficialArtwork))
 			.then(getIcon(handleIcon));
+		getListOfPkmAvailable(MAX_PKM).then(console.log);
 	}, [state.pokemonName]);
 
 	return (<div>
