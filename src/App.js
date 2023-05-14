@@ -9,7 +9,8 @@ const App = () => {
 	const defaultState = {
 		pokemonName: '',
 		officialArtwork: '',
-		icon: '', type: '',
+		icon: '',
+		type: '',
 	};
 	const [state, setState] = useState(defaultState);
 
@@ -17,16 +18,16 @@ const App = () => {
 	const handleOfficialArtwork = officialArtwork => setState({...state, officialArtwork});
 	const handleIcon = icon => setState({...state, icon});
 	const handleSearch = event => setState({...state, pokemonName: event.target.value});
-	// const handlePokemonType = type => setState({...state, type});
+	const handleType = type => setState({...state, type});
 
-	console.log(getPokemonTypes('charizard').then(console.log));
 	console.log(getPokemonNumber('charizard').then(console.log));
 	console.log(getPokemonFlavourEntryWithVersion('charizard', 'flavorText').then(console.log));
 	useEffect(() => {
 		// todo : voir pour les err 404 (axios)
 		getPokemon(state.pokemonName)
 			.then(getArtwork(handleOfficialArtwork))
-			.then(getIcon(handleIcon));
+			.then(getIcon(handleIcon))
+			.then(getPokemonTypes(handleType));
 
 		getListOfPkmAvailable(MAX_PKM).then(console.log);
 	}, [state.pokemonName]);

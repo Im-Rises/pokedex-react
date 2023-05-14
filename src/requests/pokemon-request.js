@@ -4,13 +4,10 @@
 import {LANGUAGE_NAME} from '../constants/pokedex-constant';
 import {getPokemon, jsonify} from './main-request';
 
-const getPokemonTypes = pokemonName =>
-	getPokemon(pokemonName)
-		.then(data => data.types)
-		.catch(error => {
-			console.error(error);
-			return [];
-		}).then(types => types.map(type => type.type.name));
+const getPokemonTypes = setter => requestResult => {
+	setter(requestResult?.types.map(t => t?.type?.name));
+	return requestResult;
+};
 
 const getPokemonFlavourEntryWithVersion = pokemonName =>
 	getPokemon(pokemonName)
