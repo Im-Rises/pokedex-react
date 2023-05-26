@@ -3,6 +3,7 @@ import './App.scss';
 import {getArtwork, getIcon, getListOfPkmAvailable, getPokemon} from './request/pokemon-request';
 import {getPokemonFlavourEntryWithVersion, getPokemonTypes} from './requests/pokemon-request';
 import {getPokemonNumber} from './requests/pokedex-request';
+import {applySpec} from 'ramda';
 
 const MAX_PKM = 1281;
 const App = () => {
@@ -11,24 +12,31 @@ const App = () => {
 		officialArtwork: '',
 		icon: '',
 		type: '',
+		flavourEntries: '',
+		pokemonNumber: undefined,
 	};
 	const [state, setState] = useState(defaultState);
 
-	// handlers
-	const handleOfficialArtwork = officialArtwork => setState({...state, officialArtwork});
-	const handleIcon = icon => setState({...state, icon});
-	const handleSearch = event => setState({...state, pokemonName: event.target.value});
-	const handleType = type => setState({...state, type});
-	const handleFlavourEntries = flavourEntries => setState({...state, flavourEntries});
+	const handleValuesFetched = values => setState({...state, ...values});
+	// const handleFlavourEntries = flavourEntries => setState({...state, flavourEntries});
+	const getAndHandleValues = async requestResult => {
+		const values = applySpec({
+			officialArtwork: getArtwork,
+			icon: getIcon,
+			type: getPokemonTypes,
+			pokemonNumber: getPokemonNumber,
+		})(requestResult);
+		const fl = await getPokemonFlavourEntryWithVersion(requestResult);
+		handleValuesFetched({...values, ...fl});
+		return requestResult;
+	};
 
-	console.log(getPokemonNumber('charizard').then(console.log));
+	const handleSearch = event => setState({...state, pokemonName: event.target.value});
+
 	useEffect(() => {
 		// todo : voir pour les err 404 (axios)
 		getPokemon(state.pokemonName)
-			.then(getArtwork(handleOfficialArtwork))
-			.then(getIcon(handleIcon))
-			.then(getPokemonTypes(handleType))
-			.then(getPokemonFlavourEntryWithVersion(handleFlavourEntries));
+			.then(getAndHandleValues);
 
 		getListOfPkmAvailable(MAX_PKM).then(console.log);
 	}, [state.pokemonName]);

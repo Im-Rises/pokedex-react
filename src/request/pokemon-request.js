@@ -7,14 +7,8 @@ const getPokemon = pokemonName =>
 const getListOfPkmAvailable = nbr => fetch(`https://pokeapi.co/api/v2/pokemon?limit=${nbr}`)
 	.then(jsonify);
 
-const getArtwork = setter => requestResult => {
-	setter(requestResult?.sprites?.front_default);
-	return requestResult;
-};
+const getArtwork = requestResult => requestResult?.sprites?.front_default;
 
-const getIcon = setter => requestResult => {
-	setter(requestResult?.sprites?.versions['generation-viii']?.icons?.front_default);
-	return requestResult;
-};
+const getIcon = requestResult => requestResult?.sprites?.versions['generation-viii']?.icons?.front_default;
 
 export {getPokemon, getArtwork, getIcon, getListOfPkmAvailable};
