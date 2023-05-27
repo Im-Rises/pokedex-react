@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.scss';
 import {getArtwork, getIcon, getListOfPkmAvailable, getPokemon} from './request/pokemon-request';
 import {getPokemonFlavourEntryWithVersion, getPokemonTypes} from './requests/pokemon-request';
-import {andThen, applySpec, identity, mergeAll, pipeWith, prop} from 'ramda';
+import {andThen, applySpec, identity, pipeWith, prop, tap} from 'ramda';
 import {getPokemonNumber} from './requests/pokedex-request';
 
 const MAX_PKM = 1281;
@@ -21,11 +21,11 @@ const App = () => {
 	// const handleFlavourEntries = flavourEntries => setState({...state, flavourEntries});
 
 	const getAndHandleValues = async requestResult => {
-		console.log('req result', requestResult);
 		pipeWith(andThen)([
 			getPokemonFlavourEntryWithVersion,
 			applySpec({flavourEntries: identity}),
-			mergeAll([{requestResult}, identity]),
+			fe => ({...requestResult, ...fe}),
+			tap(data => console.log('test merge', data)),
 			applySpec({
 				officialArtwork: getArtwork,
 				type: getPokemonTypes,
