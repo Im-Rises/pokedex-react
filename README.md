@@ -80,20 +80,20 @@ it loads all photos IN ONCE but if it's lags too much, it will be updated step b
 
 from a pokémon, we show only official artworks from pokémon (because they're cutty)
 
-- [ ] create all the function requests
-    - [ ] get all names C
-    - [ ] get all icons C
-    - [x] get all numbers (National) Q => transferred in pokémon description
-    - [ ] from a pokemon
+- [x] create all the function requests
+    - [x] get all names C
+    - [x] get all icons C
+    - [x] get all numbers (National) Q => passed in pokémon description
+    - [x] from a pokemon
         - [x] get his type Q
-        - [ ] get his photo C
+        - [x] get his photo C
         - [x] get all descriptions with pkm version Q
 
 ### isolation website idea
 
 ```mermaid
 flowchart LR
-    client --> |HTTPS| SW
+    client -->|HTTPS| SW
     subgraph pokedex
         subgraph github
             SW[Site web]
@@ -101,7 +101,7 @@ flowchart LR
         subgraph cloud-provider
             RM[Request Manager]
         end
-        SW --> |HTTPS| RM  --> |HTTPS| SW
+        SW -->|HTTPS| RM -->|HTTPS| SW
     end
 ```
 
