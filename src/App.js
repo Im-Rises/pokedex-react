@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './App.scss';
 import {getArtwork, getIcon, getListOfPkmAvailable, getPokemon} from './request/pokemon-request';
 import {getPokemonFlavourEntryWithVersion, getPokemonTypes} from './requests/pokemon-request';
+import {andThen, applySpec, identity, mergeAll, pipeWith, prop} from 'ramda';
 import {getPokemonNumber} from './requests/pokedex-request';
-import {applySpec} from 'ramda';
 
 const MAX_PKM = 1281;
 const App = () => {
@@ -19,15 +19,22 @@ const App = () => {
 
 	const handleValuesFetched = values => setState({...state, ...values});
 	// const handleFlavourEntries = flavourEntries => setState({...state, flavourEntries});
+
 	const getAndHandleValues = async requestResult => {
-		const values = applySpec({
-			officialArtwork: getArtwork,
-			icon: getIcon,
-			type: getPokemonTypes,
-			pokemonNumber: getPokemonNumber,
-		})(requestResult);
-		const fl = await getPokemonFlavourEntryWithVersion(requestResult);
-		handleValuesFetched({...values, ...fl});
+		console.log('req result', requestResult);
+		pipeWith(andThen)([
+			getPokemonFlavourEntryWithVersion,
+			applySpec({flavourEntries: identity}),
+			mergeAll([{requestResult}, identity]),
+			applySpec({
+				officialArtwork: getArtwork,
+				type: getPokemonTypes,
+				icon: getIcon,
+				pokemonNumber: getPokemonNumber,
+				flavourEntries: prop('flavourEntries'),
+			}),
+			handleValuesFetched,
+		])(requestResult);
 		return requestResult;
 	};
 
