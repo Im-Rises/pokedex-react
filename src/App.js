@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.scss';
-import {getListOfPkmAvailable} from './request/pokemon-request';
 import getAllFromPokemon from './requests';
+import {getListOfPkmAvailable} from './requests/pokedex-request';
 
 const MAX_PKM = 1281;
 

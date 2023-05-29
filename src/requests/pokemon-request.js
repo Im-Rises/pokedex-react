@@ -1,6 +1,10 @@
 import {LANGUAGE_NAME} from '../constants/pokedex-constant';
 import {jsonify} from './main-request';
 
+const getArtwork = requestResult => requestResult?.sprites?.front_default;
+
+const getIcon = requestResult => requestResult?.sprites?.versions['generation-viii']?.icons?.front_default;
+
 const getPokemonTypes = requestResult => requestResult?.types?.map(t => t?.type?.name);
 
 const getPokemonFlavourEntryWithVersion = async requestResult =>
@@ -17,4 +21,4 @@ const getPokemonFlavourEntryWithVersion = async requestResult =>
 			};
 		});
 
-export {getPokemonTypes, getPokemonFlavourEntryWithVersion};
+export {getPokemonTypes, getPokemonFlavourEntryWithVersion, getIcon, getArtwork};
