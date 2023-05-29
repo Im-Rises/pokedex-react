@@ -1,8 +1,8 @@
 import {always, andThen, applySpec, identity, ifElse, pipeWith, prop} from 'ramda';
-import {getArtwork, getIcon, getPokemon} from '../request/pokemon-request';
-import {getPokemonFlavourEntryWithVersion, getPokemonTypes} from './pokemon-request';
+import {getArtwork, getIcon, getPokemonFlavourEntryWithVersion, getPokemonTypes} from './pokemon-request';
 import {getPokemonNumber} from './pokedex-request';
- 
+import {getPokemon} from './main-request';
+
 const isUndefined = value => value === undefined;
 
 const asyncPipe = (asyncFunc, resultName) => requestResult =>

@@ -4,4 +4,6 @@ const LANGUAGE_NAME = 'en';
 
 const POKEDEX_TYPE = 'national';
 
-export {API_URL, LANGUAGE_NAME, POKEDEX_TYPE};
+const MAX_PKM = 1281;
+
+export {API_URL, LANGUAGE_NAME, POKEDEX_TYPE, MAX_PKM};
