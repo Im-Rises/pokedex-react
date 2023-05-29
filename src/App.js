@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import './App.scss';
-import {getArtwork, getIcon, getListOfPkmAvailable, getPokemon} from './request/pokemon-request';
-import {getPokemonFlavourEntryWithVersion, getPokemonTypes} from './requests/pokemon-request';
-import {always, andThen, applySpec, identity, pipeWith, prop} from 'ramda';
-import {getPokemonNumber} from './requests/pokedex-request';
+import {getListOfPkmAvailable} from './request/pokemon-request';
+import getAllFromPokemon from './requests';
 
 const MAX_PKM = 1281;
+
 const App = () => {
 	const defaultState = {
 		pokemonName: '',
@@ -19,32 +18,11 @@ const App = () => {
 
 	const handleValuesFetched = values => setState({...state, ...values});
 
-	const asyncPipe = (asyncFunc, resultName) => requestResult =>
-		pipeWith(andThen)([
-			asyncFunc,
-			applySpec({[resultName]: identity}),
-			result => ({...result, ...requestResult}),
-		])(requestResult);
-
-	const getAndHandleValues = async requestResult => pipeWith(andThen)([
-		asyncPipe(getPokemonFlavourEntryWithVersion, 'flavourEntries'),
-		applySpec({
-			officialArtwork: getArtwork,
-			type: getPokemonTypes,
-			icon: getIcon,
-			pokemonNumber: getPokemonNumber,
-			flavourEntries: prop('flavourEntries'),
-		}),
-		handleValuesFetched,
-		always(requestResult),
-	])(requestResult);
-
 	const handleSearch = event => setState({...state, pokemonName: event.target.value});
 
 	useEffect(() => {
-		// todo : voir pour les err 404 (axios)
-		getPokemon(state.pokemonName)
-			.then(getAndHandleValues);
+		getAllFromPokemon(state.pokemonName)
+			.then(handleValuesFetched);
 
 		getListOfPkmAvailable(MAX_PKM).then(console.log);
 	}, [state.pokemonName]);
