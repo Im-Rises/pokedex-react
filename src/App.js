@@ -2,8 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.scss';
 import getAllFromPokemon from './requests';
 import {getListOfPkmAvailable} from './requests/pokedex-request';
-
-const MAX_PKM = 1281;
+import {MAX_PKM} from './constants/pokedex-constant';
 
 const App = () => {
 	const defaultState = {
@@ -15,6 +14,7 @@ const App = () => {
 		pokemonNumber: undefined,
 	};
 	const [state, setState] = useState(defaultState);
+	const [pokemonList, setPokemonList] = useState([]);
 
 	const handleValuesFetched = values => setState({...state, ...values});
 
@@ -24,7 +24,7 @@ const App = () => {
 		getAllFromPokemon(state.pokemonName)
 			.then(handleValuesFetched);
 
-		getListOfPkmAvailable(MAX_PKM).then(console.log);
+		getListOfPkmAvailable(MAX_PKM).then(setPokemonList);
 	}, [state.pokemonName]);
 
 	return (<div>
@@ -33,6 +33,7 @@ const App = () => {
 		<img src={state.officialArtwork} alt={'official-artwork'}/>
 		<img src={state.icon} alt={'icon'}/>
 		<p>{JSON.stringify(state)}</p>);
+		<p>{JSON.stringify(pokemonList)}</p>
 	</div>);
 };
 
