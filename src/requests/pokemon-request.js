@@ -14,14 +14,20 @@ const fetchSpecies = requestResult => fetch(getSpeciesUrl(requestResult));
 
 const isCorrectLanguage = flavourTextEntry => flavourTextEntry?.language?.name === LANGUAGE_NAME;
 
+const cleanText = replace(/[\n\f\r]/g, ' ');
+
+const getAllVersionName = map(pipe(path(['version', 'name']), cleanText));
+
+const getAllFlavorText = map(pipe(prop('flavor_text'), cleanText));
+
 const getPokemonFlavourEntryWithVersion = requestResult => pipeWith(andThen)([
 	fetchSpecies,
 	jsonify,
 	prop('flavor_text_entries'),
 	filter(isCorrectLanguage),
 	applySpec({
-		gameVersion: map(pipe(path(['version', 'name']), replace(/[\n\f\r]/g, ' '))),
-		flavorText: map(pipe(prop('flavor_text'), replace(/[\n\f\r]/g, ' '))),
+		gameVersion: getAllVersionName,
+		flavorText: getAllFlavorText,
 	}),
 ])(requestResult);
 
