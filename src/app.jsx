@@ -16,12 +16,12 @@ const App = () => {
 	const [state, setState] = useState(defaultState);
 	const [pokemonList, setPokemonList] = useState([]);
 
-
 	const handleSearch = event => setState({...state, pokemonName: event.target.value});
 
 	useEffect(() => {
 		getAllFromPokemon(state.pokemonName)
 			.then(setState);
+
 		getListOfPkmAvailable(MAX_PKM).then(setPokemonList);
 	}, [state.pokemonName]);
 
