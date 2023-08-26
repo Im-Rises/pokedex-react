@@ -37,7 +37,7 @@ export const PokemonList = () => {
 	useEffect(() => {
 		const listShows = pokemonList
 			.filter(pkm => pkm.includes(pokemon.search))
-			.sort((a, b) => a.length > b.length);
+			.sort((a, b) => a.length - b.length);
 
 		if (pokemon.search && listShows.length) {
 			setPokemon({...pokemon, listShows, select: listShows[0]});
