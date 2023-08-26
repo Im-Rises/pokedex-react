@@ -8,6 +8,10 @@
   border: 1px #282c34 solid;
   display: block;
 }
+.pokemon-elem:hover{
+  background-color: coral;
+  cursor: zoom-in;
+}
 
 .content {
   display: inline-flex;
