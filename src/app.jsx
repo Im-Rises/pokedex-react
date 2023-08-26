@@ -1,6 +1,6 @@
 import './App.scss';
 import React from 'react';
-import getAllFromPokemon from './requests';
+import {getAllFromPokemon} from './requests';
 import {getListOfPkmAvailable} from './requests/pokedex-request';
 import {MAX_PKM} from './constants/pokedex-constant';
 import {useState, useEffect} from 'react';
