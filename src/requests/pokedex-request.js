@@ -2,7 +2,7 @@
 
 // If eslint is complaining put this /* eslint-disable no-unused-vars */ at the top of the file
 
-import {jsonify} from './main-request';
+import {jsonify} from './index';
 
 const getPokemonNumber = requestResult => requestResult?.id;
 const getListOfPkmAvailable = nbr => fetch(`https://pokeapi.co/api/v2/pokemon?limit=${nbr}`)

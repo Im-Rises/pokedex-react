@@ -1,7 +1,13 @@
 import {always, andThen, applySpec, identity, ifElse, pipeWith, prop} from 'ramda';
 import {getArtwork, getIcon, getPokemonFlavourEntryWithVersion, getPokemonTypes} from './pokemon-request';
 import {getPokemonNumber} from './pokedex-request';
-import {getPokemon} from './main-request';
+import {API_URL} from '../constants/pokedex-constant.js';
+
+const jsonify = data => data.json();
+
+const getPokemon = pokemonName =>
+	fetch(`${API_URL}/pokemon/${pokemonName}`)
+		.then(jsonify);
 
 const isUndefined = value => value === undefined;
 
@@ -26,4 +32,4 @@ const getAllFromPokemon = async pokemon =>
 		}),
 	])(pokemon);
 
-export default getAllFromPokemon;
+export {jsonify, getPokemon, getAllFromPokemon};

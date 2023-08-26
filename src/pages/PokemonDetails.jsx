@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import getAllFromPokemon from '../requests/index.js';
+import {getAllFromPokemon} from '../requests/index.js';
 import {pokemonDataModel} from '../constants/pokemon-data-fetch.js';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
