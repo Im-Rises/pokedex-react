@@ -30,7 +30,8 @@ export const PokemonList = () => {
 
 	useEffect(() => {
 		if (pokemon.select) {
-			getAllFromPokemon(pokemon.select).then(({officialArtwork}) => setPokemon({...pokemon, officialArtwork}));
+			getAllFromPokemon(pokemon.select)
+				.then(({officialArtwork}) => setPokemon({...pokemon, officialArtwork}));
 		}
 	}, [pokemon.select]);
 
