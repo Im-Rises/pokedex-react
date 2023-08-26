@@ -1,5 +1,5 @@
 import {LANGUAGE_NAME} from '../constants/pokedex-constant';
-import {jsonify} from './main-request';
+import {jsonify} from './index';
 import {andThen, applySpec, filter, map, path, pipe, pipeWith, prop, replace} from 'ramda';
 
 const getArtwork = requestResult => requestResult.sprites.other['official-artwork'].front_default;
