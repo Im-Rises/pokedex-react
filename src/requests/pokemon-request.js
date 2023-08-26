@@ -2,7 +2,7 @@ import {LANGUAGE_NAME} from '../constants/pokedex-constant';
 import {jsonify} from './main-request';
 import {andThen, applySpec, filter, map, path, pipe, pipeWith, prop, replace} from 'ramda';
 
-const getArtwork = requestResult => requestResult?.sprites?.front_default;
+const getArtwork = requestResult => requestResult.sprites.other['official-artwork'].front_default;
 
 const getIcon = requestResult => requestResult?.sprites?.versions['generation-viii']?.icons?.front_default;
 

@@ -18,7 +18,15 @@ export const PokemonList = () => {
 
 	return <div className={'content'}>
 		<div className={'left'}>
-            left
+			<div>
+				Pikachu
+			</div>
+			<div>
+				<img src={''} alt={'a image of pikachu'}/>
+			</div>
+			<div className={'description'}>
+				woaw c'est un beau pkm
+			</div>
 		</div>
 		<div className={'right'}>
 			<input type={'search'} className={'search-bar'} />

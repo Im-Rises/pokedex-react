@@ -18,7 +18,7 @@ const App = () => {
 	const [pokemonList, setPokemonList] = useState([]);
 
 	const handleSearch = event => setState({...state, pokemonName: event.target.value});
-
+	console.log(state);
 	useEffect(() => {
 		getAllFromPokemon(state.pokemonName)
 			.then(setState);
