@@ -28,5 +28,6 @@ module.exports = {
 		'react',
 	],
 	rules: {
+		"capitalized-comments": "off",
 	},
 };
