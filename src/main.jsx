@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom/client';
 import './index.scss';
-import App from './app.jsx';
+import {PokemonList} from "./pages/PokemonList.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<App/>,
+	<PokemonList/>,
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -2,11 +2,11 @@ import './App.scss';
 import getAllFromPokemon from './requests';
 import {getListOfPkmAvailable} from './requests/pokedex-request';
 import {MAX_PKM} from './constants/pokedex-constant';
-import { useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 
 const App = () => {
 	const defaultState = {
-		pokemonName: '', 
+		pokemonName: '',
 		officialArtwork: '',
 		icon: '',
 		type: '',
@@ -16,12 +16,12 @@ const App = () => {
 	const [state, setState] = useState(defaultState);
 	const [pokemonList, setPokemonList] = useState([]);
 
-
 	const handleSearch = event => setState({...state, pokemonName: event.target.value});
 
 	useEffect(() => {
 		getAllFromPokemon(state.pokemonName)
 			.then(setState);
+
 		getListOfPkmAvailable(MAX_PKM).then(setPokemonList);
 	}, [state.pokemonName]);
 
