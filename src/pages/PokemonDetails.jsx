@@ -58,3 +58,4 @@ export const PokemonDetails = props => {
 PokemonDetails.propTypes = {
 	name: PropTypes.string.isRequired,
 };
+
