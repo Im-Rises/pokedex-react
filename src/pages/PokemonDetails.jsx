@@ -29,8 +29,11 @@ export const PokemonDetails = props => {
 					</div>
 				</div>
 				<div className={'pokemon-details'}>
-					<span className={'placeholder'}>Placeholder</span>
-					<p>N°{pokemonData.pokemonNumber}</p>
+					<span className={'placeholder'}>
+						<h2>Placeholder</h2>
+					</span>
+					<p className={'pokemon-number'}>N°{pokemonData.pokemonNumber}</p>
+					<p className={'pokemon-types-title'}>Types:</p>
 					<ul>
 						{R.map(
 							type => <li key={type}>{type}</li>,

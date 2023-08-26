@@ -11,6 +11,7 @@
   height: 60vh;
   display: flex;
   flex-direction: row;
+  background-color: rgb(255, 84, 71);
 
   .panel-name-artwork {
     width: 50%;
@@ -21,6 +22,7 @@
       font-size: 2rem;
       margin: 0;
       padding: 0;
+      height: 10vh;
 
       img {
         position: absolute;
@@ -28,20 +30,20 @@
       }
 
       h2 {
-        //margin: 0;
-        //padding: 0;
+
       }
     }
 
     .pokemon-artwork {
-      object-fit: contain;
       align-items: center;
       justify-content: center;
       display: flex;
 
+      background-color: #61dafb;
+      border-radius: 10px;
+
       img {
-        width: 50%;
-        height: 50%;
+        height: 40vh;
       }
     }
   }
@@ -51,20 +53,34 @@
     height: 50%;
 
     .placeholder {
+      text-align: center;
       font-size: 2rem;
       margin: 0;
       padding: 0;
-      visibility: hidden;
+      height: 10vh;
+
+      h2 {
+        visibility: hidden;
+      }
     }
 
     p {
-      margin: 0;
+      font-size: 2rem;
+      margin: 10px 0 0 0;
       padding: 0;
+    }
+
+    .pokemon-number {
       text-align: center;
+    }
+
+    .pokemon-types-title {
+
     }
 
     ul {
       li {
+        font-size: 1.5rem;
         list-style: none;
         display: flex;
         flex-direction: row;
@@ -82,6 +98,7 @@
 .pokemon-description {
   width: 100vw;
   height: 30vh;
+  background-color: rgb(255, 84, 71);
 
   h2 {
     padding: 0;
