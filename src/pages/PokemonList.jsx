@@ -4,17 +4,17 @@ import {MAX_PKM} from '../constants/pokedex-constant.js';
 
 import './PokemonList.scss';
 import {List} from '../components/List.jsx';
-import {pipe, pluck, prop} from 'ramda';
+import {pipe, pluck, prop, tap} from 'ramda';
 import getAllFromPokemon from '../requests/index.js';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
 export const PokemonList = () => {
-	const [pokemonList, setPokemonList] = useState([]);
+	const [pokemonList, setPokemonList] = useState(['']);
 	const [pokemon, setPokemon] = useState({
 		select: '',
 		search: '',
-		listShows: [],
+		listShows: [''],
 	});
 
 	const handlePokemonSelect = select => setPokemon({...pokemon, select});
@@ -28,12 +28,18 @@ export const PokemonList = () => {
 	}, []);
 
 	useEffect(() => {
-		getAllFromPokemon(pokemon.select).then(setPokemon);
+		if (pokemon.select) {
+			getAllFromPokemon(pokemon.select).then(setPokemon);
+		}
 	}, [pokemon.select]);
 
 	useEffect(() => {
 		const listShows = pokemonList.filter(pkm => pkm.includes(pokemon.search));
-		setPokemon({...pokemon, listShows});
+		if (listShows.length) {
+			setPokemon({...pokemon, listShows, select: listShows[0]});
+		} else {
+			setPokemon({...pokemon, listShows});
+		}
 	}, [pokemon.search]);
 
 	return <div className={'content'}>
@@ -48,7 +54,7 @@ export const PokemonList = () => {
 		<div className={'right'}>
 			<input type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} />
 			<div className={'list-content'}>
-				{pokemon.search
+				{pokemon.search && pokemon.listShows.length
 					? <List stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
 					: <List stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>}
 			</div>
