@@ -14,11 +14,12 @@ export const PokemonList = () => {
 	const [pokemon, setPokemon] = useState({
 		select: '',
 		search: '',
+		listShows: [],
 	});
 
 	const handlePokemonSelect = select => setPokemon({...pokemon, select});
 
-	const handlePokemonSearch = search => setPokemon({...pokemon, search});
+	const handlePokemonSearch = event => setPokemon({...pokemon, search: event.target.value});
 
 	useEffect(() => {
 		getListOfPkmAvailable(MAX_PKM)
@@ -30,19 +31,26 @@ export const PokemonList = () => {
 		getAllFromPokemon(pokemon.select).then(setPokemon);
 	}, [pokemon.select]);
 
+	useEffect(() => {
+		const listShows = pokemonList.filter(pkm => pkm.includes(pokemon.search));
+		setPokemon({...pokemon, listShows});
+	}, [pokemon.search]);
+
 	return <div className={'content'}>
 		<div className={'left'}>
 			<div>
 				{pokemon.select}
 			</div>
 			<div>
-				<img src={pokemon.officialArtwork} alt={'officiaal artwork'}/>
+				<img src={pokemon.officialArtwork} alt={'official artwork'}/>
 			</div>
 		</div>
 		<div className={'right'}>
-			<input type={'search'} className={'search-bar'} />
+			<input type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} />
 			<div className={'list-content'}>
-				<List stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>
+				{pokemon.search
+					? <List stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
+					: <List stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>}
 			</div>
 		</div>
 	</div>;
