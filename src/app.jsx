@@ -4,18 +4,10 @@ import getAllFromPokemon from './requests';
 import {getListOfPkmAvailable} from './requests/pokedex-request';
 import {MAX_PKM} from './constants/pokedex-constant';
 import {useState, useEffect} from 'react';
-import {PokemonDetails} from './pages/PokemonDetails.jsx';
+import {pokemonDataModel} from './constants/pokemon-data-fetch.js';
 
 const App = () => {
-	const defaultState = {
-		pokemonName: '',
-		officialArtwork: '',
-		icon: '',
-		type: '',
-		flavourEntries: '',
-		pokemonNumber: undefined,
-	};
-	const [state, setState] = useState(defaultState);
+	const [state, setState] = useState(pokemonDataModel);
 	const [pokemonList, setPokemonList] = useState([]);
 
 	const handleSearch = event => setState({...state, pokemonName: event.target.value});
@@ -29,13 +21,12 @@ const App = () => {
 
 	return (
 		<div>
-			{/* <input type={'search'} value={state.pokemonName} onChange={handleSearch}/> */}
-			{/* results: */}
-			{/* <img src={state.officialArtwork} alt={'official-artwork'}/> */}
-			{/* <img src={state.icon} alt={'icon'}/> */}
-			{/* <p>{JSON.stringify(state)}</p>); */}
-			{/* <p>{JSON.stringify(pokemonList)}</p> */}
-			<PokemonDetails/>
+			<input type={'search'} value={state.pokemonName} onChange={handleSearch}/>
+            results:
+			<img src={state.officialArtwork} alt={'official-artwork'}/>
+			<img src={state.icon} alt={'icon'}/>
+			<p>{JSON.stringify(state)}</p>);
+			<p>{JSON.stringify(pokemonList)}</p>
 		</div>
 	);
 };
