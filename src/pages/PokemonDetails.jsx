@@ -1,20 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import getAllFromPokemon from '../requests/index.js';
 import {pokemonDataModel} from '../constants/pokemon-data-fetch.js';
+import PropTypes from 'prop-types';
+import * as R from 'ramda';
 
-export const PokemonDetails = pokemonName => {
+export const PokemonDetails = props => {
 	const [pokemonData, setPokemonData] = useState(pokemonDataModel);
+
 	useEffect(() => {
-		getAllFromPokemon(pokemonName)
+		getAllFromPokemon(pokemonData.pokemonName).then(R.tap(console.log))
 			.then(setPokemonData);
-	}, [pokemonName]);
+	}, [props.name]);
 
-	console.log(pokemonData);
+	// console.log(pokemonData);
 
-	// const types = ['Electric'];
-	// const description = 'Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.';
-	// const imageLink = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png';
-	// const number = '025';
 	return (
 		<>
 			{/* <div> */}
@@ -39,3 +38,6 @@ export const PokemonDetails = pokemonName => {
 	);
 };
 
+PokemonDetails.propTypes = {
+	name: PropTypes.string.isRequired,
+};
