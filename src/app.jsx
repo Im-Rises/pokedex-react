@@ -1,8 +1,10 @@
 import './App.scss';
+import React from 'react';
 import getAllFromPokemon from './requests';
 import {getListOfPkmAvailable} from './requests/pokedex-request';
 import {MAX_PKM} from './constants/pokedex-constant';
 import {useState, useEffect} from 'react';
+import {PokemonDetails} from './pages/PokemonDetails.jsx';
 
 const App = () => {
 	const defaultState = {
@@ -25,14 +27,17 @@ const App = () => {
 		getListOfPkmAvailable(MAX_PKM).then(setPokemonList);
 	}, [state.pokemonName]);
 
-	return (<div>
-		<input type={'search'} value={state.pokemonName} onChange={handleSearch}/>
-		results:
-		<img src={state.officialArtwork} alt={'official-artwork'}/>
-		<img src={state.icon} alt={'icon'}/>
-		<p>{JSON.stringify(state)}</p>);
-		<p>{JSON.stringify(pokemonList)}</p>
-	</div>);
+	return (
+		<div>
+			{/* <input type={'search'} value={state.pokemonName} onChange={handleSearch}/> */}
+			{/* results: */}
+			{/* <img src={state.officialArtwork} alt={'official-artwork'}/> */}
+			{/* <img src={state.icon} alt={'icon'}/> */}
+			{/* <p>{JSON.stringify(state)}</p>); */}
+			{/* <p>{JSON.stringify(pokemonList)}</p> */}
+			<PokemonDetails/>
+		</div>
+	);
 };
 
 export default App;
