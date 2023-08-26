@@ -4,7 +4,7 @@ import {MAX_PKM} from '../constants/pokedex-constant.js';
 
 import './PokemonList.scss';
 import {List} from '../components/List.jsx';
-import {pipe, pluck, prop} from 'ramda';
+import {pipe, pluck, prop, tap} from 'ramda';
 import getAllFromPokemon from '../requests/index.js';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
@@ -25,7 +25,7 @@ export const PokemonList = () => {
 	useEffect(() => {
 		getListOfPkmAvailable(MAX_PKM)
 			.then(getAllPokemonName)
-			.then(setPokemonList);
+			.then(tap(setPokemonList)).then(list => handlePokemonSelect(list[0]));
 	}, []);
 
 	useEffect(() => {
@@ -35,11 +35,14 @@ export const PokemonList = () => {
 	}, [pokemon.select]);
 
 	useEffect(() => {
-		const listShows = pokemonList.filter(pkm => pkm.includes(pokemon.search));
-		if (listShows.length) {
+		const listShows = pokemonList
+			.filter(pkm => pkm.includes(pokemon.search))
+			.sort((a, b) => a.length > b.length);
+
+		if (pokemon.search && listShows.length) {
 			setPokemon({...pokemon, listShows, select: listShows[0]});
 		} else {
-			setPokemon({...pokemon, listShows});
+			setPokemon({...pokemon, listShows, select: pokemonList[0]});
 		}
 	}, [pokemon.search]);
 
