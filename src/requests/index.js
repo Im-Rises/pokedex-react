@@ -32,4 +32,6 @@ const getAllFromPokemon = async pokemon =>
 		}),
 	])(pokemon);
 
-export {jsonify, getPokemon, getAllFromPokemon};
+const uppercaseFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+
+export {jsonify, getPokemon, getAllFromPokemon, uppercaseFirstLetter};
