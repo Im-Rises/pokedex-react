@@ -5,13 +5,14 @@ import {getListOfPkmAvailable} from './requests/pokedex-request';
 import {MAX_PKM} from './constants/pokedex-constant';
 import {useState, useEffect} from 'react';
 import {pokemonDataModel} from './constants/pokemon-data-fetch.js';
+import React from 'react';
 
 const App = () => {
 	const [state, setState] = useState(pokemonDataModel);
 	const [pokemonList, setPokemonList] = useState([]);
 
 	const handleSearch = event => setState({...state, pokemonName: event.target.value});
-
+	console.log(state);
 	useEffect(() => {
 		getAllFromPokemon(state.pokemonName)
 			.then(setState);
