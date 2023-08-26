@@ -3,6 +3,7 @@ import getAllFromPokemon from './requests';
 import {getListOfPkmAvailable} from './requests/pokedex-request';
 import {MAX_PKM} from './constants/pokedex-constant';
 import {useState, useEffect} from 'react';
+import React from 'react';
 
 const App = () => {
 	const defaultState = {
