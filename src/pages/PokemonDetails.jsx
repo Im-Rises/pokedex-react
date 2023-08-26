@@ -1,4 +1,5 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import './PokemonDetails.scss';
 import {getAllFromPokemon, uppercaseFirstLetter} from '../requests/index.js';
 import {pokemonDataModel} from '../constants/pokemon-data-fetch.js';
 import PropTypes from 'prop-types';
@@ -11,31 +12,35 @@ export const PokemonDetails = props => {
 	useEffect(() => {
 		getAllFromPokemon(props.name)
 			.then(setPokemonData);
+		setGameVersion(0b0);
 	}, [props.name]);
 
 	return (
 		<>
-			<div>
-				<h1>Pokémon Info</h1>
+			<h1 className={'pokemon-info-title'}>Pokémon Info</h1>
+			<div className={'main-pokemon-panel'}>
+				<div className={'panel-name-artwork'}>
+					<div className={'pokemon-name-logo'}>
+						<img src={pokemonData.icon} alt={props.name}/>
+						<h2>{uppercaseFirstLetter(props.name)}</h2>
+					</div>
+					<div className={'pokemon-artwork'}>
+						<img src={pokemonData.officialArtwork} alt={props.name}/>
+					</div>
+				</div>
+				<div className={'pokemon-details'}>
+					<span className={'placeholder'}>Placeholder</span>
+					<p>N°{pokemonData.pokemonNumber}</p>
+					<ul>
+						{R.map(
+							type => <li key={type}>{type}</li>,
+							pokemonData.type,
+						)}
+					</ul>
+				</div>
 			</div>
-			<div>
-				<h2>{uppercaseFirstLetter(props.name)}</h2>
-			</div>
-			<div>
-				<img src={pokemonData.icon} alt={props.name}/>
-				<img src={pokemonData.officialArtwork} alt={props.name}/>
-			</div>
-			<div>
-				<p>N°{pokemonData.pokemonNumber}</p>
-				<ul>
-					{R.map(
-						type => <li key={type}>{type}</li>,
-						pokemonData.type,
-					)}
-				</ul>
-			</div>
-			<div>
-				<h3>Description</h3>
+			<div className={'pokemon-description'}>
+				<h2>Description</h2>
 				<select name='description' id='description' onChange={event => setGameVersion(event.target.value)}>
 					{pokemonData.flavourEntries && pokemonData.flavourEntries.gameVersion.map(
 						(gameVersion, index) => <option key={index} value={index}>{gameVersion}</option>,
