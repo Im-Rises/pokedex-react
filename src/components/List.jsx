@@ -5,7 +5,9 @@ export const List = props => (
 	<>{
 		props.stringList.map(
 			(element, key) =>
-				<div key={key} className={'pokemon-elem'} onClick={() => props.handleStringSelected(element)}>
+				<div key={key}
+					className={'pokemon-elem'}
+					onClick={() => props.handleStringSelected(element)}>
 					{element}
 				</div>,
 		)

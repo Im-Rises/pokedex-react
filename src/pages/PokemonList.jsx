@@ -14,8 +14,6 @@ export const PokemonList = () => {
 	const [choice, setChoice] = useState({
 		select: '',
 		search: '',
-	});
-	const [pokemon, setPokemon] = useState({
 		officialArtwork: '',
 		listShows: [''],
 	});
@@ -26,11 +24,11 @@ export const PokemonList = () => {
 		setChoice({...choice, search: event.target.value});
 
 	const handleOfficialArtwork = ({officialArtwork}) =>
-		setPokemon({...pokemon, officialArtwork});
+		setChoice({...choice, officialArtwork});
 
 	const defaultPokemonSet = () =>
-		setPokemon({
-			...pokemon,
+		setChoice({
+			...choice,
 			listShows: pokemonList,
 			select: pokemonList[0],
 		});
@@ -44,24 +42,27 @@ export const PokemonList = () => {
 
 	// manage select
 	useEffect(() => {
-		if (pokemon.select) {
-			getAllFromPokemon(pokemon.select)
+		const {select} = choice;
+		if (select) {
+			getAllFromPokemon(select)
 				.then(handleOfficialArtwork);
+			console.log(select);
 		}
-	}, [pokemon.select]);
+	}, [choice.select]);
 
 	// manage search
 	useEffect(() => {
-		if (choice.search === '') {
+		const {search} = choice;
+		if (search === '') {
 			return defaultPokemonSet();
 		}
 
 		const timer = setTimeout(() => {
 			const listShows = pokemonList
-				.filter(pkm => pkm.includes(choice.search))
+				.filter(pkm => pkm.includes(search))
 				.sort((a, b) => a.length - b.length);
-			const select = pokemon.listShows[0];
-			setPokemon({...pokemon, listShows, select});
+			const select = choice.listShows[0];
+			setChoice({...choice, listShows, select});
 		}, 200);
 		return () => clearTimeout(timer);
 	}, [choice.search]);
@@ -69,17 +70,17 @@ export const PokemonList = () => {
 	return <div className={'content'}>
 		<div className={'left'}>
 			<div className={'pokemon-name'}>
-				{pokemon.select}
+				{choice.select}
 			</div>
 			<div className={'pokemon-artwork'}>
-				<img src={pokemon.officialArtwork} alt={'official artwork'}/>
+				<img src={choice.officialArtwork} alt={'official artwork'}/>
 			</div>
 		</div>
 		<div className={'right'}>
 			<input type={'search'} className={'search-bar'} value={choice.search} onChange={handlePokemonSearch} />
 			<div className={'list-content'}>
-				{choice.search && pokemon.listShows.length
-					? <List stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
+				{choice.search && choice.listShows.length
+					? <List stringList={choice.listShows} handleStringSelected={handlePokemonSelect}/>
 					: <List stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>
 				}
 			</div>

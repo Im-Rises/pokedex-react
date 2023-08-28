@@ -17,6 +17,7 @@ html {
   display: block;
   opacity: 0.5;
   font-size: 25px;
+  user-select: none;
 }
 .pokemon-elem:hover {
   opacity: 1;
