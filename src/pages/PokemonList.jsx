@@ -69,7 +69,7 @@ export const PokemonList = () => {
 	return <div className={'content'}>
 		<div className={'left'}>
 			<div className={'pokemon-name'}>
-				pokemon : {choice.select}
+				pokemon : {pokemon.select}
 			</div>
 			<div>
 				<img src={pokemon.officialArtwork} alt={'official artwork'} className={'official-artwork'}/>
