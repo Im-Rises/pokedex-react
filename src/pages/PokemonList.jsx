@@ -11,7 +11,7 @@ const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
 export const PokemonList = () => {
 	const [pokemonList, setPokemonList] = useState(['']);
-	const [choice, setChoice] = useState({
+	const [pokemon, setPokemon] = useState({
 		select: '',
 		search: '',
 		officialArtwork: '',
@@ -19,16 +19,16 @@ export const PokemonList = () => {
 	});
 
 	const handlePokemonSelect = select =>
-		setChoice({...choice, select});
+		setPokemon({...pokemon, select});
 	const handlePokemonSearch = event =>
-		setChoice({...choice, search: event.target.value});
+		setPokemon({...pokemon, search: event.target.value});
 
 	const handleOfficialArtwork = ({officialArtwork}) =>
-		setChoice({...choice, officialArtwork});
+		setPokemon({...pokemon, officialArtwork});
 
 	const defaultPokemonSet = () =>
-		setChoice({
-			...choice,
+		setPokemon({
+			...pokemon,
 			listShows: pokemonList,
 			select: pokemonList[0],
 		});
@@ -42,17 +42,17 @@ export const PokemonList = () => {
 
 	// manage select
 	useEffect(() => {
-		const {select} = choice;
+		const {select} = pokemon;
 		if (select) {
 			getAllFromPokemon(select)
 				.then(handleOfficialArtwork);
 			console.log(select);
 		}
-	}, [choice.select]);
+	}, [pokemon.select]);
 
 	// manage search
 	useEffect(() => {
-		const {search} = choice;
+		const {search} = pokemon;
 		if (search === '') {
 			return defaultPokemonSet();
 		}
@@ -61,26 +61,26 @@ export const PokemonList = () => {
 			const listShows = pokemonList
 				.filter(pkm => pkm.includes(search))
 				.sort((a, b) => a.length - b.length);
-			const select = choice.listShows[0];
-			setChoice({...choice, listShows, select});
+			const select = pokemon.listShows[0];
+			setPokemon({...pokemon, listShows, select});
 		}, 200);
 		return () => clearTimeout(timer);
-	}, [choice.search]);
+	}, [pokemon.search]);
 
 	return <div className={'content'}>
 		<div className={'left'}>
 			<div className={'pokemon-name'}>
-				{choice.select}
+				{pokemon.select}
 			</div>
 			<div className={'pokemon-artwork'}>
-				<img src={choice.officialArtwork} alt={'official artwork'}/>
+				<img src={pokemon.officialArtwork} alt={'official artwork'}/>
 			</div>
 		</div>
 		<div className={'right'}>
-			<input type={'search'} className={'search-bar'} value={choice.search} onChange={handlePokemonSearch} />
+			<input type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} />
 			<div className={'list-content'}>
-				{choice.search && choice.listShows.length
-					? <List stringList={choice.listShows} handleStringSelected={handlePokemonSelect}/>
+				{pokemon.search && pokemon.listShows.length
+					? <List stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
 					: <List stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>
 				}
 			</div>
