@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {getListOfPkmAvailable} from '../requests/pokedex-request.js';
 import {MAX_PKM} from '../constants/pokedex-constant.js';
 
@@ -11,55 +11,74 @@ const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
 export const PokemonList = () => {
 	const [pokemonList, setPokemonList] = useState(['']);
-	const [pokemon, setPokemon] = useState({
+	const [choice, setChoice] = useState({
 		select: '',
 		search: '',
+	});
+	const [pokemon, setPokemon] = useState({
 		officialArtwork: '',
 		listShows: [''],
 	});
 
-	const handlePokemonSelect = select => setPokemon({...pokemon, select});
+	const handlePokemonSelect = select =>
+		setChoice({...choice, select});
+	const handlePokemonSearch = event =>
+		setChoice({...choice, search: event.target.value});
 
-	const handlePokemonSearch = event => setPokemon({...pokemon, search: event.target.value});
+	const handleOfficialArtwork = ({officialArtwork}) =>
+		setPokemon({...pokemon, officialArtwork});
 
+	const defaultPokemonSet = () =>
+		setPokemon({
+			...pokemon,
+			listShows: pokemonList,
+			select: pokemonList[0],
+		});
+
+	// manage list
 	useEffect(() => {
 		getListOfPkmAvailable(MAX_PKM)
 			.then(getAllPokemonName)
-			.then(tap(setPokemonList)).then(list => handlePokemonSelect(list[0]));
+			.then(setPokemonList);
 	}, []);
 
+	// manage select
 	useEffect(() => {
 		if (pokemon.select) {
 			getAllFromPokemon(pokemon.select)
-				.then(({officialArtwork}) => setPokemon({...pokemon, officialArtwork}));
+				.then(handleOfficialArtwork);
 		}
 	}, [pokemon.select]);
 
+	// manage search
 	useEffect(() => {
-		const listShows = pokemonList
-			.filter(pkm => pkm.includes(pokemon.search))
-			.sort((a, b) => a.length - b.length);
-
-		if (pokemon.search && listShows.length) {
-			setPokemon({...pokemon, listShows, select: listShows[0]});
-		} else {
-			setPokemon({...pokemon, listShows, select: pokemonList[0]});
+		if (choice.search === '') {
+			return defaultPokemonSet();
 		}
-	}, [pokemon.search]);
+
+		const timer = setTimeout(() => {
+			const listShows = pokemonList
+				.filter(pkm => pkm.includes(choice.search))
+				.sort((a, b) => a.length - b.length);
+			const select = pokemon.listShows[0];
+			setPokemon({...pokemon, listShows, select});
+		}, 200);
+		return () => clearTimeout(timer);
+	}, [choice.search]);
 
 	return <div className={'content'}>
 		<div className={'left'}>
-			<div>
-				pokemon : {pokemon.select}
+			<div className={'pokemon-name'}>
+				pokemon : {choice.select}
 			</div>
 			<div>
-				<img src={pokemon.officialArtwork} alt={'official artwork'}/>
+				<img src={pokemon.officialArtwork} alt={'official artwork'} className={'official-artwork'}/>
 			</div>
 		</div>
 		<div className={'right'}>
-			<input type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} />
+			<input type={'search'} className={'search-bar'} value={choice.search} onChange={handlePokemonSearch} />
 			<div className={'list-content'}>
-				{pokemon.search && pokemon?.listShows.length
+				{choice.search && pokemon.listShows.length
 					? <List stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
 					: <List stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>
 				}
