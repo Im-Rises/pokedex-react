@@ -49,20 +49,22 @@ const getAllFromPokemon = async pokemon =>
 //
 // getAllVersions().then(console.log);
 
-const getAllVersions = async () => {
-	const versions = await fetch(`${API_URL}/version`)
-		.then(jsonify)
-		.then(prop('results'))
-		.then(versions => versions.map(version => version.name));
-	return Promise.all(versions.map(getVersion));
-};
+// const getAllVersions = async () => {
+// 	const versions = await fetch(`${API_URL}/version`)
+// 		.then(jsonify)
+// 		.then(prop('results'))
+// 		.then(versions => versions.map(version => version.name));
+// 	return Promise.all(versions.map(getVersion));
+// };
+//
+// const getVersionFromName = async versionName => {
+// 	const versions = await getAllVersions();
+// 	return versions.find(version => version.name === versionName);
+// };
+// getVersionFromName('red').then(console.log);
 
-const getVersionFromName = async versionName => {
-	const versions = await getAllVersions();
-	return versions.find(version => version.name === versionName);
-};
-
-getVersionFromName('red').then(console.log);
+const getVersionRealName = getVersion('red').then(prop('names')).then(names => names.find(name => name.language.name === LANGUAGE_NAME).name);
+getVersionRealName.then(console.log);
 
 const uppercaseFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
 
