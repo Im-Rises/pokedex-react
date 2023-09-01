@@ -6,7 +6,6 @@ export const BtmOpening = ({hasOpened}) => {
 
 	return (
 		<div className={changeClassName(hasOpened, 'bottom')}>
-
 		</div>
 	);
 };

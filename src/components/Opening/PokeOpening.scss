@@ -96,32 +96,3 @@
   width: 40%;
   padding-top: 10%;
 }
-
-.opening-github-move, .opening-github-fixed {
-  width: 100%;
-  text-align: center;
-  background-color: navy;
-  display: inline-flex;
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-.opening-github-move {
-  animation: to-the-left 500ms linear;
-  animation-fill-mode: forwards;
-}
-
-.left {
-  width: 50%;
-  left: 0;
-}
-
-.right {
-  width: 50%;
-  right: 0;
-}
-

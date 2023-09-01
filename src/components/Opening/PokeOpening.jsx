@@ -1,8 +1,8 @@
 import React from 'react';
 import './PokeOpening.scss';
 import PropTypes from 'prop-types';
-import {TopOpening} from './TopOpening';
-import {BtmOpening} from './BtmOpening';
+import {TopOpening} from './TopBottomBars/TopOpening';
+import {BtmOpening} from './TopBottomBars/BtmOpening';
 
 const PokeOpening = ({hasClicked, handleHasOpened}) => <div className={'opening'}>
 	<TopOpening hasOpened={hasClicked}/>
