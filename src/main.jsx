@@ -7,5 +7,5 @@ import {PokemonDetails} from './pages/PokemonDetails.jsx';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	// <PokemonList/>,
-	<PokemonDetails name={'bulbasaur'}/>,
+	<PokemonDetails name={'darkrai'}/>,
 );

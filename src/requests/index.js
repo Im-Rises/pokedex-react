@@ -32,12 +32,19 @@ const getAllFromPokemon = async pokemon =>
 		}),
 	])(pokemon);
 
-const getVersion = version =>
-	fetch(`${API_URL}/version/${version}`)
-		.then(jsonify);
+// const getVersion = version =>
+// 	fetch(`${API_URL}/version/${version}`)
+// 		.then(jsonify);
 
-const getVersionRealName = versionCode => getVersion(versionCode).then(prop('names')).then(names => names.find(name => name.language.name === LANGUAGE_NAME).name);
+// const getVersionRealName = versionCode => getVersion(versionCode).then(prop('names')).then(names => names.find(name => name.language.name === LANGUAGE_NAME).name);
+
+const getPokemonOtherInfo = pokemonName => getPokemon(pokemonName).then(
+	applySpec({
+		height: prop('height'),
+		weight: prop('weight'),
+
+	}));
 
 const uppercaseFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
 
-export {jsonify, getPokemon, getAllFromPokemon, uppercaseFirstLetter, getVersionRealName};
+export {jsonify, getPokemon, getAllFromPokemon, uppercaseFirstLetter, getPokemonOtherInfo};
