@@ -10,8 +10,6 @@ const App = () => {
 		<div>
 			<PokeOpening handleHasOpened={() => setIsOpeningClicked(true)} hasClicked={isOpeningClicked}/>
 			<PokemonList/>,
-			{/* <PokemonDetails name={'bulbasaur'}/>, */}
-
 		</div>
 	);
 };
