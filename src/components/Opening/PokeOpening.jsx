@@ -3,16 +3,18 @@ import './PokeOpening.scss';
 import PropTypes from 'prop-types';
 import {TopOpening} from './TopOpening';
 import {BtmOpening} from './BtmOpening';
-import {GithubBar} from './GithubBar';
 
 const PokeOpening = ({hasClicked, handleHasOpened}) => <div className={'opening'}>
 	<TopOpening hasOpened={hasClicked}/>
-	<input className={'opening-btn'} style={{display: hasClicked ? 'none' : 'block'}} type={'button'}
-		value={'click\nto\nopen'} onClick={() => {
-			console.log('click');
-			handleHasOpened();
-		}}/>
-	{/* <GithubBar hasClicked={hasClicked}/> */}
+	{
+		!hasClicked && (
+			<div className={'opening-btn'}>
+				<div className={'opening-btn-center'} onClick={() => {
+					handleHasOpened();
+				}}></div>
+			</div>
+		)
+	}
 	<BtmOpening hasOpened={hasClicked}/>
 </div>;
 
