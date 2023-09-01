@@ -88,11 +88,30 @@
     background-color: #DDD;
     z-index: 4;
     border-radius: 50%;
+    //box-shadow: 0.1em 0.1em 0.1em 0.1em gray;
+    //box-shadow: 0 0 0 0.05em #C0D0D0;
+    box-shadow: 0 0 0 0.05em #909090;
+
+    &:hover {
+      background-color: #EEEEEE;
+    }
+
+    &:active {
+      background-color: #DDD;
+      box-shadow: 0 0 0 0.05em #C0D0D0;
+    }
   }
 }
 
 
-.pokedex-logo {
+.pokedex-logo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 40%;
-  padding-top: 10%;
+}
+
+.pokedex-logo {
+  width: 100%;
 }

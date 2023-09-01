@@ -9,9 +9,11 @@ export const TopOpening = ({hasOpened}) => {
 	return (
 
 		<div className={changeClassName(hasOpened, 'top')}>
-			<img className={'pokedex-logo'}
-				src={PokemonLogo} alt={'pokedex'}/>
-			<GitHubLink text={'pokedex-react'} link={'https://github.com/Im-Rises/pokedex-react'}/>
+			<div className={'pokedex-logo-container'}>
+				<img className={'pokedex-logo'}
+					src={PokemonLogo} alt={'pokedex'}/>
+				<GitHubLink text={'pokedex-react'} link={'https://github.com/Im-Rises/pokedex-react'}/>
+			</div>
 		</div>
 	);
 };
