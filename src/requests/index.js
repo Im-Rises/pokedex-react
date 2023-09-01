@@ -9,10 +9,6 @@ const getPokemon = pokemonName =>
 	fetch(`${API_URL}/pokemon/${pokemonName}`)
 		.then(jsonify);
 
-const getVersion = version =>
-	fetch(`${API_URL}/version/${version}`)
-		.then(jsonify);
-
 const isUndefined = value => value === undefined;
 
 const asyncPipe = (asyncFunc, resultName) => requestResult =>
@@ -36,36 +32,12 @@ const getAllFromPokemon = async pokemon =>
 		}),
 	])(pokemon);
 
-// const getVersionCompleteName = version => getVersion(version).then(prop('names')).then(names => names.find(name => name.language.name === LANGUAGE_NAME).name);
-// getVersionCompleteName('red').then(console.log);
-//
-// const getAllVersions = async () => {
-// 	const versions = await fetch(`${API_URL}/version`)
-// 		.then(jsonify)
-// 		.then(prop('results'))
-// 		.then(versions => versions.map(version => version.name));
-// 	return Promise.all(versions.map(getVersionCompleteName));
-// };
-//
-// getAllVersions().then(console.log);
+const getVersion = version =>
+	fetch(`${API_URL}/version/${version}`)
+		.then(jsonify);
 
-// const getAllVersions = async () => {
-// 	const versions = await fetch(`${API_URL}/version`)
-// 		.then(jsonify)
-// 		.then(prop('results'))
-// 		.then(versions => versions.map(version => version.name));
-// 	return Promise.all(versions.map(getVersion));
-// };
-//
-// const getVersionFromName = async versionName => {
-// 	const versions = await getAllVersions();
-// 	return versions.find(version => version.name === versionName);
-// };
-// getVersionFromName('red').then(console.log);
-
-const getVersionRealName = getVersion('red').then(prop('names')).then(names => names.find(name => name.language.name === LANGUAGE_NAME).name);
-getVersionRealName.then(console.log);
+const getVersionRealName = versionCode => getVersion(versionCode).then(prop('names')).then(names => names.find(name => name.language.name === LANGUAGE_NAME).name);
 
 const uppercaseFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
 
-export {jsonify, getPokemon, getAllFromPokemon, uppercaseFirstLetter};
+export {jsonify, getPokemon, getAllFromPokemon, uppercaseFirstLetter, getVersionRealName};
