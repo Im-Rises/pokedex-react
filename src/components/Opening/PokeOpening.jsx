@@ -12,7 +12,7 @@ const PokeOpening = ({hasClicked, handleHasOpened}) => <div className={'opening'
 			console.log('click');
 			handleHasOpened();
 		}}/>
-	<GithubBar hasClicked={hasClicked}/>
+	{/* <GithubBar hasClicked={hasClicked}/> */}
 	<BtmOpening hasOpened={hasClicked}/>
 </div>;
 
