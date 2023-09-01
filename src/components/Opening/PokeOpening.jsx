@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import './PokeOpening.scss';
 import PropTypes from 'prop-types';
 import {TopOpening} from './TopOpening';
 import {BtmOpening} from './BtmOpening';
