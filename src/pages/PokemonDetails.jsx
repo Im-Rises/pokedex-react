@@ -19,7 +19,7 @@ export const PokemonDetails = props => {
 
 	return (
 		<>
-			<h1 className={'pokemon-info-title'}>Pokémon Info</h1>
+			{/* <h1 className={'pokemon-info-title'}>Pokémon Info</h1> */}
 			<div className={'main-pokemon-panel'}>
 				<div className={'panel-name-artwork'}>
 					<div className={'pokemon-name-logo'}>
