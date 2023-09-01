@@ -3,7 +3,7 @@ import {getListOfPkmAvailable} from '../requests/pokedex-request.js';
 import {MAX_PKM} from '../constants/pokedex-constant.js';
 
 import './PokemonList.scss';
-import {List} from '../components/List.jsx';
+import {List} from '../components/PokemonList/List.jsx';
 import {pipe, pluck, prop, tap} from 'ramda';
 import {getAllFromPokemon} from '../requests/index.js';
 
@@ -50,14 +50,14 @@ export const PokemonList = () => {
 	return <div className={'content'}>
 		<div className={'left'}>
 			<div>
-				pokemon : {pokemon.select}
+                pokemon : {pokemon.select}
 			</div>
 			<div>
 				<img src={pokemon.officialArtwork} alt={'official artwork'}/>
 			</div>
 		</div>
 		<div className={'right'}>
-			<input type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} />
+			<input type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch}/>
 			<div className={'list-content'}>
 				{pokemon.search && pokemon?.listShows.length
 					? <List stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
