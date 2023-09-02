@@ -8,6 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## 🚀🚀[you can try the pokedex by clicking here](https://im-rises.github.io/pokedex-react/) 🚀🚀
 
+<!--
 ## Overview
 
 1. [API used](#api-used)
@@ -23,14 +24,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     3. [Making a progressive Web App](#making-a-progressive-web-app)
     4. [Advanced configuration](#advanced-configuration)
     5. [Deployment](#deployment)
+-->
 
 ## API used
 
 - [pokepedia](https://pokeapi.co)
 - [react-gh-pages](https://github.com/gitname/react-gh-pages)
-
-
 - https://gist.github.com/apaleslimghost/0d25ec801ca4fc43317bcff298af43c3
+
+<!--
 ## Components
 
 | Components Name        |                          its purpose                          |                    How to use it                    |
@@ -47,6 +49,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 | PokemonDescription     |     show the pokemon description in the selected language     |      `<PokemonDescription pokemon={pokemon}/>`      |
 | PokemonLegendaryState  |  show the pokemon legendary boolean in the selected language  |    `<PokemonLegendaryState pokemon={pokemon}/>`     |
 | PokemonMythicalState   |  show the pokemon mythical boolean in the selected language   |     `<PokemonMythicalState pokemon={pokemon}/>`     |
+-->
 
 ## Documentations
 
@@ -68,6 +71,39 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Node.js CI: Continuous Integration (CI) for Node.js
 - gh-pages-publish: Publish to gh-pages branch
 - pages-build-deployment: Build and deploy to pages
+
+## Organization
+
+it's based on the NATIONAL pokédex THE LAST VERSION
+
+it loads all photos IN ONCE but if it's lags too much, it will be updated step by step
+
+from a pokémon, we show only official artworks from pokémon (because they're cutty)
+
+- [x] create all the function requests
+    - [x] get all names C
+    - [x] get all icons C
+    - [x] get all numbers (National) Q => passed in pokémon description
+    - [x] from a pokemon
+        - [x] get his type Q
+        - [x] get his photo C
+        - [x] get all descriptions with pkm version Q
+
+### isolation website idea
+
+```mermaid
+flowchart LR
+    client -->|HTTPS| SW
+    subgraph pokedex
+        subgraph github
+            SW[Site web]
+        end
+        subgraph cloud-provider
+            RM[Request Manager]
+        end
+        SW -->|HTTPS| RM -->|HTTPS| SW
+    end
+```
 
 ## Authors
 
