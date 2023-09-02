@@ -1,4 +1,4 @@
-import './App.scss';
+import './app.scss';
 import React from 'react';
 import PokeOpening from './components/Opening/PokeOpening.jsx';
 import {PokemonList} from './pages/PokemonList.jsx';
