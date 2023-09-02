@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './app.jsx';
 import './index.scss';
-import {PokemonList} from './pages/PokemonList.jsx';
-import {PokemonDetails} from './pages/PokemonDetails.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	// <PokemonList/>,
-	<PokemonDetails name={'darkrai'}/>,
+	<App/>,
 );
