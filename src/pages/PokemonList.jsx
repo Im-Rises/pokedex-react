@@ -17,12 +17,17 @@ export const PokemonList = () => {
 		select: '', search: '', officialArtwork: '', listShows: [''],
 	});
 
-	const handlePokemonSelect = select => setPokemon({...pokemon, select});
-	const toggleViewDetails = () => setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
+	const handlePokemonSelect = select =>
+		setPokemon({...pokemon, select});
 
-	const handlePokemonSearch = event => setPokemon({...pokemon, search: event.target.value});
+	const toggleViewDetails = () =>
+		setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
 
-	const handleOfficialArtwork = ({officialArtwork}) => setPokemon({...pokemon, officialArtwork});
+	const handlePokemonSearch = event =>
+		setPokemon({...pokemon, search: event.target.value});
+
+	const handleOfficialArtwork = ({officialArtwork}) =>
+		setPokemon({...pokemon, officialArtwork});
 
 	const defaultPokemonSet = () => setPokemon({
 		...pokemon, listShows: pokemonList, select: pokemonList[0],
@@ -65,10 +70,10 @@ export const PokemonList = () => {
 		<div className={'content'}>
 			<div className={'left'}>
 				<div>
-                        pokemon : {pokemon.select}
+					{pokemon.select ? pokemon.select : 'select a pokemon!'}
 				</div>
 				<div>
-					<img src={pokemon.officialArtwork} alt={'official artwork'}/>
+					{pokemon.select ? <img src={pokemon.officialArtwork} alt={'official artwork'}/> : <></>}
 				</div>
 				<button onClick={toggleViewDetails}>View details</button>
 			</div>
@@ -83,7 +88,6 @@ export const PokemonList = () => {
 			</div>
 		</div>
 		{isPokemonDetailsOpen && (
-		// Don't be angry it is just a test until the next meeting ;)
 			<div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: '10'}}>
 				<PokemonDetails name={pokemon.select}/>
 				<button style={{position: 'absolute', top: 0, right: 0}}
