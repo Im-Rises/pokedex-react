@@ -6,7 +6,7 @@ import './PokemonList.scss';
 import {pipe, pluck, prop} from 'ramda';
 import {getAllFromPokemon} from '../requests/index.js';
 import {PokemonDetails} from './PokemonDetails.jsx';
-import {List} from '../components/PokemonList/List.jsx';
+import {PokemonListComponent} from '../components/PokemonList/PokemonListComponent.jsx';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
@@ -82,8 +82,8 @@ export const PokemonList = () => {
 					onChange={handlePokemonSearch}/>
 				<div className={'list-content'}>
 					{pokemon.search && pokemon?.listShows.length
-						? <List stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
-						: <List stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>}
+						? <PokemonListComponent stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
+						: <PokemonListComponent stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>}
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 import {always, andThen, applySpec, identity, ifElse, pipeWith, prop} from 'ramda';
 import {getArtwork, getIcon, getPokemonFlavourEntryWithVersion, getPokemonTypes} from './pokemon-request';
 import {getPokemonNumber} from './pokedex-request';
-import {API_URL, LANGUAGE_NAME} from '../constants/pokedex-constant.js';
+import {API_URL} from '../constants/pokedex-constant.js';
 
 const jsonify = data => data.json();
 
