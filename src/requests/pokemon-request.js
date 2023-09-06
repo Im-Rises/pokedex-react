@@ -4,7 +4,8 @@ import {andThen, applySpec, filter, map, path, pipe, pipeWith, prop, replace} fr
 
 const getArtwork = requestResult => requestResult.sprites.other['official-artwork'].front_default;
 
-const getIcon = requestResult => requestResult?.sprites?.versions['generation-viii']?.icons?.front_default;
+const getIcon = requestResult =>
+	requestResult?.sprites?.versions['generation-viii']?.icons?.front_default;
 
 const getPokemonTypes = requestResult => requestResult?.types?.map(t => t?.type?.name);
 

@@ -5,7 +5,8 @@
 import {jsonify} from './index';
 
 const getPokemonNumber = requestResult => requestResult?.id;
-const getListOfPkmAvailable = nbr => fetch(`https://pokeapi.co/api/v2/pokemon?limit=${nbr}`)
-	.then(jsonify);
+const getListOfPkmAvailable = nbr =>
+	fetch(`https://pokeapi.co/api/v2/pokemon?limit=${nbr}`)
+		.then(jsonify);
 
 export {getPokemonNumber, getListOfPkmAvailable};

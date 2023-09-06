@@ -8,14 +8,15 @@ import * as R from 'ramda';
 
 export const PokemonDetails = props => {
 	const [pokemonData, setPokemonData] = useState(pokemonDataModel);
-	const [gameVersion, setGameVersion] = useState('');
+	const [gameVersion, setGameVersion] = useState(0);
 	const [pokemonOtherInfo, setPokemonOtherInfo] = useState({});
 
 	useEffect(() => {
 		getAllFromPokemon(props.name)
 			.then(setPokemonData);
 		setGameVersion(0b0);
-		getPokemonOtherInfo(props.name).then(setPokemonOtherInfo);
+		getPokemonOtherInfo(props.name)
+			.then(setPokemonOtherInfo);
 	}, [props.name]);
 
 	return (
