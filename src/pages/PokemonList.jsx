@@ -4,7 +4,7 @@ import {MAX_PKM} from '../constants/pokedex-constant.js';
 
 import './PokemonList.scss';
 import {List} from '../components/List.jsx';
-import {pipe, pluck, prop, tap} from 'ramda';
+import {pipe, pluck, prop} from 'ramda';
 import {getAllFromPokemon} from '../requests/index.js';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
@@ -20,6 +20,7 @@ export const PokemonList = () => {
 
 	const handlePokemonSelect = select =>
 		setPokemon({...pokemon, select});
+
 	const handlePokemonSearch = event =>
 		setPokemon({...pokemon, search: event.target.value});
 
@@ -46,9 +47,8 @@ export const PokemonList = () => {
 		if (select) {
 			getAllFromPokemon(select)
 				.then(handleOfficialArtwork);
-			console.log(select);
 		}
-	}, [pokemon.select]);
+	}, [pokemon.select, pokemonList, pokemon.search]);
 
 	// manage search
 	useEffect(() => {
