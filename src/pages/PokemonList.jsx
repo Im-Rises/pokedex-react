@@ -69,13 +69,13 @@ export const PokemonList = () => {
 	return (<>
 		<div className={'content'}>
 			<div className={'left'}>
-				<div>
+				<div className={'pokemon-name'}>
 					{pokemon.select ? pokemon.select : 'select a pokemon!'}
 				</div>
 				<div>
 					{pokemon.select ? <img src={pokemon.officialArtwork} alt={'official artwork'}/> : <></>}
 				</div>
-				<button onClick={toggleViewDetails}>View details</button>
+				{pokemon.select && <button onClick={toggleViewDetails}>View details</button> }
 			</div>
 			<div className={'right'}>
 				<input type={'search'} className={'search-bar'} value={pokemon.search}
@@ -87,13 +87,13 @@ export const PokemonList = () => {
 				</div>
 			</div>
 		</div>
-		{isPokemonDetailsOpen && (
-			<div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: '10'}}>
+		{isPokemonDetailsOpen
+			&& <div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: '10'}}>
 				<PokemonDetails name={pokemon.select}/>
 				<button style={{position: 'absolute', top: 0, right: 0}}
 					onClick={toggleViewDetails}>Close
 				</button>
-			</div>)}
+			</div>}
 	</>);
 };
 
