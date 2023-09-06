@@ -3,36 +3,30 @@ import {getListOfPkmAvailable} from '../requests/pokedex-request.js';
 import {MAX_PKM} from '../constants/pokedex-constant.js';
 
 import './PokemonList.scss';
-import {List} from '../components/List.jsx';
 import {pipe, pluck, prop} from 'ramda';
 import {getAllFromPokemon} from '../requests/index.js';
+import {PokemonDetails} from './PokemonDetails.jsx';
+import {List} from '../components/PokemonList/List.jsx';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
 export const PokemonList = () => {
+	const [isPokemonDetailsOpen, setIsPokemonDetailsOpen] = useState(false);
 	const [pokemonList, setPokemonList] = useState(['']);
 	const [pokemon, setPokemon] = useState({
-		select: '',
-		search: '',
-		officialArtwork: '',
-		listShows: [''],
+		select: '', search: '', officialArtwork: '', listShows: [''],
 	});
 
-	const handlePokemonSelect = select =>
-		setPokemon({...pokemon, select});
+	const handlePokemonSelect = select => setPokemon({...pokemon, select});
+	const toggleViewDetails = () => setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
 
-	const handlePokemonSearch = event =>
-		setPokemon({...pokemon, search: event.target.value});
+	const handlePokemonSearch = event => setPokemon({...pokemon, search: event.target.value});
 
-	const handleOfficialArtwork = ({officialArtwork}) =>
-		setPokemon({...pokemon, officialArtwork});
+	const handleOfficialArtwork = ({officialArtwork}) => setPokemon({...pokemon, officialArtwork});
 
-	const defaultPokemonSet = () =>
-		setPokemon({
-			...pokemon,
-			listShows: pokemonList,
-			select: pokemonList[0],
-		});
+	const defaultPokemonSet = () => setPokemon({
+		...pokemon, listShows: pokemonList, select: pokemonList[0],
+	});
 
 	// manage list
 	useEffect(() => {
@@ -67,24 +61,35 @@ export const PokemonList = () => {
 		return () => clearTimeout(timer);
 	}, [pokemon.search]);
 
-	return <div className={'content'}>
-		<div className={'left'}>
-			<div className={'pokemon-name'}>
-				{pokemon.select}
+	return (<>
+		<div className={'content'}>
+			<div className={'left'}>
+				<div>
+                        pokemon : {pokemon.select}
+				</div>
+				<div>
+					<img src={pokemon.officialArtwork} alt={'official artwork'}/>
+				</div>
+				<button onClick={toggleViewDetails}>View details</button>
 			</div>
-			<div className={'pokemon-artwork'}>
-				<img src={pokemon.officialArtwork} alt={'official artwork'}/>
+			<div className={'right'}>
+				<input type={'search'} className={'search-bar'} value={pokemon.search}
+					onChange={handlePokemonSearch}/>
+				<div className={'list-content'}>
+					{pokemon.search && pokemon?.listShows.length
+						? <List stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
+						: <List stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>}
+				</div>
 			</div>
 		</div>
-		<div className={'right'}>
-			<input type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} />
-			<div className={'list-content'}>
-				{pokemon.search && pokemon.listShows.length
-					? <List stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}/>
-					: <List stringList={pokemonList} handleStringSelected={handlePokemonSelect}/>
-				}
-			</div>
-		</div>
-	</div>;
+		{isPokemonDetailsOpen && (
+		// Don't be angry it is just a test until the next meeting ;)
+			<div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: '10'}}>
+				<PokemonDetails name={pokemon.select}/>
+				<button style={{position: 'absolute', top: 0, right: 0}}
+					onClick={toggleViewDetails}>Close
+				</button>
+			</div>)}
+	</>);
 };
 

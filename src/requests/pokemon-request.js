@@ -8,6 +8,9 @@ const getIcon = requestResult => requestResult?.sprites?.versions['generation-vi
 
 const getPokemonTypes = requestResult => requestResult?.types?.map(t => t?.type?.name);
 
+// const getPokemonHeight = requestResult => requestResult?.height;
+// const getPokemonWeight = requestResult => requestResult?.weight;
+
 const getSpeciesUrl = requestResult => requestResult?.species?.url;
 
 const fetchSpecies = requestResult => fetch(getSpeciesUrl(requestResult));
@@ -19,6 +22,11 @@ const cleanText = replace(/[\n\f\r]/g, ' ');
 const getAllVersionName = map(pipe(path(['version', 'name']), cleanText));
 
 const getAllFlavorText = map(pipe(prop('flavor_text'), cleanText));
+
+// const getPokemonOtherInfo = requestResult => ({
+// 	height: requestResult?.height?,
+// 	weight: requestResult?.weight?,
+// });
 
 const getPokemonFlavourEntryWithVersion = requestResult => pipeWith(andThen)([
 	fetchSpecies,

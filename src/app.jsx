@@ -1,33 +1,15 @@
-import './App.scss';
+import './app.scss';
 import React from 'react';
-import {getAllFromPokemon} from './requests';
-import {getListOfPkmAvailable} from './requests/pokedex-request';
-import {MAX_PKM} from './constants/pokedex-constant';
-import {useState, useEffect} from 'react';
-import {pokemonDataModel} from './constants/pokemon-data-fetch.js';
-import React from 'react';
+import PokeOpening from './components/Opening/PokeOpening.jsx';
+import {PokemonList} from './pages/PokemonList.jsx';
 
 const App = () => {
-	const [state, setState] = useState(pokemonDataModel);
-	const [pokemonList, setPokemonList] = useState([]);
-
-	const handleSearch = event => setState({...state, pokemonName: event.target.value});
-	console.log(state);
-	useEffect(() => {
-		getAllFromPokemon(state.pokemonName)
-			.then(setState);
-
-		getListOfPkmAvailable(MAX_PKM).then(setPokemonList);
-	}, [state.pokemonName]);
+	const [isOpeningClicked, setIsOpeningClicked] = React.useState(false);
 
 	return (
 		<div>
-			<input type={'search'} value={state.pokemonName} onChange={handleSearch}/>
-            results:
-			<img src={state.officialArtwork} alt={'official-artwork'}/>
-			<img src={state.icon} alt={'icon'}/>
-			<p>{JSON.stringify(state)}</p>);
-			<p>{JSON.stringify(pokemonList)}</p>
+			<PokeOpening handleHasOpened={() => setIsOpeningClicked(true)} hasClicked={isOpeningClicked}/>
+			{isOpeningClicked && <PokemonList/>}
 		</div>
 	);
 };
