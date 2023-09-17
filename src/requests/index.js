@@ -1,7 +1,7 @@
 import {always, andThen, applySpec, identity, ifElse, pipeWith, prop} from 'ramda';
 import {getArtwork, getIcon, getPokemonFlavourEntryWithVersion, getPokemonTypes} from './pokemon-request';
 import {getPokemonNumber} from './pokedex-request';
-import {API_URL, LANGUAGE_NAME} from '../constants/pokedex-constant.js';
+import {API_URL} from '../constants/pokedex-constant.js';
 
 const jsonify = data => data.json();
 
@@ -32,12 +32,19 @@ const getAllFromPokemon = async pokemon =>
 		}),
 	])(pokemon);
 
-const getVersion = version =>
-	fetch(`${API_URL}/version/${version}`)
-		.then(jsonify);
+// const getVersion = version =>
+// 	fetch(`${API_URL}/version/${version}`)
+// 		.then(jsonify);
 
-const getVersionRealName = versionCode => getVersion(versionCode).then(prop('names')).then(names => names.find(name => name.language.name === LANGUAGE_NAME).name);
+// const getVersionRealName = versionCode => getVersion(versionCode).then(prop('names')).then(names => names.find(name => name.language.name === LANGUAGE_NAME).name);
+
+const getPokemonOtherInfo = pokemonName => getPokemon(pokemonName).then(
+	applySpec({
+		height: prop('height'),
+		weight: prop('weight'),
+
+	}));
 
 const uppercaseFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
 
-export {jsonify, getPokemon, getAllFromPokemon, uppercaseFirstLetter, getVersionRealName};
+export {jsonify, getPokemon, getAllFromPokemon, uppercaseFirstLetter, getPokemonOtherInfo};

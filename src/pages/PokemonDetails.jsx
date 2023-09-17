@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './PokemonDetails.scss';
-import {getAllFromPokemon, uppercaseFirstLetter} from '../requests/index.js';
+import {getAllFromPokemon, getPokemonOtherInfo, uppercaseFirstLetter} from '../requests/index.js';
 import {pokemonDataModel} from '../constants/pokemon-data-fetch.js';
 import pokemonTypeConstant from '../constants/pokemon-type-constant.js';
 import PropTypes from 'prop-types';
@@ -8,19 +8,20 @@ import * as R from 'ramda';
 
 export const PokemonDetails = props => {
 	const [pokemonData, setPokemonData] = useState(pokemonDataModel);
-	const [gameVersion, setGameVersion] = useState('');
-	// const [gameVersionRealName, setGameVersionRealName] = useState('');
+	const [gameVersion, setGameVersion] = useState(0);
+	const [pokemonOtherInfo, setPokemonOtherInfo] = useState({});
 
 	useEffect(() => {
 		getAllFromPokemon(props.name)
 			.then(setPokemonData);
 		setGameVersion(0b0);
+		getPokemonOtherInfo(props.name)
+			.then(setPokemonOtherInfo);
 	}, [props.name]);
 
 	return (
-		<>
-			{/* <h1 className={'pokemon-info-title'}>Pokémon Info</h1> */}
-			<div className={'main-pokemon-panel'}>
+		<div className={'pokemon-details-panel'}>
+			<div className={'pokemon-presentation'}>
 				<div className={'panel-name-artwork'}>
 					<div className={'pokemon-name-logo'}>
 						<img src={pokemonData.icon} alt={props.name}/>
@@ -48,6 +49,8 @@ export const PokemonDetails = props => {
 							pokemonData.type,
 						)}
 					</ul>
+					<p className={'pokemon-height-title'}>Height: {pokemonOtherInfo.height} </p>
+					<p className={'pokemon-weight-title'}>Weight: {pokemonOtherInfo.weight} </p>
 				</div>
 			</div>
 			<div className={'pokemon-description'}>
@@ -60,7 +63,7 @@ export const PokemonDetails = props => {
 				</select>
 				<p>{pokemonData.flavourEntries && pokemonData.flavourEntries.flavorText[gameVersion]}</p>
 			</div>
-		</>
+		</div>
 	);
 };
 
