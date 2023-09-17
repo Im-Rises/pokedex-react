@@ -20,9 +20,8 @@ export const PokemonDetails = props => {
 	}, [props.name]);
 
 	return (
-		<>
-			{/* <h1 className={'pokemon-info-title'}>Pokémon Info</h1> */}
-			<div className={'main-pokemon-panel'}>
+		<div className={'pokemon-details-panel'}>
+			<div className={'pokemon-presentation'}>
 				<div className={'panel-name-artwork'}>
 					<div className={'pokemon-name-logo'}>
 						<img src={pokemonData.icon} alt={props.name}/>
@@ -64,7 +63,7 @@ export const PokemonDetails = props => {
 				</select>
 				<p>{pokemonData.flavourEntries && pokemonData.flavourEntries.flavorText[gameVersion]}</p>
 			</div>
-		</>
+		</div>
 	);
 };
 

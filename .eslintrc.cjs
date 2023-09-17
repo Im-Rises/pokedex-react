@@ -1,33 +1,34 @@
 module.exports = {
-	env: {
-		browser: true,
-		es2021: true,
-	},
-	extends: [
-		'xo',
-		'plugin:react/recommended',
-	],
-	overrides: [
-		{
-			env: {
-				node: true,
-			},
-			files: [
-				'.eslintrc.{js,cjs}',
-			],
-			parserOptions: {
-				sourceType: 'script',
-			},
-		},
-	],
-	parserOptions: {
-		ecmaVersion: 'latest',
-		sourceType: 'module',
-	},
-	plugins: [
-		'react',
-	],
-	rules: {
-		"capitalized-comments": "off",
-	},
+    env: {
+        browser: true,
+        es2021: true,
+    },
+    extends: [
+        'xo',
+        'plugin:react/recommended',
+    ],
+    overrides: [
+        {
+            env: {
+                node: true,
+            },
+            files: [
+                '.eslintrc.{js,cjs}',
+            ],
+            parserOptions: {
+                sourceType: 'script',
+            },
+        },
+    ],
+    parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+    },
+    plugins: [
+        'react',
+    ],
+    rules: {
+        "capitalized-comments": "off",
+        "no-mixed-spaces-and-tabs": "off",
+    },
 };
