@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import {useEffect, useRef, useState} from 'react';
-import {getAllFromPokemon} from '../../requests/index.js';
+import {getAllFromPokemon, uppercaseFirstLetter} from '../../requests/index.js';
 import React from 'react';
+import {clementPokemonData, quentinPokemonData} from '../../constants/pokemon-data-fetch.js';
 
 const LazyLoadImage = props => {
 	const imageRef = useRef();
@@ -24,20 +25,32 @@ const LazyLoadImage = props => {
 		};
 	}, [props.src]);
 
-	return <img ref={imageRef} alt='' />;
+	return <img ref={imageRef} alt=''/>;
 };
 
 export const PokemonListElement = props => {
 	const [icon, setIcon] = useState('');
 
 	useEffect(() => {
+		// Don't mind this code, it's juste a joke 😝
+		if (props.pokemonName === clementPokemonData.pokemonName) {
+			setIcon(clementPokemonData.icon);
+			return;
+		}
+
+		// Leave this code, it's the perfection 😁
+		if (props.pokemonName === quentinPokemonData.pokemonName) {
+			setIcon(quentinPokemonData.icon);
+			return;
+		}
+
 		getAllFromPokemon(props.pokemonName)
 			.then(({icon}) => setIcon(icon));
 	}, [props.pokemonName]);
 
 	return <div>
-		{icon && <LazyLoadImage src={icon} />}
-		{props.pokemonName}
+		{icon && <LazyLoadImage src={icon}/>}
+		{uppercaseFirstLetter(props.pokemonName)}
 	</div>;
 };
 

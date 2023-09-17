@@ -5,7 +5,10 @@ import {PokemonListElement} from './PokemonListElement.jsx';
 export const PokemonListComponent = props => <>{
 	props.stringList.map(
 		(element, key) =>
-			<div key={key} className={'pokemon-elem'} onClick={() => props.handleStringSelected(element)}>
+			<div key={key} className={'pokemon-elem' + (props.selectedPokemonName === element ? ' selected' : '')}
+				onClick={() => {
+					props.handleStringSelected(element);
+				}}>
 				<PokemonListElement pokemonName={element}/>
 			</div>,
 	)
@@ -14,4 +17,5 @@ export const PokemonListComponent = props => <>{
 PokemonListComponent.propTypes = {
 	stringList: PropTypes.arrayOf(PropTypes.string).isRequired,
 	handleStringSelected: PropTypes.func,
+	selectedPokemonName: PropTypes.string,
 };
