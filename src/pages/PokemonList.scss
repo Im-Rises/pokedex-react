@@ -41,6 +41,11 @@
   cursor: pointer;
   width: 90%;
   opacity: 1;
+
+  &:hover {
+    background-color: #61dafb;
+    cursor: default;
+  }
 }
 
 .content {
@@ -49,15 +54,15 @@
   margin: 10px;
 }
 
-.pokemon-artwork {
-  width: 80%;
-  text-align: center;
-  margin: auto;
-
-  img {
-    width: 80%;
-  }
-}
+//.pokemon-artwork {
+//  width: 80%;
+//  text-align: center;
+//  margin: auto;
+//
+//  img {
+//    width: 80%;
+//  }
+//}
 
 .left {
   width: 100%;
@@ -70,10 +75,30 @@
     font-size: 30px;
     border: 1px solid black;
     padding: 5%;
+    background-color: rgb(255, 255, 255, 0.5);
   }
 
   .pokemon-view-details-button {
+    // button in pokedex style
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 5%;
+    margin: 5%;
+    font-size: 20px;
+    width: 80%;
+    opacity: 0.7;
 
+    &:hover {
+      background-color: coral;
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    &:active {
+      background-color: #61dafb;
+      cursor: pointer;
+    }
   }
 }
 
@@ -91,6 +116,14 @@
     text-align: center;
     font-size: 20px;
     height: 10vh;
+
+    &:focus {
+      //outline: none;
+    }
+
+    &:hover {
+      background-color: coral; // Just for the idea, but need to be changed
+    }
   }
 
   .list-content {
