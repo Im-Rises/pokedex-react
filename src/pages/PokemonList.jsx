@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {getListOfPkmAvailable} from '../requests/pokedex-request.js';
 import {MAX_PKM} from '../constants/pokedex-constant.js';
-
+import pokeballLoadingImage from '../images/loading/pokeball_loading.gif';
 import './PokemonList.scss';
 import {pipe, pluck, prop} from 'ramda';
 import {getAllFromPokemon, uppercaseFirstLetter} from '../requests/index.js';
@@ -15,7 +15,7 @@ export const PokemonList = () => {
 	const [isPokemonDetailsOpen, setIsPokemonDetailsOpen] = useState(false);
 	const [pokemonList, setPokemonList] = useState(['']);
 	const [pokemon, setPokemon] = useState({
-		select: '', search: '', officialArtwork: '', listShows: [''],
+		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
 	});
 
 	const handlePokemonSelect = select =>
@@ -93,7 +93,7 @@ export const PokemonList = () => {
 	}, [pokemon.search]);
 
 	return (<>
-		<div className={'content'}>
+		<div className={'pokemon-list-panel'}>
 			<div className={'left'}>
 				<div className={'pokemon-name'}>
 					{pokemon.select ? uppercaseFirstLetter(pokemon.select) : 'Select a pokemon!'}
@@ -101,7 +101,8 @@ export const PokemonList = () => {
 				<div>
 					{pokemon.select ? <img src={pokemon.officialArtwork} alt={'official artwork'}/> : <></>}
 				</div>
-				{pokemon.select && <button onClick={toggleViewDetails}>View details</button>}
+				{pokemon.select
+                    && <button className={'pokemon-view-details-button'} onClick={toggleViewDetails}>View details</button>}
 			</div>
 			<div className={'right'}>
 				<input type={'search'} className={'search-bar'} value={pokemon.search}

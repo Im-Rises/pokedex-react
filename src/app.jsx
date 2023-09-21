@@ -7,10 +7,10 @@ const App = () => {
 	const [isOpeningClicked, setIsOpeningClicked] = React.useState(false);
 
 	return (
-		<div>
+		<>
 			<PokeOpening handleHasOpened={() => setIsOpeningClicked(true)} hasClicked={isOpeningClicked}/>
 			{isOpeningClicked && <PokemonList/>}
-		</div>
+		</>
 	);
 };
 
