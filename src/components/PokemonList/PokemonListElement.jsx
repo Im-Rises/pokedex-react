@@ -3,29 +3,24 @@ import {useEffect, useRef, useState} from 'react';
 import {getAllFromPokemon, uppercaseFirstLetter} from '../../requests/index.js';
 import React from 'react';
 import {clementPokemonData, quentinPokemonData} from '../../constants/pokemon-data-fetch.js';
+import PokeballLoadingImage from '/src/images/loading/pokeball-loading-50x50.gif';
 
-const LazyLoadImage = props => {
-	const imageRef = useRef();
+const PokemonImageLogo = props => {
+	const [icon, setIcon] = useState(PokeballLoadingImage);
 
 	useEffect(() => {
-		const observer = new IntersectionObserver(entries => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					// Charger l'image lorsque l'élément devient visible
-					imageRef.current.src = props.src;
-					observer.unobserve(imageRef.current);
-				}
-			});
-		});
-
-		observer.observe(imageRef.current);
-
-		return () => {
-			observer.disconnect();
-		};
+		// if props.src update
+		if (props.src) {
+			setIcon(props.src);
+		}
 	}, [props.src]);
 
-	return <img ref={imageRef} alt=''/>;
+	return <img src={icon} alt={props.pokemonName}/>;
+};
+
+PokemonImageLogo.propTypes = {
+	src: PropTypes.string.isRequired,
+	pokemonName: PropTypes.string.isRequired,
 };
 
 export const PokemonListElement = props => {
@@ -49,14 +44,12 @@ export const PokemonListElement = props => {
 	}, [props.pokemonName]);
 
 	return <div>
-		{icon && <LazyLoadImage src={icon}/>}
+		{/* {icon && <LazyLoadImage src={icon}/>} */}
+		{icon && <PokemonImageLogo src={icon} pokemonName={props.pokemonName}/>}
 		{uppercaseFirstLetter(props.pokemonName)}
 	</div>;
 };
 
 PokemonListElement.propTypes = {
 	pokemonName: PropTypes.string.isRequired,
-};
-LazyLoadImage.propTypes = {
-	src: PropTypes.string.isRequired,
 };
