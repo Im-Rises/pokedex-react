@@ -9,11 +9,11 @@ const pokemonDataModel = {
 
 const clementPokemonData = {
 	pokemonName: 'clement',
-	officialArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png',
-	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png',
-	type: 'normal',
-	flavourEntries: 'When it is done spinning, it becomes dizzy and cannot stand up.',
-	pokemonNumber: 143,
+	officialArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/569.png',
+	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/569.png',
+	type: ['normal'],
+	flavourEntries: 'This Pokémon eats trash, which turns into poison inside its body. The main component of the poison depends on what sort of trash was eaten.',
+	pokemonNumber: 569,
 };
 
 const quentinPokemonData = {
@@ -22,6 +22,7 @@ const quentinPokemonData = {
 	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10157.png',
 	type: ['psychic', 'dragon'],
 	flavourEntries: 'This is its form when it has absorbed overwhelming light energy. It fires laser beams from all over its body.',
+	pokemonNumber: 10157,
 };
 
 export {pokemonDataModel, clementPokemonData, quentinPokemonData};

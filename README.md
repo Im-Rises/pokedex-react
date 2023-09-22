@@ -15,11 +15,12 @@ Pokédex made in React using the Poképedia API.
 - [x] Add loading animations
 - [ ] Correct pokemon not loading at the end of the list
 - [ ] Correct web query bug (check console after clicking the pokemon pokeball intro menu)
-- [ ] import and correct the intro menu pokedex (pokeball opening)
+- [x] import and correct the intro menu pokedex (pokeball opening)
 - [x] Add a pokemon search bar
 - [ ] Add easteregg
 - [ ] Add logo for pokemon types
-- [ ] Change pokemon for clément from Snorlax to Muk
+- [x] Change pokemon for clément from Snorlax to Muk
+- [x] Change pokemon for clément from Muk to Garbodor
 - [x] Change pokémon for Quentin from Arceus to Ultra Necrozma
 
 <!--
