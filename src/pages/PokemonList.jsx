@@ -101,8 +101,11 @@ export const PokemonList = () => {
 				<div className={'pokemon-artwork-holder'}>
 					{pokemon.select ? <img src={pokemon.officialArtwork} alt={'official artwork'}/> : <></>}
 				</div>
-				{pokemon.select
-                    && <button className={'pokemon-view-details-button'} onClick={toggleViewDetails}>View details</button>}
+				<div className={'pokemon-view-details-button-holder'}>
+					{pokemon.officialArtwork !== pokeballLoadingImage
+                        && <button onClick={toggleViewDetails}>View
+                            details</button>}
+				</div>
 			</div>
 			<div className={'right'}>
 				<input type={'search'} className={'search-bar'} value={pokemon.search}

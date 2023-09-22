@@ -18,10 +18,10 @@ const clementPokemonData = {
 
 const quentinPokemonData = {
 	pokemonName: 'quentin',
-	officialArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/493.png',
-	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/493.png',
-	type: 'normal',
-	flavourEntries: 'It can freely recombine its own cellular structure to transform into other life-forms.',
+	officialArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10157.png',
+	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10157.png',
+	type: ['psychic', 'dragon'],
+	flavourEntries: 'This is its form when it has absorbed overwhelming light energy. It fires laser beams from all over its body.',
 };
 
 export {pokemonDataModel, clementPokemonData, quentinPokemonData};
