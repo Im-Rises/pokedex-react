@@ -79,6 +79,8 @@ export const PokemonList = () => {
 			return;
 		}
 
+		setEasterEggActivated(false);
+
 		const timer = setTimeout(() => {
 			const listShows = pokemonList
 				.filter(pkm => pkm.includes(search))
@@ -123,8 +125,8 @@ export const PokemonList = () => {
 				isPokemonDetailsOpen
                 && (
                 	<div className={'pokemon-details-panel'}>
-                		<PokemonDetails name={pokemon.select}/>
-                		<button style={{position: 'absolute', top: 0, right: 0}}
+                		{!easterEggActivated && <PokemonDetails name={pokemon.select}/>}
+                		<button
                 			onClick={toggleViewDetails}>Close
                 		</button>
                 	</div>

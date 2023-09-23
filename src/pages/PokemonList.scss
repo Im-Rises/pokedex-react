@@ -116,6 +116,13 @@
   z-index: 10;
   margin: 0;
   overflow: hidden;
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 20;
+  }
 }
 
 /* Used by subcomponents */
