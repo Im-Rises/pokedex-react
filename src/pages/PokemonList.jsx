@@ -7,7 +7,9 @@ import {pipe, pluck, prop} from 'ramda';
 import {getAllFromPokemon, uppercaseFirstLetter} from '../requests/index.js';
 import {PokemonDetails} from './PokemonDetails.jsx';
 import {PokemonListComponent} from '../components/PokemonList/PokemonListComponent.jsx';
-import {clementPokemonData, quentinPokemonData} from '../constants/pokemon-data-fetch.js';
+import {easterEggPokemonData} from '../constants/pokemon-data-fetch.js';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
@@ -17,6 +19,7 @@ export const PokemonList = () => {
 	const [pokemon, setPokemon] = useState({
 		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
 	});
+	const [easterEggActivated, setEasterEggActivated] = useState(false);
 
 	const handlePokemonSelect = select =>
 		setPokemon({...pokemon, select});
@@ -43,6 +46,10 @@ export const PokemonList = () => {
 
 	// manage select
 	useEffect(() => {
+		if (easterEggActivated) {
+			return;
+		}
+
 		const {select} = pokemon;
 		if (select) {
 			getAllFromPokemon(select)
@@ -57,27 +64,18 @@ export const PokemonList = () => {
 			return defaultPokemonSet();
 		}
 
-		// Don't mind this code, it's juste a joke 😝
-		if (search === clementPokemonData.pokemonName) {
+		// If one of the Pokémon Easter Egg name is entered
+		if (easterEggPokemonData.some(pkm => pkm.pokemonName === search)) {
+			console.log('Easter Egg found! Or should I say... Easter Pkm Egg?');
+			toast('Easter Egg found! Or should I say... Easter Pkm Egg?',
+				{type: 'success', autoClose: 5000, icon: '🥚', closeOnClick: true, pauseOnHover: false});
 			setPokemon({
 				...pokemon,
-				listShows: [clementPokemonData.pokemonName],
-				select: clementPokemonData.pokemonName,
-				officialArtwork: clementPokemonData.officialArtwork,
+				listShows: [search],
+				select: search,
+				officialArtwork: easterEggPokemonData.find(pkm => pkm.pokemonName === search).officialArtwork,
 			});
-
-			return;
-		}
-
-		// Leave this code, it's the perfection 😁
-		if (search === quentinPokemonData.pokemonName) {
-			setPokemon({
-				...pokemon,
-				listShows: [quentinPokemonData.pokemonName],
-				select: quentinPokemonData.pokemonName,
-				officialArtwork: quentinPokemonData.officialArtwork,
-			});
-
+			setEasterEggActivated(true);
 			return;
 		}
 
@@ -92,52 +90,46 @@ export const PokemonList = () => {
 		return () => clearTimeout(timer);
 	}, [pokemon.search]);
 
-	return (<>
-		<div className={'pokemon-list-panel'}>
-			<div className={'left'}>
-				<div className={'pokemon-name'}>
-					{pokemon.select ? uppercaseFirstLetter(pokemon.select) : 'Select a pokemon!'}
+	return (
+		<>
+			<div className={'pokemon-list-panel'}>
+				<div className={'left'}>
+					<div className={'pokemon-name'}>
+						{pokemon.select ? uppercaseFirstLetter(pokemon.select) : 'Select a pokemon!'}
+					</div>
+					<div className={'pokemon-artwork-holder'}>
+						{pokemon.select ? <img src={pokemon.officialArtwork} alt={'official artwork'}/> : <></>}
+					</div>
+					<div className={'pokemon-view-details-button-holder'}>
+						{pokemon.officialArtwork !== pokeballLoadingImage
+                            && <button onClick={toggleViewDetails}>View
+                                details</button>}
+					</div>
 				</div>
-				<div className={'pokemon-artwork-holder'}>
-					{pokemon.select ? <img src={pokemon.officialArtwork} alt={'official artwork'}/> : <></>}
-				</div>
-				<div className={'pokemon-view-details-button-holder'}>
-					{pokemon.officialArtwork !== pokeballLoadingImage
-                        && <button onClick={toggleViewDetails}>View
-                            details</button>}
+				<div className={'right'}>
+					<input type={'search'} className={'search-bar'} value={pokemon.search}
+						onChange={handlePokemonSearch}/>
+					<div className={'list-content'}>
+						{!easterEggActivated && pokemon.search && pokemon?.listShows.length
+							? <PokemonListComponent stringList={pokemon.listShows}
+								handleStringSelected={handlePokemonSelect}
+								selectedPokemonName={pokemon.select}/>
+							: <PokemonListComponent stringList={pokemonList} handleStringSelected={handlePokemonSelect}
+								selectedPokemonName={pokemon.select}/>}
+					</div>
 				</div>
 			</div>
-			<div className={'right'}>
-				<input type={'search'} className={'search-bar'} value={pokemon.search}
-					onChange={handlePokemonSearch}/>
-				<div className={'list-content'}>
-					{pokemon.search && pokemon?.listShows.length
-						? <PokemonListComponent stringList={pokemon.listShows} handleStringSelected={handlePokemonSelect}
-							selectedPokemonName={pokemon.select}/>
-						: <PokemonListComponent stringList={pokemonList} handleStringSelected={handlePokemonSelect}
-							selectedPokemonName={pokemon.select}/>}
-				</div>
-			</div>
-		</div>
-		{
-			isPokemonDetailsOpen
-            && (
-            	<div style={{
-            		position: 'absolute',
-            		top: 0,
-            		left: 0,
-            		width: '100vw',
-            		height: '100vh',
-            		zIndex: '10',
-            		margin: '0',
-            		overflow: 'hidden',
-            	}}>
-            		<PokemonDetails name={pokemon.select}/>
-            		<button style={{position: 'absolute', top: 0, right: 0}}
-            			onClick={toggleViewDetails}>Close
-            		</button>
-            	</div>
-            )
-		}
-	</>);
+			{
+				isPokemonDetailsOpen
+                && (
+                	<div className={'pokemon-details-panel'}>
+                		<PokemonDetails name={pokemon.select}/>
+                		<button style={{position: 'absolute', top: 0, right: 0}}
+                			onClick={toggleViewDetails}>Close
+                		</button>
+                	</div>
+                )
+			}
+			<ToastContainer/>
+		</>);
 };

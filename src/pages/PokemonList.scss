@@ -107,6 +107,17 @@
   }
 }
 
+.pokemon-details-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  margin: 0;
+  overflow: hidden;
+}
+
 /* Used by subcomponents */
 
 .pokemon-elem {
@@ -158,13 +169,3 @@
     cursor: default;
   }
 }
-
-//.pokemon-artwork {
-//  width: 80%;
-//  text-align: center;
-//  margin: auto;
-//
-//  img {
-//    width: 80%;
-//  }
-//}

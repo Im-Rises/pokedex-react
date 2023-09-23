@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {getAllFromPokemon, uppercaseFirstLetter} from '../../requests/index.js';
 import React from 'react';
-import {clementPokemonData, quentinPokemonData} from '../../constants/pokemon-data-fetch.js';
 import PokeballLoadingImage from '/src/images/loading/pokeball-loading-50x50.gif';
 
 const PokemonImageLogo = props => {
@@ -27,18 +26,6 @@ export const PokemonListElement = props => {
 	const [icon, setIcon] = useState('');
 
 	useEffect(() => {
-		// Don't mind this code, it's juste a joke 😝
-		if (props.pokemonName === clementPokemonData.pokemonName) {
-			setIcon(clementPokemonData.icon);
-			return;
-		}
-
-		// Leave this code, it's the perfection 😁
-		if (props.pokemonName === quentinPokemonData.pokemonName) {
-			setIcon(quentinPokemonData.icon);
-			return;
-		}
-
 		getAllFromPokemon(props.pokemonName)
 			.then(({icon}) => setIcon(icon));
 	}, [props.pokemonName]);
