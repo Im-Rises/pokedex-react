@@ -14,12 +14,13 @@ import 'react-toastify/dist/ReactToastify.css';
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
 export const PokemonList = () => {
+	const timeoutConstant = 200;
 	const [isPokemonDetailsOpen, setIsPokemonDetailsOpen] = useState(false);
 	const [pokemonList, setPokemonList] = useState(['']);
 	const [pokemon, setPokemon] = useState({
 		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
 	});
-	const [easterEggActivated, setEasterEggActivated] = useState(false);
+	// const [easterEggActivated, setEasterEggActivated] = useState(false);
 
 	const handlePokemonSelect = select =>
 		setPokemon({...pokemon, select});
@@ -46,9 +47,9 @@ export const PokemonList = () => {
 
 	// manage select
 	useEffect(() => {
-		if (easterEggActivated) {
-			return;
-		}
+		// if (easterEggActivated) {
+		// 	return;
+		// }
 
 		const {select} = pokemon;
 		if (select) {
@@ -75,11 +76,11 @@ export const PokemonList = () => {
 				select: search,
 				officialArtwork: easterEggPokemonData.find(pkm => pkm.pokemonName === search).officialArtwork,
 			});
-			setEasterEggActivated(true);
+			// setEasterEggActivated(true);
 			return;
 		}
 
-		setEasterEggActivated(false);
+		// setEasterEggActivated(false);
 
 		const timer = setTimeout(() => {
 			const listShows = pokemonList
@@ -88,7 +89,7 @@ export const PokemonList = () => {
 			const select = pokemon.listShows[0];
 
 			setPokemon({...pokemon, listShows, select});
-		}, 200);
+		}, timeoutConstant);
 		return () => clearTimeout(timer);
 	}, [pokemon.search]);
 
@@ -112,7 +113,8 @@ export const PokemonList = () => {
 					<input type={'search'} className={'search-bar'} value={pokemon.search}
 						onChange={handlePokemonSearch}/>
 					<div className={'list-content'}>
-						{!easterEggActivated && pokemon.search && pokemon?.listShows.length
+						{/* {!easterEggActivated && pokemon.search && pokemon?.listShows.length */}
+						{pokemon.search && pokemon?.listShows.length
 							? <PokemonListComponent stringList={pokemon.listShows}
 								handleStringSelected={handlePokemonSelect}
 								selectedPokemonName={pokemon.select}/>
@@ -125,10 +127,11 @@ export const PokemonList = () => {
 				isPokemonDetailsOpen
                 && (
                 	<div className={'pokemon-details-panel'}>
-                		{!easterEggActivated && <PokemonDetails name={pokemon.select}/>}
-                		<button
-                			onClick={toggleViewDetails}>Close
-                		</button>
+                		<PokemonDetails name={pokemon.select}/>
+                		{/* {!easterEggActivated && <PokemonDetails name={pokemon.select}/>} */}
+                		{/* <button */}
+                		{/*	onClick={toggleViewDetails}>Close */}
+                		{/* </button> */}
                 	</div>
                 )
 			}
