@@ -2,25 +2,7 @@ import PropTypes from 'prop-types';
 import {useEffect, useState} from 'react';
 import {getAllFromPokemon, uppercaseFirstLetter} from '../../requests/index.js';
 import React from 'react';
-import PokeballLoadingImage from '/src/images/loading/pokeball-loading-50x50.gif';
-
-const PokemonImageLogo = props => {
-	const [icon, setIcon] = useState(PokeballLoadingImage);
-
-	useEffect(() => {
-		// if props.src update
-		if (props.src) {
-			setIcon(props.src);
-		}
-	}, [props.src]);
-
-	return <img src={icon} alt={props.pokemonName}/>;
-};
-
-PokemonImageLogo.propTypes = {
-	src: PropTypes.string.isRequired,
-	pokemonName: PropTypes.string.isRequired,
-};
+import LazyLoadImage from '../LazyLoadImage/LazyLoadImage.jsx';
 
 export const PokemonListElement = props => {
 	const [icon, setIcon] = useState('');
@@ -31,8 +13,7 @@ export const PokemonListElement = props => {
 	}, [props.pokemonName]);
 
 	return <div>
-		{/* {icon && <LazyLoadImage src={icon}/>} */}
-		{icon && <PokemonImageLogo src={icon} pokemonName={props.pokemonName}/>}
+		 {icon && <LazyLoadImage src={icon}/>}
 		{uppercaseFirstLetter(props.pokemonName)}
 	</div>;
 };
