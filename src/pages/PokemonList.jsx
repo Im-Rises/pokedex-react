@@ -4,7 +4,7 @@ import {MAX_PKM} from '../constants/pokedex-constant.js';
 import pokeballLoadingImage from '../images/loading/pokeball-loading-150x150.gif';
 import './PokemonList.scss';
 import {pipe, pluck, prop} from 'ramda';
-import {getAllFromPokemon, uppercaseFirstLetter} from '../requests/index.js';
+import {getAllFromPokemon} from '../requests/index.js';
 import {PokemonDetails} from './PokemonDetails.jsx';
 import {PokemonListComponent} from '../components/PokemonList/PokemonListComponent.jsx';
 import {easterEggPokemonData} from '../constants/pokemon-data-fetch.js';
@@ -18,7 +18,10 @@ export const PokemonList = () => {
 	const [isPokemonDetailsOpen, setIsPokemonDetailsOpen] = useState(false);
 	const [pokemonList, setPokemonList] = useState(['']);
 	const [pokemon, setPokemon] = useState({
-		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
+		select: '',
+		search: '',
+		officialArtwork: pokeballLoadingImage,
+		listShows: [''],
 	});
 	// const [easterEggActivated, setEasterEggActivated] = useState(false);
 
@@ -56,7 +59,7 @@ export const PokemonList = () => {
 			getAllFromPokemon(select)
 				.then(handleOfficialArtwork);
 		}
-	}, [pokemon.select, pokemonList, pokemon.search]);
+	}, [pokemon.select, pokemonList]);
 
 	// manage search
 	useEffect(() => {
@@ -98,7 +101,7 @@ export const PokemonList = () => {
 			<div className={'pokemon-list-panel'}>
 				<div className={'left'}>
 					<div className={'pokemon-name'}>
-						{pokemon.select ? uppercaseFirstLetter(pokemon.select) : 'Select a pokemon!'}
+						{pokemon.select ? pokemon.select : 'Select a pokemon!'}
 					</div>
 					<div className={'pokemon-artwork-holder'}>
 						{pokemon.select ? <img src={pokemon.officialArtwork} alt={'official artwork'}/> : <></>}
