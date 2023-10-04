@@ -96,7 +96,7 @@ export const PokemonList = () => {
 		return () => clearTimeout(timer);
 	}, [pokemon.search]);
 
-	const pokemonListComp = list =>
+	const pokemonListComponentGenerator = list =>
 		<PokemonListComponent
 			stringList={list}
 			handleStringSelected={handlePokemonSelect}
@@ -119,14 +119,13 @@ export const PokemonList = () => {
 					</div>
 				</div>
 				<div className={'right'}>
-					<input type={'search'} className={'search-bar'} value={pokemon.search}
-						onChange={handlePokemonSearch}/>
+					<input type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
 					<div className={'list-content'}>
 						{/* {!easterEggActivated && pokemon.search && pokemon?.listShows.length */}
 						{
 							pokemon.search && pokemon?.listShows.length
-								? pokemonListComp(pokemon.listShows)
-								: pokemonListComp(pokemonList)
+								? pokemonListComponentGenerator(pokemon.listShows)
+								: pokemonListComponentGenerator(pokemonList)
 						}
 					</div>
 				</div>
