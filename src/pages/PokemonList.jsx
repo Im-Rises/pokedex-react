@@ -41,7 +41,7 @@ export const PokemonList = () => {
 		...pokemon, listShows: pokemonList, select: pokemonList[0],
 	});
 
-	// manage list
+	// get all pokemon list
 	useEffect(() => {
 		getListOfPkmAvailable(MAX_PKM)
 			.then(getAllPokemonName)
@@ -130,7 +130,7 @@ export const PokemonList = () => {
 				isPokemonDetailsOpen
                 && (
                 	<div className={'pokemon-details-panel'}>
-                		<PokemonDetails name={pokemon.select}/>
+                		 <PokemonDetails name={pokemon.select}/>
                 		{/* {!easterEggActivated && <PokemonDetails name={pokemon.select}/>} */}
                 		{/* <button */}
                 		{/*	onClick={toggleViewDetails}>Close */}
