@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import React from 'react';
 import defaultIcon from '../../images/loading/pokeball-loading-50x50.gif';
@@ -24,7 +24,7 @@ const LazyLoadImage = props => {
 		return () => {
 			observer.disconnect();
 		};
-	}, []);
+	}, [props.imageGetter]);
 
 	return <img src={defaultIcon} alt={''} ref={imageRef}/>;
 };

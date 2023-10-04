@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {getListOfPkmAvailable} from '../requests/pokedex-request.js';
 import {MAX_PKM} from '../constants/pokedex-constant.js';
 import pokeballLoadingImage from '../images/loading/pokeball-loading-150x150.gif';
@@ -96,6 +96,12 @@ export const PokemonList = () => {
 		return () => clearTimeout(timer);
 	}, [pokemon.search]);
 
+	const pokemonListComp = list =>
+		<PokemonListComponent
+			stringList={list}
+			handleStringSelected={handlePokemonSelect}
+			selectedPokemonName={pokemon.select} />;
+
 	return (
 		<>
 			<div className={'pokemon-list-panel'}>
@@ -117,12 +123,11 @@ export const PokemonList = () => {
 						onChange={handlePokemonSearch}/>
 					<div className={'list-content'}>
 						{/* {!easterEggActivated && pokemon.search && pokemon?.listShows.length */}
-						{pokemon.search && pokemon?.listShows.length
-							? <PokemonListComponent stringList={pokemon.listShows}
-								handleStringSelected={handlePokemonSelect}
-								selectedPokemonName={pokemon.select}/>
-							: <PokemonListComponent stringList={pokemonList} handleStringSelected={handlePokemonSelect}
-								selectedPokemonName={pokemon.select}/>}
+						{
+							pokemon.search && pokemon?.listShows.length
+								? pokemonListComp(pokemon.listShows)
+								: pokemonListComp(pokemonList)
+						}
 					</div>
 				</div>
 			</div>
