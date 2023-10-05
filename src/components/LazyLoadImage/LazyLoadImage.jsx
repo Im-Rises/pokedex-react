@@ -26,11 +26,12 @@ const LazyLoadImage = props => {
 		};
 	}, [props.imageGetter]);
 
-	return <img src={defaultIcon} alt={''} ref={imageRef}/>;
+	return <img src={defaultIcon} alt={''} ref={imageRef} className={props.className}/>;
 };
 
 LazyLoadImage.propTypes = {
-	imageGetter: PropTypes.func,
+	imageGetter: PropTypes.func.isRequired,
+	className: PropTypes.string,
 };
 
 export default LazyLoadImage;

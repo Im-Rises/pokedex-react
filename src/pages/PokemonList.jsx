@@ -12,8 +12,13 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LazyLoadImage from '../components/LazyLoadImage/LazyLoadImage.jsx';
 import {getArtwork} from '../requests/pokemon-request.js';
+import PokemonLogo from '../images/logo/logo-pokedex.png';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
+
+const imageLinkGetter = link => new Promise(resolve => {
+	resolve(link);
+});
 
 export const PokemonList = () => {
 	const timeoutConstant = 200;
@@ -98,13 +103,14 @@ export const PokemonList = () => {
 		<>
 			<div className={'pokemon-list-panel'}>
 				<div className={'left'}>
-					<div className={'pokemon-name'}>
-						{pokemon.select ? pokemon.select : 'Select a pokemon!'}
-					</div>
+					{pokemon.select
+						? <div className={'pokemon-name'}>{pokemon.select} </div>
+						: <img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
+					}
 					<div className={'pokemon-artwork-holder'}>
 						{pokemon.select
 							? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)} />
-							: <div>
+							: <div className={'pokedex-description'}>
 								Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface makes it easy to explore and learn about your favorite Pokémon.
 
 								Here's how it works:
@@ -116,7 +122,29 @@ export const PokemonList = () => {
 									<li><b>Region-specific Details : </b> Dive deeper into the world of Pokémon by exploring region-specific information. Discover the habitat, behaviors, and unique characteristics of each Pokémon based on their region of origin.</li>
 								</ol>
 
-								The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and embark on your journey to become a Pokémon Master!</div>
+								The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and embark on your journey to become a Pokémon Master!
+
+								<p>								pssst there's an easter egg, use their name to see it!
+									<div className={'github-contributors'}>
+										<a href={'https://github.com/clementreiffers'} className={'github-pdp-link'}>
+											<figure>
+												<LazyLoadImage
+													imageGetter={() => imageLinkGetter('https://avatars.githubusercontent.com/u/44473020?v=4')}
+													className={'github-pdp'}/>
+												<figcaption>Clément Reiffers</figcaption>
+											</figure>
+										</a>
+										<a href={'https://github.com/clementreiffers'} className={'github-pdp-link'}>
+											<figure>
+												<LazyLoadImage
+													imageGetter={() => imageLinkGetter('https://avatars.githubusercontent.com/u/59691442?v=4')}
+													className={'github-pdp'}/>
+												<figcaption>Quentin Morel</figcaption>
+											</figure>
+										</a>
+									</div>
+								</p>
+							</div>
 						}
 					</div>
 					<div className={'pokemon-view-details-button-holder'}>
