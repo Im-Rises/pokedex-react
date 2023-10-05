@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './PokemonDetails.scss';
-import {getAllFromPokemon, getPokemonOtherInfo, uppercaseFirstLetter} from '../requests/index.js';
+import {getAllFromPokemon, getPokemonOtherInfo} from '../requests/index.js';
 import {pokemonDataModel} from '../constants/pokemon-data-fetch.js';
 import pokemonTypeConstant from '../constants/pokemon-type-constant.js';
 import PropTypes from 'prop-types';
@@ -25,7 +25,7 @@ export const PokemonDetails = props => {
 				<div className={'panel-name-artwork'}>
 					<div className={'pokemon-name-logo'}>
 						<img src={pokemonData.icon} alt={props.name}/>
-						<h2>{uppercaseFirstLetter(props.name)}</h2>
+						<h2>{props.name}</h2>
 					</div>
 					<div className={'pokemon-artwork'}>
 						<img src={pokemonData.officialArtwork} alt={props.name}/>

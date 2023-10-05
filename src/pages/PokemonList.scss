@@ -31,6 +31,7 @@
       border: 1px solid black;
       padding: 5%;
       background-color: rgb(255, 255, 255, 0.5);
+      text-transform: capitalize;
     }
 
     .pokemon-view-details-button-holder {
@@ -107,6 +108,24 @@
   }
 }
 
+.pokemon-details-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  margin: 0;
+  overflow: hidden;
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 20;
+  }
+}
+
 /* Used by subcomponents */
 
 .pokemon-elem {
@@ -158,13 +177,3 @@
     cursor: default;
   }
 }
-
-//.pokemon-artwork {
-//  width: 80%;
-//  text-align: center;
-//  margin: auto;
-//
-//  img {
-//    width: 80%;
-//  }
-//}
