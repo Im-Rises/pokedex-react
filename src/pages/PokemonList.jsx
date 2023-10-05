@@ -10,6 +10,7 @@ import {PokemonListComponent} from '../components/PokemonList/PokemonListCompone
 import {easterEggPokemonData} from '../constants/pokemon-data-fetch.js';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import defaultIcon from '../images/loading/pokeball-loading-150x150.gif';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
@@ -23,7 +24,6 @@ export const PokemonList = () => {
 		officialArtwork: pokeballLoadingImage,
 		listShows: [''],
 	});
-	// const [easterEggActivated, setEasterEggActivated] = useState(false);
 
 	const handlePokemonSelect = select =>
 		setPokemon({...pokemon, select});
@@ -50,10 +50,6 @@ export const PokemonList = () => {
 
 	// manage select
 	useEffect(() => {
-		// if (easterEggActivated) {
-		// 	return;
-		// }
-
 		const {select} = pokemon;
 		if (select) {
 			getAllFromPokemon(select)
@@ -79,7 +75,6 @@ export const PokemonList = () => {
 				select: search,
 				officialArtwork: easterEggPokemonData.find(pkm => pkm.pokemonName === search).officialArtwork,
 			});
-			// setEasterEggActivated(true);
 			return;
 		}
 
@@ -110,7 +105,7 @@ export const PokemonList = () => {
 						{pokemon.select ? pokemon.select : 'Select a pokemon!'}
 					</div>
 					<div className={'pokemon-artwork-holder'}>
-						{pokemon.select ? <img src={pokemon.officialArtwork} alt={'official artwork'}/> : <></>}
+						<img src={pokemon.select ? pokemon.officialArtwork : defaultIcon} alt={'official artwork'}/>
 					</div>
 					<div className={'pokemon-view-details-button-holder'}>
 						{pokemon.officialArtwork !== pokeballLoadingImage
@@ -122,7 +117,6 @@ export const PokemonList = () => {
 					<input type={'search'} className={'search-bar'} value={pokemon.search}
 						onChange={handlePokemonSearch} autoFocus={true}/>
 					<div className={'list-content'}>
-						{/* {!easterEggActivated && pokemon.search && pokemon?.listShows.length */}
 						{
 							pokemon.search && pokemon?.listShows.length
 								? pokemonListComponentGenerator(pokemon.listShows)
