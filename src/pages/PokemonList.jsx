@@ -10,15 +10,11 @@ import {PokemonListComponent} from '../components/PokemonList/PokemonListCompone
 import {easterEggPokemonData} from '../constants/pokemon-data-fetch.js';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import LazyLoadImage from '../components/LazyLoadImage/LazyLoadImage.jsx';
+import LazyLoadImage, {imageLinkGetter} from '../components/LazyLoadImage/LazyLoadImage.jsx';
 import {getArtwork} from '../requests/pokemon-request.js';
 import PokemonLogo from '../images/logo/logo-pokedex.png';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
-
-const imageLinkGetter = link => new Promise(resolve => {
-	resolve(link);
-});
 
 export const PokemonList = () => {
 	const timeoutConstant = 200;
@@ -124,7 +120,7 @@ export const PokemonList = () => {
 
 								The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and embark on your journey to become a Pokémon Master!
 
-								<p>								pssst there's an easter egg, use their name to see it!
+								<p>	pssst there's an easter egg, use their name to see it!
 									<div className={'github-contributors'}>
 										<a href={'https://github.com/clementreiffers'} className={'github-pdp-link'}>
 											<figure>
@@ -134,7 +130,7 @@ export const PokemonList = () => {
 												<figcaption>Clément Reiffers</figcaption>
 											</figure>
 										</a>
-										<a href={'https://github.com/clementreiffers'} className={'github-pdp-link'}>
+										<a href={'https://github.com/im-rises'} className={'github-pdp-link'}>
 											<figure>
 												<LazyLoadImage
 													imageGetter={() => imageLinkGetter('https://avatars.githubusercontent.com/u/59691442?v=4')}
