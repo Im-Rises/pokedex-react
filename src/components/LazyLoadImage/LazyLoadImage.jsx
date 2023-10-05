@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import defaultIcon from '../../images/loading/pokeball-loading-50x50.gif';
 
+const imageLinkGetter = link => new Promise(resolve => {
+	resolve(link);
+});
+
 const LazyLoadImage = props => {
 	const imageRef = useRef();
 
@@ -26,11 +30,13 @@ const LazyLoadImage = props => {
 		};
 	}, [props.imageGetter]);
 
-	return <img src={defaultIcon} alt={''} ref={imageRef}/>;
+	return <img src={defaultIcon} alt={''} ref={imageRef} className={props.className}/>;
 };
 
 LazyLoadImage.propTypes = {
-	imageGetter: PropTypes.func,
+	imageGetter: PropTypes.func.isRequired,
+	className: PropTypes.string,
 };
 
+export {imageLinkGetter};
 export default LazyLoadImage;
