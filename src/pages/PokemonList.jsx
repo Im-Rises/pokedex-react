@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {getListOfPkmAvailable} from '../requests/pokedex-request.js';
 import {MAX_PKM} from '../constants/pokedex-constant.js';
 import pokeballLoadingImage from '../images/loading/pokeball-loading-150x150.gif';
@@ -100,7 +100,7 @@ export const PokemonList = () => {
 		<PokemonListComponent
 			stringList={list}
 			handleStringSelected={handlePokemonSelect}
-			selectedPokemonName={pokemon.select} />;
+			selectedPokemonName={pokemon.select}/>;
 
 	return (
 		<>
@@ -119,7 +119,8 @@ export const PokemonList = () => {
 					</div>
 				</div>
 				<div className={'right'}>
-					<input type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
+					<input type={'search'} className={'search-bar'} value={pokemon.search}
+						onChange={handlePokemonSearch} autoFocus={true}/>
 					<div className={'list-content'}>
 						{/* {!easterEggActivated && pokemon.search && pokemon?.listShows.length */}
 						{
@@ -134,11 +135,7 @@ export const PokemonList = () => {
 				isPokemonDetailsOpen
                 && (
                 	<div className={'pokemon-details-panel'}>
-                		 <PokemonDetails name={pokemon.select}/>
-                		{/* {!easterEggActivated && <PokemonDetails name={pokemon.select}/>} */}
-                		{/* <button */}
-                		{/*	onClick={toggleViewDetails}>Close */}
-                		{/* </button> */}
+                		<PokemonDetails name={pokemon.select} exitDetailsPage={toggleViewDetails}/>
                 	</div>
                 )
 			}

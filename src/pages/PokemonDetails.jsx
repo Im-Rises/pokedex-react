@@ -21,6 +21,9 @@ export const PokemonDetails = props => {
 
 	return (
 		<div className={'pokemon-details-panel'}>
+			<div className={'exit-details-page'}>
+				<button onClick={props.exitDetailsPage}>X</button>
+			</div>
 			<div className={'pokemon-presentation'}>
 				<div className={'panel-name-artwork'}>
 					<div className={'pokemon-name-logo'}>
@@ -39,7 +42,8 @@ export const PokemonDetails = props => {
 					<p className={'pokemon-types-title'}>Types:</p>
 					<ul>
 						{R.map(
-							type => <li key={type}>{type}
+							type => <li key={type}>
+								<p>{type}</p>
 								<img
 									style={{width: 'auto', height: '60%'}}
 									src={pokemonTypeConstant[type]}
@@ -69,5 +73,6 @@ export const PokemonDetails = props => {
 
 PokemonDetails.propTypes = {
 	name: PropTypes.string.isRequired,
+	exitDetailsPage: PropTypes.func.isRequired,
 };
 

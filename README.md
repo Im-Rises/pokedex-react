@@ -8,20 +8,9 @@ Pokédex made in React using the Poképedia API.
 
 ## To do list
 
-- [x] Create the main pages
 - [ ] Improve css for all the pages
 - [ ] Responsive design
-- [ ] Correct search bar bugs
-- [x] Add loading animations
-- [ ] Correct pokemon not loading at the end of the list
 - [ ] Correct web query bug (check console after clicking the pokemon pokeball intro menu)
-- [x] import and correct the intro menu pokedex (pokeball opening)
-- [x] Add a pokemon search bar
-- [x] Add easteregg
-- [x] Add logo for pokemon types
-- [x] Change pokemon for clément from Snorlax to Muk
-- [x] Change pokemon for clément from Muk to Garbodor
-- [x] Change pokémon for Quentin from Arceus to Ultra Necrozma
 
 <!--
 ## Overview
