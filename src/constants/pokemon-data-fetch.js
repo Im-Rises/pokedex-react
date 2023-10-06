@@ -25,4 +25,6 @@ const quentinPokemonData = {
 	pokemonNumber: 10157,
 };
 
-export {pokemonDataModel, clementPokemonData, quentinPokemonData};
+const easterEggPokemonData = [clementPokemonData, quentinPokemonData];
+
+export {pokemonDataModel, easterEggPokemonData};

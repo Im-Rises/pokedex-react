@@ -45,6 +45,4 @@ const getPokemonOtherInfo = pokemonName => getPokemon(pokemonName).then(
 
 	}));
 
-const uppercaseFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
-
-export {jsonify, getPokemon, getAllFromPokemon, uppercaseFirstLetter, getPokemonOtherInfo};
+export {jsonify, getPokemon, getAllFromPokemon, getPokemonOtherInfo};

@@ -1,6 +1,11 @@
 import {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import React from 'react';
+import defaultIcon from '../../images/loading/pokeball-loading-50x50.gif';
+
+const imageLinkGetter = link => new Promise(resolve => {
+	resolve(link);
+});
 
 const LazyLoadImage = props => {
 	const imageRef = useRef();
@@ -9,8 +14,10 @@ const LazyLoadImage = props => {
 		const observer = new IntersectionObserver(entries => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting) {
-					// Charger l'image lorsque l'élément devient visible
-					imageRef.current.src = props.src;
+					props.imageGetter().then(icon => {
+						imageRef.current.src = icon;
+					});
+					// load image only if it's visible by users
 					observer.unobserve(imageRef.current);
 				}
 			});
@@ -21,11 +28,15 @@ const LazyLoadImage = props => {
 		return () => {
 			observer.disconnect();
 		};
-	}, [props.src]);
+	}, [props.imageGetter]);
 
-	return <img ref={imageRef} alt=''/>;
+	return <img src={defaultIcon} alt={''} ref={imageRef} className={props.className}/>;
 };
 
 LazyLoadImage.propTypes = {
-	src: PropTypes.string.isRequired,
+	imageGetter: PropTypes.func.isRequired,
+	className: PropTypes.string,
 };
+
+export {imageLinkGetter};
+export default LazyLoadImage;
