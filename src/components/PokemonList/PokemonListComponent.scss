@@ -1,3 +1,5 @@
+@import '../../global/global';
+
 .pokemon-elem {
   padding: 5px;
   min-width: 70%;
@@ -21,29 +23,9 @@
     left: 0;
   }
 
-  &:hover {
-    background-color: coral;
-    cursor: pointer;
-    width: 90%;
-    opacity: 1;
-  }
-
-  &:active {
-    background-color: #61dafb;
-    cursor: pointer;
-    width: 90%;
-    opacity: 1;
-  }
+  @include buttonSelection;
 }
 
 .selected {
-  background-color: #61dafb;
-  cursor: pointer;
-  width: 90%;
-  opacity: 1;
-
-  &:hover {
-    background-color: #61dafb;
-    cursor: default;
-  }
+  @include buttonSelected;
 }
