@@ -131,11 +131,27 @@
   padding: 40px;
   font-size: 20px;
 
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 10px;
+
   .github-contributors {
     display: inline-flex;
 
     .github-pdp-link {
       display: block;
+
+      figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+      }
 
       .github-pdp {
         width: 20%;
