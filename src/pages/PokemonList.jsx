@@ -14,6 +14,7 @@ import LazyLoadImage from '../components/LazyLoadImage/LazyLoadImage.jsx';
 import {getArtwork} from '../requests/pokemon-request.js';
 import PokemonLogo from '../images/logo/logo-pokedex.png';
 import {PokedexPresentation} from '../components/PokedexPresentation/PokedexPresentation.jsx';
+import {PokemonDetailsDumb} from '../components/PokemonDetailsDumb/PokemonDetailsDumb.jsx';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
@@ -27,6 +28,7 @@ export const PokemonList = () => {
 		officialArtwork: pokeballLoadingImage,
 		listShows: [''],
 	});
+	const [easterEggActivated, setEasterEggActivated] = useState(false);
 
 	const handlePokemonSelect = select =>
 		setPokemon({...pokemon, select});
@@ -76,8 +78,11 @@ export const PokemonList = () => {
 				select: search,
 				officialArtwork: easterEggPokemonData.find(pkm => pkm.pokemonName === search).officialArtwork,
 			});
+			setEasterEggActivated(true);
 			return;
 		}
+
+		setEasterEggActivated(false);
 
 		const timer = setTimeout(() => {
 			const listShows = pokemonList
@@ -130,7 +135,9 @@ export const PokemonList = () => {
 				isPokemonDetailsOpen
                 && (
                 	<div className={'pokemon-details-panel'}>
-                		<PokemonDetails name={pokemon.select} exitDetailsPage={toggleViewDetails}/>
+                		<PokemonDetails name={pokemon.select}
+                			exitDetailsPage={toggleViewDetails}
+                			isEasterEgg={easterEggActivated}/>
                 	</div>
                 )
 			}
