@@ -7,13 +7,14 @@ import {pipe, pluck, prop} from 'ramda';
 import {getAllFromPokemon, getPokemon} from '../requests/index.js';
 import {PokemonDetails} from './PokemonDetails.jsx';
 import {PokemonListComponent} from '../components/PokemonList/PokemonListComponent.jsx';
-import {easterEggPokemonData} from '../constants/pokemon-data-fetch.js';
+import {easterEggPokemonData, easterEggPokemonDataOtherInfo} from '../constants/pokemon-easter-egg-data';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LazyLoadImage from '../components/LazyLoadImage/LazyLoadImage.jsx';
 import {getArtwork} from '../requests/pokemon-request.js';
 import PokemonLogo from '../images/logo/logo-pokedex.png';
 import {PokedexPresentation} from '../components/PokedexPresentation/PokedexPresentation.jsx';
+import {PokemonDetailsDumb} from '../components/PokemonDetailsDumb/PokemonDetailsDumb.jsx';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
@@ -134,9 +135,15 @@ export const PokemonList = () => {
 				isPokemonDetailsOpen
                 && (
                 	<div className={'pokemon-details-panel'}>
-                		<PokemonDetails name={pokemon.select}
-                			exitDetailsPage={toggleViewDetails}
-                			isEasterEgg={easterEggActivated}/>
+                		{
+                			easterEggActivated
+                				? (<PokemonDetailsDumb pokemonData={easterEggPokemonData[0]}
+                					pokemonOtherInfo={easterEggPokemonDataOtherInfo[0]}
+                					exitDetailsPage={toggleViewDetails}/>)
+                				: (<PokemonDetails name={pokemon.select}
+                					exitDetailsPage={toggleViewDetails}
+                					isEasterEgg={easterEggActivated}/>)
+                		}
                 	</div>
                 )
 			}

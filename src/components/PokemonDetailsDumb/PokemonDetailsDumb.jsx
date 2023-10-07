@@ -6,7 +6,7 @@ import './PokemonDetailsDumb.scss';
 
 export const PokemonDetailsDumb = props => {
 	const [gameVersion, setGameVersion] = useState(0);
-	console.log(props.pokemonData);
+
 	useEffect(
 		() => {
 			setGameVersion(0b0);
@@ -67,5 +67,4 @@ PokemonDetailsDumb.propTypes = {
 	pokemonData: PropTypes.object.isRequired,
 	pokemonOtherInfo: PropTypes.object.isRequired,
 	exitDetailsPage: PropTypes.func.isRequired,
-	description: PropTypes.string,
 };
