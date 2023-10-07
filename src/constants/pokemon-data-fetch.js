@@ -1,5 +1,3 @@
-import {number} from 'prop-types';
-
 const pokemonDataModel = {
 	pokemonName: '',
 	officialArtwork: '',
@@ -9,7 +7,7 @@ const pokemonDataModel = {
 		gameVersion: [],
 		flavorText: [],
 	},
-	pokemonNumber: number,
+	pokemonNumber: undefined,
 };
 
 const pokemonDataOtherInfoModel = {
@@ -22,11 +20,10 @@ const clementPokemonData = {
 	officialArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/569.png',
 	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/569.png',
 	type: ['normal'],
-	flavorEntries:
-        {
-        	gameVersion: ['black'],
-        	flavorText: ['This Pokémon eats trash, which turns into poison inside its body. The main component of the poison depends on what sort of trash was eaten.'],
-        },
+	flavorEntries: {
+		gameVersion: ['black'],
+		flavorText: ['This Pokémon eats trash, which turns into poison inside its body. The main component of the poison depends on what sort of trash was eaten.'],
+	},
 	pokemonNumber: 569,
 };
 

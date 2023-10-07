@@ -4,8 +4,7 @@ import {getAllFromPokemon, getPokemonOtherInfo} from '../requests/index.js';
 import {
 	pokemonDataModel,
 	pokemonDataOtherInfoModel,
-	easterEggPokemonData,
-	easterEggPokemonDataOtherInfo,
+	easterEggPokemonData, easterEggPokemonDataOtherInfo,
 } from '../constants/pokemon-data-fetch.js';
 import PropTypes from 'prop-types';
 import {PokemonDetailsDumb} from '../components/PokemonDetailsDumb/PokemonDetailsDumb.jsx';
@@ -18,6 +17,7 @@ export const PokemonDetails = props => {
 		if (props.isEasterEgg) {
 			setPokemonData(easterEggPokemonData[0]);
 			setPokemonOtherInfo(easterEggPokemonDataOtherInfo[0]);
+			return;
 		}
 
 		getAllFromPokemon(props.name)
