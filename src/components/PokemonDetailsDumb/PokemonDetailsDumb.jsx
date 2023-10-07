@@ -6,7 +6,7 @@ import './PokemonDetailsDumb.scss';
 
 export const PokemonDetailsDumb = props => {
 	const [gameVersion, setGameVersion] = useState(0);
-	console.log(props.pokemonData.flavourEntries);
+	console.log(props.pokemonData);
 	useEffect(
 		() => {
 			setGameVersion(0b0);
@@ -53,11 +53,11 @@ export const PokemonDetailsDumb = props => {
 			<div className={'pokemon-description'}>
 				<h2>Description</h2>
 				<select name='description' id='description' onChange={event => setGameVersion(event.target.value)}>
-					{props.pokemonData.flavourEntries && props.pokemonData.flavourEntries.gameVersion.map(
+					{props.pokemonData.flavorEntries && props.pokemonData.flavorEntries.gameVersion.map(
 						(gameVersion, index) => <option key={gameVersion} value={index}>{gameVersion}</option>,
 					)}
 				</select>
-				<p>{props.pokemonData.flavourEntries && props.pokemonData.flavourEntries.flavorText[gameVersion]}</p>
+				<p>{props.pokemonData.flavorEntries && props.pokemonData.flavorEntries.flavorText[gameVersion]}</p>
 			</div>
 		</div>
 	);
