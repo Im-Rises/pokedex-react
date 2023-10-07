@@ -1,0 +1,49 @@
+.pokemon-elem {
+  padding: 5px;
+  min-width: 70%;
+  max-width: 70%;
+  text-align: center;
+  background-color: white;
+  margin: 15px auto auto;
+  border-radius: 15px;
+  border: 1px #282c34 solid;
+  opacity: 0.5;
+  font-size: 25px;
+  user-select: none;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  height: 7vh;
+
+  img {
+    float: left;
+    top: 0;
+    left: 0;
+  }
+
+  &:hover {
+    background-color: coral;
+    cursor: pointer;
+    width: 90%;
+    opacity: 1;
+  }
+
+  &:active {
+    background-color: #61dafb;
+    cursor: pointer;
+    width: 90%;
+    opacity: 1;
+  }
+}
+
+.selected {
+  background-color: #61dafb;
+  cursor: pointer;
+  width: 90%;
+  opacity: 1;
+
+  &:hover {
+    background-color: #61dafb;
+    cursor: default;
+  }
+}
