@@ -14,11 +14,11 @@ export const PokemonDetails = props => {
 	const [pokemonOtherInfo, setPokemonOtherInfo] = useState(pokemonDataOtherInfoModel);
 
 	useEffect(() => {
-		if (props.isEasterEgg) {
-			setPokemonData(easterEggPokemonData[0]);
-			setPokemonOtherInfo(easterEggPokemonDataOtherInfo[0]);
-			return;
-		}
+		// if (props.isEasterEgg) {
+		// 	setPokemonData(easterEggPokemonData[0]);
+		// 	setPokemonOtherInfo(easterEggPokemonDataOtherInfo[0]);
+		// 	return;
+		// }
 
 		getAllFromPokemon(props.name)
 			.then(setPokemonData);

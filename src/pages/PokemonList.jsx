@@ -14,7 +14,6 @@ import LazyLoadImage from '../components/LazyLoadImage/LazyLoadImage.jsx';
 import {getArtwork} from '../requests/pokemon-request.js';
 import PokemonLogo from '../images/logo/logo-pokedex.png';
 import {PokedexPresentation} from '../components/PokedexPresentation/PokedexPresentation.jsx';
-import {PokemonDetailsDumb} from '../components/PokemonDetailsDumb/PokemonDetailsDumb.jsx';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
