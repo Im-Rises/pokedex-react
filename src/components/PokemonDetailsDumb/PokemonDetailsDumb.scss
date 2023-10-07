@@ -106,7 +106,12 @@
       }
 
       .pokemon-types-title {
-
+        ul {
+          img {
+            width: auto;
+            height: 60%;
+          }
+        }
       }
 
       ul {
