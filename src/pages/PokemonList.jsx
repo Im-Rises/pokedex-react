@@ -99,57 +99,7 @@ export const PokemonList = () => {
 		<>
 			<div className={'pokemon-list-panel'}>
 				<div className={'left'}>
-					{pokemon.select
-						? <div className={'pokemon-name'}>{pokemon.select} </div>
-						: <img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
-					}
-					<div className={'pokemon-artwork-holder'}>
-						{pokemon.select
-							? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)} />
-							: <div className={'pokedex-description'}>
-								Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface makes it easy to explore and learn about your favorite Pokémon.
-
-								Here's how it works:
-
-								<ol>
-									<li><b>Pokémon Gallery : </b> On the right, you'll find a list of all available Pokémon. Simply click on any Pokémon to view its full-size image.</li>
-									<li><b>Detailed Information: </b> Below the Pokémon image, you'll discover a button to access detailed information. Click it, and you'll uncover a wealth of knowledge about the selected Pokémon, including its abilities, type, and much more!</li>
-									<li><b>Search Feature : </b> Looking for a specific Pokémon? No problem! Use the search bar in the top-right corner to quickly find the Pokémon you're interested in.</li>
-									<li><b>Region-specific Details : </b> Dive deeper into the world of Pokémon by exploring region-specific information. Discover the habitat, behaviors, and unique characteristics of each Pokémon based on their region of origin.</li>
-								</ol>
-
-								The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and embark on your journey to become a Pokémon Master!
-
-								<p>	pssst there's an easter egg, use their name to see it!
-									<div className={'github-contributors'}>
-										<a href={'https://github.com/clementreiffers'} className={'github-pdp-link'}>
-											<figure>
-												<LazyLoadImage
-													imageGetter={() => imageLinkGetter('https://avatars.githubusercontent.com/u/44473020?v=4')}
-													className={'github-pdp'}/>
-												<figcaption>Clément Reiffers</figcaption>
-											</figure>
-										</a>
-										<a href={'https://github.com/im-rises'} className={'github-pdp-link'}>
-											<figure>
-												<LazyLoadImage
-													imageGetter={() => imageLinkGetter('https://avatars.githubusercontent.com/u/59691442?v=4')}
-													className={'github-pdp'}/>
-												<figcaption>Quentin Morel</figcaption>
-											</figure>
-										</a>
-									</div>
-								</p>
-							</div>
-						}
-					</div>
-					<div className={'pokemon-view-details-button-holder'}>
-						{pokemon.select && <button onClick={toggleViewDetails}>View details</button>}
-					</div>
-				</div>
-				<div className={'right'}>
-					<input type={'search'} className={'search-bar'} value={pokemon.search}
-						onChange={handlePokemonSearch} autoFocus={true}/>
+					<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
 					<div className={'list-content'}>
 						{
 							pokemon.search && pokemon?.listShows.length
@@ -158,6 +108,44 @@ export const PokemonList = () => {
 						}
 					</div>
 				</div>
+				<div className={'right'}>
+					<div className={'pokemon-artwork-holder'}>
+						{pokemon.select
+                            && <div className={'pokemon-name'}>{pokemon.select}	<button onClick={toggleViewDetails} className={'pokemon-view-details-button-holder'}>View details</button></div>
+						}
+						{pokemon.select
+							? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)} className={'pokemon-artwork'}/>
+							: <div className={'pokedex-description'}>
+								<img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
+								<p>Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface makes it easy to explore and learn about your favorite Pokémon.</p>
+
+								The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and embark on your journey to become a Pokémon Master!
+
+								{/* <p>	pssst there's an easter egg, use their name to see it! */}
+								{/*	<div className={'github-contributors'}> */}
+								{/*		<a href={'https://github.com/clementreiffers'} className={'github-pdp-link'}> */}
+								{/*			<figure> */}
+								{/*				<LazyLoadImage */}
+								{/*					imageGetter={() => imageLinkGetter('https://avatars.githubusercontent.com/u/44473020?v=4')} */}
+								{/*					className={'github-pdp'}/> */}
+								{/*				<figcaption>Clément Reiffers</figcaption> */}
+								{/*			</figure> */}
+								{/*		</a> */}
+								{/*		<a href={'https://github.com/im-rises'} className={'github-pdp-link'}> */}
+								{/*			<figure> */}
+								{/*				<LazyLoadImage */}
+								{/*					imageGetter={() => imageLinkGetter('https://avatars.githubusercontent.com/u/59691442?v=4')} */}
+								{/*					className={'github-pdp'}/> */}
+								{/*				<figcaption>Quentin Morel</figcaption> */}
+								{/*			</figure> */}
+								{/*		</a> */}
+								{/*	</div> */}
+								{/* </p> */}
+							</div>
+						}
+					</div>
+				</div>
+
 			</div>
 			{
 				isPokemonDetailsOpen
