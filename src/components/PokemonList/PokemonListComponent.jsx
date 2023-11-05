@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {PokemonListElement} from './PokemonListElement.jsx';
+import './PokemonListComponent.scss';
 
 export const PokemonListComponent = props => <>{
 	props.stringList.map(

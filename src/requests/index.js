@@ -1,5 +1,5 @@
 import {always, andThen, applySpec, identity, ifElse, pipeWith, prop} from 'ramda';
-import {getArtwork, getIcon, getPokemonFlavourEntryWithVersion, getPokemonTypes} from './pokemon-request';
+import {getArtwork, getIcon, getPokemonFlavorEntryWithVersion, getPokemonTypes} from './pokemon-request';
 import {getPokemonNumber} from './pokedex-request';
 import {API_URL} from '../constants/pokedex-constant.js';
 
@@ -21,14 +21,14 @@ const asyncPipe = (asyncFunc, resultName) => requestResult =>
 const getAllFromPokemon = async pokemon =>
 	pipeWith(andThen)([
 		getPokemon,
-		asyncPipe(getPokemonFlavourEntryWithVersion, 'flavourEntries'),
+		asyncPipe(getPokemonFlavorEntryWithVersion, 'flavorEntries'),
 		applySpec({
 			pokemonName: always(pokemon),
 			officialArtwork: getArtwork,
 			type: getPokemonTypes,
 			icon: getIcon,
 			pokemonNumber: getPokemonNumber,
-			flavourEntries: prop('flavourEntries'),
+			flavorEntries: prop('flavorEntries'),
 		}),
 	])(pokemon);
 
