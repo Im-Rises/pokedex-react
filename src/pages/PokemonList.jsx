@@ -7,12 +7,14 @@ import {pipe, pluck, prop} from 'ramda';
 import {getAllFromPokemon, getPokemon} from '../requests/index.js';
 import {PokemonDetails} from './PokemonDetails.jsx';
 import {PokemonListComponent} from '../components/PokemonList/PokemonListComponent.jsx';
-import {easterEggPokemonData} from '../constants/pokemon-data-fetch.js';
+import {easterEggPokemonData, easterEggPokemonDataOtherInfo} from '../constants/pokemon-easter-egg-data';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import LazyLoadImage, {imageLinkGetter} from '../components/LazyLoadImage/LazyLoadImage.jsx';
+import LazyLoadImage from '../components/LazyLoadImage/LazyLoadImage.jsx';
 import {getArtwork} from '../requests/pokemon-request.js';
 import PokemonLogo from '../images/logo/logo-pokedex.png';
+import {PokedexPresentation} from '../components/PokedexPresentation/PokedexPresentation.jsx';
+import {PokemonDetailsDumb} from '../components/PokemonDetailsDumb/PokemonDetailsDumb.jsx';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
@@ -26,6 +28,7 @@ export const PokemonList = () => {
 		officialArtwork: pokeballLoadingImage,
 		listShows: [''],
 	});
+	const [easterEggActivated, setEasterEggActivated] = useState(false);
 
 	const handlePokemonSelect = select =>
 		setPokemon({...pokemon, select});
@@ -75,8 +78,11 @@ export const PokemonList = () => {
 				select: search,
 				officialArtwork: easterEggPokemonData.find(pkm => pkm.pokemonName === search).officialArtwork,
 			});
+			setEasterEggActivated(true);
 			return;
 		}
+
+		setEasterEggActivated(false);
 
 		const timer = setTimeout(() => {
 			const listShows = pokemonList
@@ -111,6 +117,7 @@ export const PokemonList = () => {
 				<div className={'right'}>
 					<div className={'pokemon-artwork-holder'}>
 						{pokemon.select
+// <<<<<<< new-design
                             && <div className={'pokemon-name'}>{pokemon.select}	<button onClick={toggleViewDetails} className={'pokemon-view-details-button-holder'}>View details</button></div>
 						}
 						{pokemon.select
@@ -120,28 +127,11 @@ export const PokemonList = () => {
 								<p>Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface makes it easy to explore and learn about your favorite Pokémon.</p>
 
 								The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and embark on your journey to become a Pokémon Master!
-
-								{/* <p>	pssst there's an easter egg, use their name to see it! */}
-								{/*	<div className={'github-contributors'}> */}
-								{/*		<a href={'https://github.com/clementreiffers'} className={'github-pdp-link'}> */}
-								{/*			<figure> */}
-								{/*				<LazyLoadImage */}
-								{/*					imageGetter={() => imageLinkGetter('https://avatars.githubusercontent.com/u/44473020?v=4')} */}
-								{/*					className={'github-pdp'}/> */}
-								{/*				<figcaption>Clément Reiffers</figcaption> */}
-								{/*			</figure> */}
-								{/*		</a> */}
-								{/*		<a href={'https://github.com/im-rises'} className={'github-pdp-link'}> */}
-								{/*			<figure> */}
-								{/*				<LazyLoadImage */}
-								{/*					imageGetter={() => imageLinkGetter('https://avatars.githubusercontent.com/u/59691442?v=4')} */}
-								{/*					className={'github-pdp'}/> */}
-								{/*				<figcaption>Quentin Morel</figcaption> */}
-								{/*			</figure> */}
-								{/*		</a> */}
-								{/*	</div> */}
-								{/* </p> */}
 							</div>
+// =======
+// 							? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}/>
+// 							: <PokedexPresentation/>
+// >>>>>>> develop
 						}
 					</div>
 				</div>
@@ -151,7 +141,15 @@ export const PokemonList = () => {
 				isPokemonDetailsOpen
                 && (
                 	<div className={'pokemon-details-panel'}>
-                		<PokemonDetails name={pokemon.select} exitDetailsPage={toggleViewDetails}/>
+                		{
+                			easterEggActivated
+                				? (<PokemonDetailsDumb pokemonData={easterEggPokemonData[0]}
+                					pokemonOtherInfo={easterEggPokemonDataOtherInfo[0]}
+                					exitDetailsPage={toggleViewDetails}/>)
+                				: (<PokemonDetails name={pokemon.select}
+                					exitDetailsPage={toggleViewDetails}
+                					isEasterEgg={easterEggActivated}/>)
+                		}
                 	</div>
                 )
 			}

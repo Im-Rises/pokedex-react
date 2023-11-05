@@ -16,7 +16,7 @@ const getSpeciesUrl = requestResult => requestResult?.species?.url;
 
 const fetchSpecies = requestResult => fetch(getSpeciesUrl(requestResult));
 
-const isCorrectLanguage = flavourTextEntry => flavourTextEntry?.language?.name === LANGUAGE_NAME;
+const isCorrectLanguage = flavorTextEntry => flavorTextEntry?.language?.name === LANGUAGE_NAME;
 
 const cleanText = replace(/[\n\f\r]/g, ' ');
 
@@ -29,7 +29,7 @@ const getAllFlavorText = map(pipe(prop('flavor_text'), cleanText));
 // 	weight: requestResult?.weight?,
 // });
 
-const getPokemonFlavourEntryWithVersion = requestResult => pipeWith(andThen)([
+const getPokemonFlavorEntryWithVersion = requestResult => pipeWith(andThen)([
 	fetchSpecies,
 	jsonify,
 	prop('flavor_text_entries'),
@@ -40,4 +40,4 @@ const getPokemonFlavourEntryWithVersion = requestResult => pipeWith(andThen)([
 	}),
 ])(requestResult);
 
-export {getPokemonTypes, getIcon, getArtwork, getPokemonFlavourEntryWithVersion};
+export {getPokemonTypes, getIcon, getArtwork, getPokemonFlavorEntryWithVersion};
