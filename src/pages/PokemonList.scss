@@ -13,6 +13,7 @@
   .right {
     width: 100%;
     height: 40%;
+
     .pokemon-artwork-holder {
       //display: flex;
       align-items: center;
@@ -20,6 +21,7 @@
       margin: 0;
 
     }
+
     .pokemon-artwork {
       @media screen and (max-width: 900px) {
         margin-right: 1%;
@@ -54,14 +56,14 @@
         opacity: 1;
       }
 
-// <<<<<<< new-design
-//       &:active {
-//         background-color: #61dafb;
-//         cursor: pointer;
-//       }
-// =======
+      // <<<<<<< new-design
+      //       &:active {
+      //         background-color: #61dafb;
+      //         cursor: pointer;
+      //       }
+      // =======
       @include buttonToggleDetails;
-// >>>>>>> develop
+      // >>>>>>> develop
     }
 
     .pokedex-description {
@@ -150,8 +152,7 @@
     right: 0;
     z-index: 20;
   }
-// }
-// <<<<<<< new-design
+}
 
 // /* Used by subcomponents */
 
@@ -204,6 +205,3 @@
     cursor: default;
   }
 }
-
-// =======
-// >>>>>>> develop

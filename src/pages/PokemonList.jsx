@@ -13,7 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import LazyLoadImage from '../components/LazyLoadImage/LazyLoadImage.jsx';
 import {getArtwork} from '../requests/pokemon-request.js';
 import PokemonLogo from '../images/logo/logo-pokedex.png';
-import {PokedexPresentation} from '../components/PokedexPresentation/PokedexPresentation.jsx';
 import {PokemonDetailsDumb} from '../components/PokemonDetailsDumb/PokemonDetailsDumb.jsx';
 
 const getAllPokemonName = pipe(prop('results'), pluck('name'));
@@ -105,7 +104,8 @@ export const PokemonList = () => {
 		<>
 			<div className={'pokemon-list-panel'}>
 				<div className={'left'}>
-					<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'} value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
+					<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'}
+						value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
 					<div className={'list-content'}>
 						{
 							pokemon.search && pokemon?.listShows.length
@@ -117,21 +117,23 @@ export const PokemonList = () => {
 				<div className={'right'}>
 					<div className={'pokemon-artwork-holder'}>
 						{pokemon.select
-// <<<<<<< new-design
-                            && <div className={'pokemon-name'}>{pokemon.select}	<button onClick={toggleViewDetails} className={'pokemon-view-details-button-holder'}>View details</button></div>
+                            && <div className={'pokemon-name'}>{pokemon.select}
+                            	<button onClick={toggleViewDetails}
+                            		className={'pokemon-view-details-button-holder'}>View details
+                            	</button>
+                            </div>
 						}
 						{pokemon.select
-							? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)} className={'pokemon-artwork'}/>
+							? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
+								className={'pokemon-artwork'}/>
 							: <div className={'pokedex-description'}>
 								<img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
-								<p>Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface makes it easy to explore and learn about your favorite Pokémon.</p>
+								<p>Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface
+                                    makes it easy to explore and learn about your favorite Pokémon.</p>
 
-								The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and embark on your journey to become a Pokémon Master!
+                                The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and
+                                embark on your journey to become a Pokémon Master!
 							</div>
-// =======
-// 							? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}/>
-// 							: <PokedexPresentation/>
-// >>>>>>> develop
 						}
 					</div>
 				</div>
