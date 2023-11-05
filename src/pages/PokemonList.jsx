@@ -22,24 +22,17 @@ export const PokemonList = () => {
 	const [isPokemonDetailsOpen, setIsPokemonDetailsOpen] = useState(false);
 	const [pokemonList, setPokemonList] = useState(['']);
 	const [pokemon, setPokemon] = useState({
-		select: '',
-		search: '',
-		officialArtwork: pokeballLoadingImage,
-		listShows: [''],
+		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
 	});
 	const [easterEggActivated, setEasterEggActivated] = useState(false);
 
-	const handlePokemonSelect = select =>
-		setPokemon({...pokemon, select});
+	const handlePokemonSelect = select => setPokemon({...pokemon, select});
 
-	const toggleViewDetails = () =>
-		setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
+	const toggleViewDetails = () => setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
 
-	const handlePokemonSearch = event =>
-		setPokemon({...pokemon, search: event.target.value});
+	const handlePokemonSearch = event => setPokemon({...pokemon, search: event.target.value});
 
-	const handleOfficialArtwork = ({officialArtwork}) =>
-		setPokemon({...pokemon, officialArtwork});
+	const handleOfficialArtwork = ({officialArtwork}) => setPokemon({...pokemon, officialArtwork});
 
 	const defaultPokemonSet = () => setPokemon({...pokemon, listShows: pokemonList});
 
@@ -69,8 +62,13 @@ export const PokemonList = () => {
 		// If one of the Pokémon Easter Egg name is entered
 		if (easterEggPokemonData.some(pkm => pkm.pokemonName === search)) {
 			console.log('Easter Egg found! Or should I say... Easter Pkm Egg?');
-			toast('Easter Egg found! Or should I say... Easter Pkm Egg?',
-				{type: 'success', autoClose: 5000, icon: '🥚', closeOnClick: true, pauseOnHover: false});
+			toast('Easter Egg found! Or should I say... Easter Pkm Egg?', {
+				type: 'success',
+				autoClose: 5000,
+				icon: '🥚',
+				closeOnClick: true,
+				pauseOnHover: false,
+			});
 			setPokemon({
 				...pokemon,
 				listShows: [search],
@@ -94,67 +92,53 @@ export const PokemonList = () => {
 		return () => clearTimeout(timer);
 	}, [pokemon.search]);
 
-	const pokemonListComponentGenerator = list =>
-		<PokemonListComponent
-			stringList={list}
-			handleStringSelected={handlePokemonSelect}
-			selectedPokemonName={pokemon.select}/>;
+	const pokemonListComponentGenerator = list => <PokemonListComponent
+		stringList={list}
+		handleStringSelected={handlePokemonSelect}
+		selectedPokemonName={pokemon.select}/>;
 
-	return (
-		<>
-			<div className={'pokemon-list-panel'}>
-				<div className={'left'}>
-					<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'}
-						value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
-					<div className={'list-content'}>
-						{
-							pokemon.search && pokemon?.listShows.length
-								? pokemonListComponentGenerator(pokemon.listShows)
-								: pokemonListComponentGenerator(pokemonList)
-						}
-					</div>
+	return (<>
+		<div className={'pokemon-list-panel'}>
+			<div className={'left'}>
+				<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'}
+					   value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
+				<div className={'list-content'}>
+					{pokemon.search && pokemon?.listShows.length ? pokemonListComponentGenerator(pokemon.listShows) : pokemonListComponentGenerator(pokemonList)}
 				</div>
-				<div className={'right'}>
-					<div className={'pokemon-artwork-holder'}>
-						{pokemon.select
-                            && <div className={'pokemon-name'}>{pokemon.select}
-                            	<button onClick={toggleViewDetails}
-                            		className={'pokemon-view-details-button-holder'}>View details
-                            	</button>
-                            </div>
-						}
-						{pokemon.select
-							? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
-								className={'pokemon-artwork'}/>
-							: <div className={'pokedex-description'}>
-								<img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
-								<p>Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface
-                                    makes it easy to explore and learn about your favorite Pokémon.</p>
-
-                                The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and
-                                embark on your journey to become a Pokémon Master!
-							</div>
-						}
-					</div>
-				</div>
-
 			</div>
-			{
-				isPokemonDetailsOpen
-                && (
-                	<div className={'pokemon-details-panel'}>
-                		{
-                			easterEggActivated
-                				? (<PokemonDetailsDumb pokemonData={easterEggPokemonData[0]}
-                					pokemonOtherInfo={easterEggPokemonDataOtherInfo[0]}
-                					exitDetailsPage={toggleViewDetails}/>)
-                				: (<PokemonDetails name={pokemon.select}
-                					exitDetailsPage={toggleViewDetails}
-                					isEasterEgg={easterEggActivated}/>)
-                		}
-                	</div>
-                )
-			}
-			<ToastContainer/>
-		</>);
+			<div className={'right'}>
+				<div className={'pokemon-artwork-holder'}>
+					{pokemon.select
+						&& (
+							<div className={'pokemon-name'}>{pokemon.select}
+								<button onClick={toggleViewDetails}
+									className={'pokemon-view-details-button-holder'}>View details
+								</button>
+							</div>
+						)
+					}
+					{pokemon.select ? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
+													 className={'pokemon-artwork'}/>
+						: <div className={'pokedex-description'}>
+							<img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
+							<p>Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface
+								makes it easy to explore and learn about your favorite Pokémon.</p>
+
+							The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and
+							embark on your journey to become a Pokémon Master!
+						</div>}
+				</div>
+			</div>
+
+		</div>
+		{isPokemonDetailsOpen && (<div className={'pokemon-details-panel'}>
+			{easterEggActivated ? (<PokemonDetailsDumb pokemonData={easterEggPokemonData[0]}
+													   pokemonOtherInfo={easterEggPokemonDataOtherInfo[0]}
+													   exitDetailsPage={toggleViewDetails}/>) : (
+				<PokemonDetails name={pokemon.select}
+					exitDetailsPage={toggleViewDetails}
+					isEasterEgg={easterEggActivated}/>)}
+		</div>)}
+		<ToastContainer/>
+	</>);
 };
