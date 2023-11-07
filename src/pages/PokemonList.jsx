@@ -103,7 +103,9 @@ export const PokemonList = () => {
 				<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'}
 					   value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
 				<div className={'list-content'}>
-					{pokemon.search && pokemon?.listShows.length ? pokemonListComponentGenerator(pokemon.listShows) : pokemonListComponentGenerator(pokemonList)}
+					{pokemon.search && pokemonListComponentGenerator(pokemon.listShows)}
+					{(!pokemon.search && pokemonList.length !== 1) && pokemonListComponentGenerator(pokemonList)}
+					{/* {pokemon.search && pokemon?.listShows.length ? pokemonListComponentGenerator(pokemon.listShows) : pokemonListComponentGenerator(pokemonList)} */}
 				</div>
 			</div>
 			<div className={'right'}>
