@@ -8,9 +8,9 @@ Pokédex made in React using the Poképedia API.
 
 ## To do list
 
-- [ ] Improve css for all the pages
 - [ ] Responsive design
-- [ ] Correct web query bug (check console after clicking the pokemon pokeball intro menu)
+- [ ] Correct web query bug (check console after clicking the pokemon pokeball intro menu or the studio condition with
+  .Size == 1)
 
 <!--
 ## Overview
