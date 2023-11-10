@@ -24,7 +24,8 @@ export const PokemonList = () => {
 	const [pokemon, setPokemon] = useState({
 		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
 	});
-	const [easterEggActivated, setEasterEggActivated] = useState(false);
+	// const [easterEggActivated, setEasterEggActivated] = useState(false);
+	const [easterEggIndex, seteasterEggIndex] = useState(-1);
 
 	const handlePokemonSelect = select => setPokemon({...pokemon, select});
 
@@ -75,11 +76,12 @@ export const PokemonList = () => {
 				select: search,
 				officialArtwork: easterEggPokemonData.find(pkm => pkm.pokemonName === search).officialArtwork,
 			});
-			setEasterEggActivated(true);
+
+			seteasterEggIndex(easterEggPokemonData.findIndex(pkm => pkm.pokemonName === search));
 			return;
 		}
 
-		setEasterEggActivated(false);
+		seteasterEggIndex(-1);
 
 		const timer = setTimeout(() => {
 			const listShows = pokemonList
@@ -134,12 +136,12 @@ export const PokemonList = () => {
 
 		</div>
 		{isPokemonDetailsOpen && (<>
-			{easterEggActivated ? (<PokemonDetailsDumb pokemonData={easterEggPokemonData[0]}
-				pokemonOtherInfo={easterEggPokemonDataOtherInfo[0]}
+			{easterEggIndex >= 0 ? (<PokemonDetailsDumb pokemonData={easterEggPokemonData[easterEggIndex]}
+				pokemonOtherInfo={easterEggPokemonDataOtherInfo[easterEggIndex]}
 				exitDetailsPage={toggleViewDetails}/>) : (
 				<PokemonDetails name={pokemon.select}
 					exitDetailsPage={toggleViewDetails}
-					isEasterEgg={easterEggActivated}/>)}
+					isEasterEgg={easterEggIndex >= 0}/>)}
 		</>)}
 		<ToastContainer/>
 	</>);
