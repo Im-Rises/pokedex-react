@@ -2,8 +2,11 @@
 
 .pokemon-details-page {
   background-color: #61dafb;
-  //width: 100vw;
-  //height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: absolute;
 
   //.exit-details-page {
   //  position: absolute;
@@ -18,6 +21,12 @@
   .pokemon-details-panel {
     background-color: #30A7D7;
     border-radius: 10%;
+    border: 2px solid black;
+    width: 95%;
+    height: 95%;
+    position: absolute;
+    top: 2.5%;
+    left: 2.5%;
 
     .pokemon-name-logo {
       width: 100%;
@@ -25,6 +34,7 @@
       justify-content: center;
       background-color: #218aAb;
       border-radius: 10%;
+      border: 2px solid black;
 
       img {
         width: 68px;
@@ -33,7 +43,7 @@
         float: left;
       }
 
-      h2 {
+      h1 {
         font-size: 2rem;
         text-transform: capitalize;
       }
@@ -41,32 +51,137 @@
 
     .pokemon-data-holder {
       display: flex;
-      //flex-direction: row;
-      //justify-content: center;
-      //align-items: center;
-      //justify-content: space-between;
+      flex-direction: row;
+      margin-top: 20px;
+      max-height: 60%;
 
       .pokemon-artwork-holder {
-        //margin: 20px 20px 20px 20px;
+        width: 50%;
+        display: flex;
+        justify-content: center;
 
-        img {
-          //width: 90%;
-          //width: 200px;
-          //height: 200px;
-          background-color: #f2f2f2;
-          border-radius: 5%;
+        .pokemon-artwork {
+          display: flex;
+          justify-content: center;
+          max-height: 100%;
+          aspect-ratio: 1/1;
+
+          img {
+            width: 90%;
+            background-color: #f2f2f2;
+            border-radius: 5%;
+          }
         }
       }
 
       .pokemon-infos {
+        width: 50%;
+        text-align: center;
 
         .pokemon-description {
+          h2 {
+            font-size: 1.5rem;
+          }
 
+          select {
+            text-align: center;
+            text-transform: capitalize;
+            font-size: 0.8rem;
+            border-radius: 5%;
+          }
+
+          p {
+            font-size: 1.2rem;
+          }
         }
 
         .pokemon-size-types {
+          ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 0;
 
+            li {
+              p {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-size: 1.2rem;
+                text-transform: capitalize;
+
+                img {
+                  width: 30px;
+                  height: 30px;
+                }
+              }
+            }
+          }
+
+          div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            p {
+              font-size: 1.2rem;
+              text-transform: capitalize;
+            }
+          }
         }
+      }
+    }
+
+    .pokedex-details-controls {
+      height: 10%;
+      display: flex;
+      justify-content: space-around;
+      bottom: 5%;
+      position: absolute;
+      width: 100%;
+
+      button {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #ff5447;
+        }
+      }
+
+      .button-previsous-pokemon-details {
+        background-color: #218aAb;
+        border-radius: 10%;
+        border: 2px solid black;
+        width: 30%;
+        //height: 100%;
+        font-size: 1.2rem;
+        text-transform: capitalize;
+      }
+
+      .button-next-pokemon-details {
+        background-color: #218aAb;
+        border-radius: 10%;
+        border: 2px solid black;
+        width: 30%;
+        //height: 100%;
+        font-size: 1.2rem;
+        text-transform: capitalize;
+      }
+
+      .button-exit-details-page {
+        background-color: #218aAb;
+        border-radius: 10%;
+        border: 2px solid black;
+        width: 30%;
+        //height: 100%;
+        font-size: 1.2rem;
+        text-transform: capitalize;
       }
     }
   }

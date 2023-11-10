@@ -23,53 +23,54 @@ export const PokemonDetailsDumb = props => {
 
 				<div className={'pokemon-name-logo'}>
 					<img src={props.pokemonData.icon} alt={props.pokemonData.pokemonName}/>
-					<h2>{props.pokemonData.pokemonName} #{props.pokemonData.pokemonNumber}</h2>
+					<h1>{props.pokemonData.pokemonName} #{props.pokemonData.pokemonNumber}</h1>
 				</div>
 
 				<div className={'pokemon-data-holder'}>
-
 					<div className={'pokemon-artwork-holder'}>
 						<div className={'pokemon-artwork'}>
 							<img src={props.pokemonData.officialArtwork} alt={props.pokemonData.pokemonName}/>
 						</div>
 					</div>
-
 					<div className={'pokemon-infos'}>
-						{/* <div className={'pokemon-description'}> */}
-						{/*	<h2>Description</h2> */}
-						{/*	<select name='description' id='description' */}
-						{/*		// onChange={event => setPokemonDescription(props.pokemonData.flavorEntries.flavorText[event.target.value])}> */}
-						{/*		onChange={event => setPokemonVersion(event.target.value)}> */}
-						{/*		{props.pokemonData.flavorEntries && props.pokemonData.flavorEntries.gameVersion.map( */}
-						{/*			(gameVersion, index) => <option key={gameVersion} */}
-						{/*				value={index}>{gameVersion}</option>, */}
-						{/*		)} */}
-						{/*	</select> */}
-						{/*	<p>{pokemonDescription}</p> */}
-						{/* </div> */}
-						{/* <div className={'pokemon-size-types'}> */}
-						{/*	/!* <p className={'pokemon-number'}>N°{props.pokemonData.pokemonNumber}</p> *!/ */}
-						{/*	/!* <p className={'pokemon-types-title'}>Types:</p> *!/ */}
-						{/*	<ul> */}
-						{/*		{R.map( */}
-						{/*			type => <li key={type}> */}
-						{/*				/!* <p>{type}</p> *!/ */}
-						{/*				<img */}
-						{/*					src={pokemonTypeConstant[type]} */}
-						{/*					alt={type} */}
-						{/*				/> */}
-						{/*			</li>, */}
-						{/*			props.pokemonData.type, */}
-						{/*		)} */}
-						{/*	</ul> */}
-						{/*	<div className={''}> */}
-						{/*		<p>Height: {props.pokemonOtherInfo.height} </p> */}
-						{/*		<p>Weight: {props.pokemonOtherInfo.weight} </p> */}
-						{/*	</div> */}
-						{/* </div> */}
+						<div className={'pokemon-description'}>
+							<h2>Description</h2>
+							<select name='description' id='description'
+								// onChange={event => setPokemonDescription(props.pokemonData.flavorEntries.flavorText[event.target.value])}>
+								onChange={event => setPokemonVersion(event.target.value)}>
+								{props.pokemonData.flavorEntries && props.pokemonData.flavorEntries.gameVersion.map(
+									(gameVersion, index) => <option key={gameVersion}
+										value={index}>{gameVersion}</option>,
+								)}
+							</select>
+							<p>{pokemonDescription}</p>
+						</div>
+						<div className={'pokemon-size-types'}>
+							<ul>
+								{R.map(
+									type => <li key={type}>
+										<p><img
+											src={pokemonTypeConstant[type]}
+											alt={type}
+										/>{type}</p>
+									</li>,
+									props.pokemonData.type,
+								)}
+							</ul>
+							<div>
+								<p>Height: {props.pokemonOtherInfo.height} </p>
+								<p>Weight: {props.pokemonOtherInfo.weight} </p>
+							</div>
+						</div>
 					</div>
-
 				</div>
+
+				<div className={'pokedex-details-controls'}>
+					<button className={'button-previsous-pokemon-details'}>Previous</button>
+					<button className={'button-exit-details-page'} onClick={props.exitDetailsPage}>Exit</button>
+					<button className={'button-next-pokemon-details'}>Next</button>
+				</div>
+
 			</div>
 		</div>
 	);
