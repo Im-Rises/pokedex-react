@@ -24,11 +24,14 @@ export const PokemonList = () => {
 	const [pokemon, setPokemon] = useState({
 		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
 	});
-	const [easterEggActivated, setEasterEggActivated] = useState(false);
+	// const [easterEggActivated, setEasterEggActivated] = useState(false);
+	const [easterEggIndex, setEasterEggIndex] = useState(-1);
 
 	const handlePokemonSelect = select => setPokemon({...pokemon, select});
 
-	const toggleViewDetails = () => setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
+	const toggleViewDetails = () => {
+		setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
+	};
 
 	const handlePokemonSearch = event => setPokemon({...pokemon, search: event.target.value});
 
@@ -75,11 +78,12 @@ export const PokemonList = () => {
 				select: search,
 				officialArtwork: easterEggPokemonData.find(pkm => pkm.pokemonName === search).officialArtwork,
 			});
-			setEasterEggActivated(true);
+
+			setEasterEggIndex(easterEggPokemonData.findIndex(pkm => pkm.pokemonName === search));
 			return;
 		}
 
-		setEasterEggActivated(false);
+		setEasterEggIndex(-1);
 
 		const timer = setTimeout(() => {
 			const listShows = pokemonList
@@ -101,7 +105,7 @@ export const PokemonList = () => {
 		<div className={'pokemon-list-panel'}>
 			<div className={'left'}>
 				<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'}
-					   value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
+					value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
 				<div className={'list-content'}>
 					{pokemon.search && pokemonListComponentGenerator(pokemon.listShows)}
 					{(!pokemon.search && pokemonList.length !== 1) && pokemonListComponentGenerator(pokemonList)}
@@ -111,36 +115,36 @@ export const PokemonList = () => {
 			<div className={'right'}>
 				<div className={'pokemon-artwork-holder'}>
 					{pokemon.select
-						&& (
-							<div className={'pokemon-name'}>{pokemon.select}
-								<button onClick={toggleViewDetails}
-									className={'pokemon-view-details-button-holder'}>View details
-								</button>
-							</div>
-						)
+                        && (
+                        	<div className={'pokemon-name'}>{pokemon.select}
+                        		<button onClick={toggleViewDetails}
+                        			className={'pokemon-view-details-button-holder'}>View details
+                        		</button>
+                        	</div>
+                        )
 					}
 					{pokemon.select ? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
-													 className={'pokemon-artwork'}/>
+						className={'pokemon-artwork'}/>
 						: <div className={'pokedex-description'}>
 							<img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
 							<p>Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface
-								makes it easy to explore and learn about your favorite Pokémon.</p>
+                                makes it easy to explore and learn about your favorite Pokémon.</p>
 
-							The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and
-							embark on your journey to become a Pokémon Master!
+                            The Pokédex is your gateway to the fascinating world of Pokémon. Explore, learn, and
+                            embark on your journey to become a Pokémon Master!
 						</div>}
 				</div>
 			</div>
 
 		</div>
-		{isPokemonDetailsOpen && (<div className={'pokemon-details-panel'}>
-			{easterEggActivated ? (<PokemonDetailsDumb pokemonData={easterEggPokemonData[0]}
-													   pokemonOtherInfo={easterEggPokemonDataOtherInfo[0]}
-													   exitDetailsPage={toggleViewDetails}/>) : (
+		{isPokemonDetailsOpen && (<>
+			{easterEggIndex >= 0 ? (<PokemonDetailsDumb pokemonData={easterEggPokemonData[easterEggIndex]}
+				pokemonOtherInfo={easterEggPokemonDataOtherInfo[easterEggIndex]}
+				exitDetailsPage={toggleViewDetails}/>) : (
 				<PokemonDetails name={pokemon.select}
 					exitDetailsPage={toggleViewDetails}
-					isEasterEgg={easterEggActivated}/>)}
-		</div>)}
+					isEasterEgg={easterEggIndex >= 0}/>)}
+		</>)}
 		<ToastContainer/>
 	</>);
 };
