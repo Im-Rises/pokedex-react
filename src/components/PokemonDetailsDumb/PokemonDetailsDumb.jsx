@@ -66,9 +66,15 @@ export const PokemonDetailsDumb = props => {
 				</div>
 
 				<div className={'pokedex-details-controls'}>
-					<button className={'button-previsous-pokemon-details'}>Previous</button>
+					<button className={'button-previsous-pokemon-details'}
+						// onClick={() => setPokemonVersion(pokemonVersion - 1)}
+					>Previous
+					</button>
 					<button className={'button-exit-details-page'} onClick={props.exitDetailsPage}>Exit</button>
-					<button className={'button-next-pokemon-details'}>Next</button>
+					<button className={'button-next-pokemon-details'}
+						// onClick={() => setPokemonVersion(pokemonVersion + 1)}
+					>Next
+					</button>
 				</div>
 
 			</div>
