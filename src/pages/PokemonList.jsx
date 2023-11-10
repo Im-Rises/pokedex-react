@@ -25,11 +25,13 @@ export const PokemonList = () => {
 		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
 	});
 	// const [easterEggActivated, setEasterEggActivated] = useState(false);
-	const [easterEggIndex, seteasterEggIndex] = useState(-1);
+	const [easterEggIndex, setEasterEggIndex] = useState(-1);
 
 	const handlePokemonSelect = select => setPokemon({...pokemon, select});
 
-	const toggleViewDetails = () => setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
+	const toggleViewDetails = () => {
+		setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
+	};
 
 	const handlePokemonSearch = event => setPokemon({...pokemon, search: event.target.value});
 
@@ -77,11 +79,11 @@ export const PokemonList = () => {
 				officialArtwork: easterEggPokemonData.find(pkm => pkm.pokemonName === search).officialArtwork,
 			});
 
-			seteasterEggIndex(easterEggPokemonData.findIndex(pkm => pkm.pokemonName === search));
+			setEasterEggIndex(easterEggPokemonData.findIndex(pkm => pkm.pokemonName === search));
 			return;
 		}
 
-		seteasterEggIndex(-1);
+		setEasterEggIndex(-1);
 
 		const timer = setTimeout(() => {
 			const listShows = pokemonList
