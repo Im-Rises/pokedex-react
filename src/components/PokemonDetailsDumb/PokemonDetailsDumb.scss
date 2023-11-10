@@ -65,63 +65,67 @@
         }
       }
 
-      .pokemon-infos {
+      .pokemon-infos-holder {
         width: 50%;
         text-align: center;
 
-        .pokemon-description {
-          h2 {
-            font-size: 1.5rem;
-          }
+        .pokemon-infos {
+          width: 90%;
 
-          select {
-            text-align: center;
-            text-transform: capitalize;
-            font-size: 0.8rem;
-            border-radius: 5%;
-          }
-
-          p {
-            font-size: 1.2rem;
-          }
-        }
-
-        .pokemon-size-types {
-          ul {
-            list-style-type: none;
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            padding: 0;
-
-            li {
-              p {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                font-size: 1.2rem;
-                text-transform: capitalize;
-
-                img {
-                  width: 30px;
-                  height: 30px;
-
-                  border-radius: 50%;
-                  background-color: white;
-                  border: 1px solid black;
-                }
-              }
+          .pokemon-description {
+            h2 {
+              font-size: 1.5rem;
             }
-          }
 
-          div {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
+            select {
+              text-align: center;
+              text-transform: capitalize;
+              font-size: 0.8rem;
+              border-radius: 5%;
+            }
 
             p {
               font-size: 1.2rem;
-              text-transform: capitalize;
+            }
+          }
+
+          .pokemon-size-types {
+            ul {
+              list-style-type: none;
+              display: flex;
+              justify-content: space-around;
+              margin-top: 20px;
+              padding: 0;
+
+              li {
+                p {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  font-size: 1.2rem;
+                  text-transform: capitalize;
+
+                  img {
+                    width: 30px;
+                    height: 30px;
+
+                    border-radius: 50%;
+                    background-color: white;
+                    border: 1px solid black;
+                  }
+                }
+              }
+            }
+
+            div {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;
+
+              p {
+                font-size: 1.2rem;
+                text-transform: capitalize;
+              }
             }
           }
         }
