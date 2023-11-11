@@ -1,16 +1,16 @@
 @import '../../global/global';
 
 .pokemon-elem {
-  padding: 5px;
+  padding: 0.3125rem;
   min-width: 70%;
   max-width: 70%;
   text-align: center;
   background-color: white;
-  margin: 15px auto auto;
-  border-radius: 15px;
-  border: 1px #282c34 solid;
+  margin: 0.9375rem auto auto;
+  border-radius: 0.9375rem;
+  border: 0.0625rem #282c34 solid;
   opacity: 0.5;
-  font-size: 25px;
+  font-size: 1.5625rem;
   user-select: none;
   display: block;
   align-items: center;

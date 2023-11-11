@@ -10,7 +10,7 @@
   bottom: 1%;
   right: 1%;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 56.25rem) {
     display: block;
     margin: 0;
     overflow: auto;
@@ -29,7 +29,7 @@
     }
 
     .pokemon-artwork {
-      @media screen and (max-width: 900px) {
+      @media screen and (max-width: 56.25rem) {
         margin-right: 1%;
         margin-left: 7%;
         width: 40vh;
@@ -42,10 +42,10 @@
     .pokemon-name {
       width: 80%;
       margin: auto;
-      border-radius: 30px;
+      border-radius: 1.875rem;
       text-align: center;
-      font-size: 30px;
-      border: 1px solid black;
+      font-size: 1.875rem;
+      border: 0.0625rem solid black;
       padding: 5%;
       background-color: rgb(255, 255, 255, 0.5);
       text-transform: capitalize;
@@ -56,8 +56,8 @@
 
       .pokemon-view-details-button-holder {
         display: flex;
-        border: 1px solid black;
-        border-radius: 30px;
+        border: 0.0625rem solid black;
+        border-radius: 1.875rem;
         padding: 2%;
         margin-top: 5%;
 
@@ -75,8 +75,8 @@
       padding-left: 5%;
       padding-right: 5%;
       text-align: justify;
-      font-size: 20px;
-      @media screen and (max-width: 900px) {
+      font-size: 1.25rem;
+      @media screen and (max-width: 56.25rem) {
         //display: none;
       }
     }
@@ -105,7 +105,7 @@
   .left {
     width: 100%;
     height: 90vh;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 56.25rem) {
       display: block;
       //overflow: hidden;
       height: 50vh;
@@ -116,11 +116,11 @@
       margin-left: 5%;
       margin-top: 3%;
       background-color: limegreen;
-      border: 1px solid black;
-      padding: 15px;
-      border-radius: 20px;
+      border: 0.0625rem solid black;
+      padding: 0.9375rem;
+      border-radius: 1.25rem;
       text-align: center;
-      font-size: 20px;
+      font-size: 1.25rem;
       height: 10vh;
 
       &:focus {
@@ -140,18 +140,18 @@
       direction: rtl;
 
       &::-webkit-scrollbar {
-        width: 16px;
+        width: 1rem;
       }
 
       &::-webkit-scrollbar-track {
-        border-radius: 8px;
+        border-radius: 0.5rem;
         background-color: #f0f0f0;
-        border: 1px solid #cacaca;
+        border: 0.0625rem solid #cacaca;
       }
 
       &::-webkit-scrollbar-thumb {
-        border-radius: 8px;
-        border: 3px solid transparent;
+        border-radius: 0.5rem;
+        border: 0.1875rem solid transparent;
         background-clip: content-box;
         background-color: #d55959;
       }
