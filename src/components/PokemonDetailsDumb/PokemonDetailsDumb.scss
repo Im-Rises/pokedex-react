@@ -17,6 +17,8 @@
     position: absolute;
     top: 2.5%;
     left: 2.5%;
+    bottom: 2.5%;
+    right: 2.5%;
 
     .pokemon-name-logo {
       width: 100%;
@@ -49,6 +51,7 @@
         width: 50%;
         display: flex;
         justify-content: center;
+        //align-items: center;
 
         .pokemon-artwork {
           display: flex;
@@ -57,17 +60,27 @@
           aspect-ratio: 1/1;
 
           img {
+            display: flex;
+            align-self: center;
             width: 90%;
             height: fit-content;
             background-color: #f2f2f2;
             border-radius: 5%;
           }
         }
+
+        @media (max-width: 1000px) {
+          width: 100%;
+        }
       }
 
       .pokemon-infos-holder {
         width: 50%;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
 
         .pokemon-infos {
           width: 90%;
@@ -129,11 +142,19 @@
             }
           }
         }
+
+        @media (max-width: 1000px) {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 1000px) {
+        flex-direction: column;
+        max-height: 100%;
       }
     }
 
     .pokedex-details-controls {
-      height: 10%;
       display: flex;
       justify-content: space-around;
       bottom: 5%;
