@@ -11,7 +11,7 @@
   .pokemon-details-panel {
     background-color: #30A7D7;
     border-radius: 10%;
-    border: 1px solid black;
+    border: 0.0625rem solid black;
     width: 95%;
     height: 95%;
     position: absolute;
@@ -20,7 +20,7 @@
     bottom: 2.5%;
     right: 2.5%;
     overflow: hidden;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0.625rem 0 rgba(0, 0, 0, 0.5);
 
     .pokemon-name-logo {
       width: 100%;
@@ -29,12 +29,12 @@
       justify-content: center;
       background-color: #218aAb;
       border-radius: 10%;
-      border-bottom: 1px solid black;
+      border-bottom: 0.0625rem solid black;
       align-items: center;
 
       img {
-        width: 68px;
-        height: 50px;
+        width: 4.25rem;
+        height: 3.125rem;
         align-self: center;
         float: left;
       }
@@ -73,7 +73,7 @@
           }
         }
 
-        @media (max-width: 1000px) {
+        @media (max-width: 62.5rem) {
           width: 100%;
           height: 50%;
         }
@@ -125,12 +125,12 @@
                   text-transform: capitalize;
 
                   img {
-                    width: 30px;
-                    height: 30px;
+                    width: 1.875rem;
+                    height: 1.875rem;
 
                     border-radius: 50%;
                     background-color: white;
-                    border: 1px solid black;
+                    border: 0.0625rem solid black;
                   }
                 }
               }
@@ -149,13 +149,13 @@
           }
         }
 
-        @media (max-width: 1000px) {
+        @media (max-width: 62.5rem) {
           width: 100%;
           height: 50%;
         }
       }
 
-      @media (max-width: 1000px) {
+      @media (max-width: 62.5rem) {
         flex-direction: column;
       }
     }
@@ -177,8 +177,8 @@
         position: relative;
 
         background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 15px;
-        border: 1px #282c34 solid;
+        border-radius: 0.9375rem;
+        border: 0.0625rem #282c34 solid;
         width: 30%;
         font-size: 1.2rem;
         text-transform: capitalize;
