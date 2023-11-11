@@ -11,7 +11,7 @@
   .pokemon-details-panel {
     background-color: #30A7D7;
     border-radius: 10%;
-    border: 2px solid black;
+    border: 1px solid black;
     width: 95%;
     height: 95%;
     position: absolute;
@@ -19,6 +19,7 @@
     left: 2.5%;
     bottom: 2.5%;
     right: 2.5%;
+    overflow: hidden;
 
     .pokemon-name-logo {
       width: 100%;
@@ -26,7 +27,7 @@
       justify-content: center;
       background-color: #218aAb;
       border-radius: 10%;
-      border: 2px solid black;
+      border-bottom: 1px solid black;
 
       img {
         width: 68px;
