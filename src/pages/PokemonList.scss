@@ -2,6 +2,7 @@
 
 .pokemon-list-panel {
   display: inline-flex;
+  z-index: 0;
   position: absolute;
   width: 98%;
   height: 98%;
@@ -60,6 +61,7 @@
         border-radius: 1.875rem;
         padding: 2%;
         margin-top: 5%;
+        font-size: 1rem;
 
         &:hover {
           background-color: coral;
