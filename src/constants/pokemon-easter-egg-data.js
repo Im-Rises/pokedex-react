@@ -2,7 +2,7 @@
 
 const clementPokemonData = {
 	pokemonName: 'clement',
-	officialArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/569.png',
+	officialArtwork: 'https://avatars.githubusercontent.com/u/44473020?v=4',
 	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/569.png',
 	type: ['normal'],
 	flavorEntries: {
@@ -13,13 +13,14 @@ const clementPokemonData = {
 };
 
 const clementPokemonDataOtherInfo = {
+	// realName: 'Clément Reiffers',
 	height: '0.6 m',
 	weight: '31.0 kg',
 };
 
 const quentinPokemonData = {
 	pokemonName: 'quentin',
-	officialArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10157.png',
+	officialArtwork: 'https://avatars.githubusercontent.com/u/59691442?v=4',
 	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10157.png',
 	type: ['psychic', 'dragon'],
 	flavorEntries: {
@@ -30,6 +31,7 @@ const quentinPokemonData = {
 };
 
 const quentinPokemonDataOtherInfo = {
+	// realName: 'Quentin MOREL (Im-Rises)',
 	height: '4.0 m',
 	weight: '999.9 kg',
 };
