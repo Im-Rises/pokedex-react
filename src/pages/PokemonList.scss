@@ -2,8 +2,14 @@
 
 .pokemon-list-panel {
   display: inline-flex;
-  width: 100%;
-  margin: 10px;
+  position: absolute;
+  width: 98%;
+  height: 98%;
+  top: 1%;
+  left: 1%;
+  bottom: 1%;
+  right: 1%;
+
   @media screen and (max-width: 900px) {
     display: block;
     margin: 0;
