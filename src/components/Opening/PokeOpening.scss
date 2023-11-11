@@ -63,10 +63,10 @@
 }
 
 .opening-btn {
-  border: #666 1px solid;
-  font-size: 24px;
-  width: 150px;
-  height: 150px;
+  border: #666 0.0625rem solid;
+  font-size: 1.5rem;
+  width: 9.375rem;
+  height: 9.375rem;
   border-radius: 50%;
   position: absolute;
   background-color: white;
@@ -83,8 +83,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
+    width: 6.25rem;
+    height: 6.25rem;
     background-color: #DDD;
     z-index: 4;
     border-radius: 50%;

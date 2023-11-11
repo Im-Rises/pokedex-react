@@ -14,11 +14,6 @@ export const PokemonDetailsDumb = props => {
 
 	return (
 		<div className={'pokemon-details-page'}>
-			{/* <div className={'exit-details-page'}> */}
-			{/*	<button onClick={props.exitDetailsPage}>X</button> */}
-			{/* </div> */}
-			{/* <div className={''}> */}
-
 			<div className={'pokemon-details-panel'}>
 
 				<div className={'pokemon-name-logo'}>

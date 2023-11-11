@@ -2,36 +2,38 @@
 
 const clementPokemonData = {
 	pokemonName: 'clement',
-	officialArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/569.png',
+	officialArtwork: 'https://avatars.githubusercontent.com/u/44473020?v=4',
 	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/569.png',
 	type: ['normal'],
 	flavorEntries: {
-		gameVersion: ['black'],
-		flavorText: ['This Pokémon eats trash, which turns into poison inside its body. The main component of the poison depends on what sort of trash was eaten.'],
+		gameVersion: ['Job'],
+		flavorText: ['Consultant Cloud DevOps'],
 	},
 	pokemonNumber: 569,
 };
 
 const clementPokemonDataOtherInfo = {
-	height: '0.6 m',
-	weight: '31.0 kg',
+	// realName: 'Clément Reiffers',
+	height: '0.6m',
+	weight: '31.0kg',
 };
 
 const quentinPokemonData = {
 	pokemonName: 'quentin',
-	officialArtwork: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10157.png',
+	officialArtwork: 'https://avatars.githubusercontent.com/u/59691442?v=4',
 	icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10157.png',
 	type: ['psychic', 'dragon'],
 	flavorEntries: {
-		gameVersion: ['ultra-sun'],
-		flavorText: ['This is its form when it has absorbed overwhelming light energy. It fires laser beams from all over its body.'],
+		gameVersion: ['Job'],
+		flavorText: ['Game Developer'],
 	},
 	pokemonNumber: 10157,
 };
 
 const quentinPokemonDataOtherInfo = {
-	height: '4.0 m',
-	weight: '999.9 kg',
+	// realName: 'Quentin MOREL (Im-Rises)',
+	height: '4.0m',
+	weight: '999.9kg hands up',
 };
 
 /* Array of data for easter egg */
