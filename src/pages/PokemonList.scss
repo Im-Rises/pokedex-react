@@ -107,7 +107,7 @@
     height: 90vh;
     @media screen and (max-width: 900px) {
       display: block;
-      overflow: hidden;
+      //overflow: hidden;
       height: 50vh;
     }
     //overflow: auto;
@@ -167,7 +167,7 @@
   height: 100vh;
   z-index: 10;
   margin: 0;
-  overflow: hidden;
+  //overflow: hidden;
 
   button {
     position: absolute;
