@@ -10,10 +10,10 @@ body, html {
 
   font-size: 16px;
 
-  $min-width-start: 768px;
+  $min-width-start: 256px;
   $min-width-increment: 256px;
-  $font-size-start: 18px;
-  $font-size-increment: 3px;
+  $font-size-start: 9px;
+  $font-size-increment: 2px;
 
   @for $i from 0 through 29 {
     $min-width: $min-width-start + ($i * $min-width-increment);

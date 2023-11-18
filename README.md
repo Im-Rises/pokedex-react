@@ -1,34 +1,29 @@
 # pokedex-react
 
-## PokemonLegendaryState
-
 Pokédex made in React using the Poképedia API.
 
 ## 🚀🚀[you can try the pokedex by clicking here](https://im-rises.github.io/pokedex-react/) 🚀🚀
 
+## Screenshots
+
+![main-page](https://github.com/Im-Rises/pokedex-react/assets/59691442/4ae8439b-7e5a-45ca-9ed6-cf0b7f7b2d63)
+![pokemon-list](https://github.com/Im-Rises/pokedex-react/assets/59691442/187fd288-4ce2-46cd-bd35-18c5cc7dbd8d)
+![pokemon-details](https://github.com/Im-Rises/pokedex-react/assets/59691442/f09e3d94-ff38-478b-afc8-6344e7f6107b)
+
 ## To do list
 
-- [ ] Responsive design
-- [ ] Correct web query bug (check console after clicking the pokemon pokeball intro menu or the studio condition with
-  .Size == 1)
+- [ ] Correction requête crash : Quentin et Clément
+- [ ] Changer background en background adaptatif (bien utiliser SCSS avec des mixin et l'intégrer en appel de class
+  partout!!!) : Clément et Quentin
+- [ ] Ajouter boutons ou non pour passer d'un poke à un autre depuis la page de pokemon details : Clément Quentin
+- [ ] Correction barre de recherche erreur 404 (ralentis à mort dû au temps d'attente de réponse) : Clément
+- [ ] Corriger les bugs et crash de easter egg : Quentin
 
-<!--
-## Overview
+## To do list (done)
 
-1. [API used](#api-used)
-2. [Components](#components)
-3. [Available Scripts](#available-scripts)
-    1. [start the app](#yarn-start)
-    2. [unit test](#yarn-test)
-    3. [build the app](#yarn-build)
-    4. [eject the app](#yarn-eject)
-4. [learn more](#learn-more)
-    1. [code splitting](#code-splitting)
-    2. [analyzing the bundle Size](#analyzing-the-bundle-size)
-    3. [Making a progressive Web App](#making-a-progressive-web-app)
-    4. [Advanced configuration](#advanced-configuration)
-    5. [Deployment](#deployment)
--->
+- [x] Responsive de la page principale (pokemon list) : Clément et Quentin
+- [x] Responsive de la page detail à corriger : Quentin
+- [x] Faire le readme : Clément et Quentin
 
 ## API used
 
@@ -56,6 +51,14 @@ Pokédex made in React using the Poképedia API.
 - Node.js CI: Continuous Integration (CI) for Node.js
 - gh-pages-publish: Publish to gh-pages branch
 - pages-build-deployment: Build and deploy to pages
+
+## Links
+
+Check the source code
+on [![github](https://user-images.githubusercontent.com/59691442/223556058-6244e346-8117-43cd-97c6-bf68611bf286.svg)](https://github.com/im-rises/pokedex-react)
+
+Check the website
+on [![github](https://user-images.githubusercontent.com/59691442/223556058-6244e346-8117-43cd-97c6-bf68611bf286.svg)](https://im-rises.github.io/pokedex-react/)
 
 ## Authors
 

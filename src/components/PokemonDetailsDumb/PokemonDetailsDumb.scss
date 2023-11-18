@@ -73,7 +73,7 @@
           }
         }
 
-        @media (max-width: 78rem) {
+        @media (max-width: 850px) {
           width: 100%;
           height: 50%;
         }
@@ -154,13 +154,13 @@
           }
         }
 
-        @media (max-width: 78rem) {
+        @media (max-width: 850px) {
           width: 100%;
           height: 50%;
         }
       }
 
-      @media (max-width: 78rem) {
+      @media (max-width: 850px) {
         flex-direction: column;
       }
     }
