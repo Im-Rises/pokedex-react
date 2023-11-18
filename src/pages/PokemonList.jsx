@@ -113,7 +113,7 @@ export const PokemonList = () => {
 				</div>
 			</div>
 			<div className={'right'}>
-				<div className={'pokemon-artwork-holder'}>
+				<div className={'pokemon-artwork-panel'}>
 					{pokemon.select
                         && (
                         	<div className={'pokemon-name'}>{pokemon.select}
@@ -123,8 +123,11 @@ export const PokemonList = () => {
                         	</div>
                         )
 					}
-					{pokemon.select ? <LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
-						className={'pokemon-artwork'}/>
+					{pokemon.select
+						? <div className={'pokemon-artwork-holder'}>
+							<LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
+								className={'pokemon-artwork'}/>
+						</div>
 						: <div className={'pokedex-description'}>
 							<img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
 							<p>Welcome to the Pokédex, your ultimate Pokémon companion! Our user-friendly interface

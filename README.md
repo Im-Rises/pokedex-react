@@ -1,8 +1,6 @@
 # pokedex-react
 
-## PokemonLegendaryState
-
-Pokédex made in React using the Poképedia API. The project is currently in development.
+Pokédex made in React using the Poképedia API.
 
 ## 🚀🚀[you can try the pokedex by clicking here](https://im-rises.github.io/pokedex-react/) 🚀🚀
 
@@ -15,13 +13,17 @@ Pokédex made in React using the Poképedia API. The project is currently in dev
 ## To do list
 
 - [ ] Correction requête crash : Quentin et Clément
-- [ ] Changer background en background adaptatif : Clément et Quentin
+- [ ] Changer background en background adaptatif (bien utiliser SCSS avec des mixin et l'intégrer en appel de class
+  partout!!!) : Clément et Quentin
 - [ ] Ajouter boutons ou non pour passer d'un poke à un autre depuis la page de pokemon details : Clément Quentin
-- [ ] Faire le readme : Clément et Quentin
 - [ ] Correction barre de recherche erreur 404 (ralentis à mort dû au temps d'attente de réponse) : Clément
-- [ ] Responsive de la page principale (pokemon list) : Clément
-- [ ] Responsive de la page detail à corriger : Quentin
 - [ ] Corriger les bugs et crash de easter egg : Quentin
+
+## To do list (done)
+
+- [x] Responsive de la page principale (pokemon list) : Clément et Quentin
+- [x] Responsive de la page detail à corriger : Quentin
+- [x] Faire le readme : Clément et Quentin
 
 ## API used
 
