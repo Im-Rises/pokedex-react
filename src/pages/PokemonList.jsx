@@ -32,6 +32,9 @@ export const PokemonList = () => {
 
 	const toggleViewDetails = () => {
 		setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
+		if (isPokemonDetailsOpen && easterEggIndex >= 0) {
+			setEasterEggIndex(-1);
+		}
 	};
 
 	const handlePokemonSearch = event => {
