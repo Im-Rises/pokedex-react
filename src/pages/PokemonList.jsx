@@ -21,19 +21,28 @@ export const PokemonList = () => {
 	const timeoutConstant = 200;
 	const [isPokemonDetailsOpen, setIsPokemonDetailsOpen] = useState(false);
 	const [pokemonList, setPokemonList] = useState(['']);
+	const [pokemonSearchText, setPokemonSearchText] = useState('');
 	const [pokemon, setPokemon] = useState({
 		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
 	});
-	// const [easterEggActivated, setEasterEggActivated] = useState(false);
+
 	const [easterEggIndex, setEasterEggIndex] = useState(-1);
 
 	const handlePokemonSelect = select => setPokemon({...pokemon, select});
 
 	const toggleViewDetails = () => {
 		setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
+		if (isPokemonDetailsOpen && easterEggIndex >= 0) {
+			setPokemonSearchText('');
+			setPokemon({...pokemon, search: '', listShows: pokemonList});
+			setEasterEggIndex(-1);
+		}
 	};
 
-	const handlePokemonSearch = event => setPokemon({...pokemon, search: event.target.value});
+	const handlePokemonSearch = event => {
+		setPokemon({...pokemon, search: event.target.value.toLowerCase()});
+		setPokemonSearchText(event.target.value);
+	};
 
 	const handleOfficialArtwork = ({officialArtwork}) => setPokemon({...pokemon, officialArtwork});
 
@@ -49,7 +58,7 @@ export const PokemonList = () => {
 	// manage select
 	useEffect(() => {
 		const {select} = pokemon;
-		if (select) {
+		if (select && easterEggIndex < 0) {
 			getAllFromPokemon(select)
 				.then(handleOfficialArtwork);
 		}
@@ -64,7 +73,6 @@ export const PokemonList = () => {
 
 		// If one of the Pokémon Easter Egg name is entered
 		if (easterEggPokemonData.some(pkm => pkm.pokemonName === search)) {
-			console.log('Easter Egg found! Or should I say... Easter Pkm Egg?');
 			toast('Easter Egg found! Or should I say... Easter Pkm Egg?', {
 				type: 'success',
 				autoClose: 5000,
@@ -105,11 +113,17 @@ export const PokemonList = () => {
 		<div className={'pokemon-list-panel'}>
 			<div className={'left'}>
 				<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'}
-					value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
+					value={pokemonSearchText} onChange={handlePokemonSearch} autoFocus={true}/>
 				<div className={'list-content'}>
-					{pokemon.search && pokemonListComponentGenerator(pokemon.listShows)}
-					{(!pokemon.search && pokemonList.length !== 1) && pokemonListComponentGenerator(pokemonList)}
-					{/* {pokemon.search && pokemon?.listShows.length ? pokemonListComponentGenerator(pokemon.listShows) : pokemonListComponentGenerator(pokemonList)} */}
+					{
+						easterEggIndex < 0 && (
+							<>
+								{pokemon.search && pokemonListComponentGenerator(pokemon.listShows)}
+								{(!pokemon.search && pokemonList.length !== 1) && pokemonListComponentGenerator(pokemonList)}
+								{/* {pokemon.search && pokemon?.listShows.length ? pokemonListComponentGenerator(pokemon.listShows) : pokemonListComponentGenerator(pokemonList)} */}
+							</>
+						)
+					}
 				</div>
 			</div>
 			<div className={'right'}>
@@ -125,8 +139,12 @@ export const PokemonList = () => {
 					}
 					{pokemon.select
 						? <div className={'pokemon-artwork-holder'}>
-							<LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
-								className={'pokemon-artwork'}/>
+							{
+								easterEggIndex < 0 && (
+									<LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
+										className={'pokemon-artwork'}/>
+								)
+							}
 						</div>
 						: <div className={'pokedex-description'}>
 							<img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
