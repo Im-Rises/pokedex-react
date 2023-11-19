@@ -15,7 +15,6 @@ Pokédex made in React using the Poképedia API.
 - [ ] Changer background en background adaptatif (bien utiliser SCSS avec des mixin et l'intégrer en appel de class
   partout!!!) : Clément et Quentin
 - [ ] Ajouter boutons ou non pour passer d'un poke à un autre depuis la page de pokemon details : Clément Quentin
-- [ ] Correct animation lag
 
 ## To do list (done)
 
@@ -25,6 +24,7 @@ Pokédex made in React using the Poképedia API.
 - [x] Responsive de la page principale (pokemon list) : Clément et Quentin
 - [x] Responsive de la page detail à corriger : Quentin
 - [x] Faire le readme : Clément et Quentin
+- [x] Correct animation lag when clicking on the pokeball opening : Quentin et Clément
 
 ## API used
 

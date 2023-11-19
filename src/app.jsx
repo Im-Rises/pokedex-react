@@ -9,7 +9,7 @@ const App = () => {
 	return (
 		<div className={'app-main'}>
 			<PokeOpening handleHasOpened={() => setIsOpeningClicked(true)} hasClicked={isOpeningClicked}/>
-			{isOpeningClicked && <PokemonList/>}
+			<PokemonList/>
 		</div>
 	);
 };
