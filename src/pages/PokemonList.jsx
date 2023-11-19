@@ -32,9 +32,6 @@ export const PokemonList = () => {
 
 	const toggleViewDetails = () => {
 		setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
-		if (isPokemonDetailsOpen && easterEggIndex >= 0) {
-			setEasterEggIndex(-1);
-		}
 	};
 
 	const handlePokemonSearch = event => {
@@ -56,7 +53,7 @@ export const PokemonList = () => {
 	// manage select
 	useEffect(() => {
 		const {select} = pokemon;
-		if (select) {
+		if (select && easterEggIndex < 0) {
 			getAllFromPokemon(select)
 				.then(handleOfficialArtwork);
 		}
@@ -113,9 +110,15 @@ export const PokemonList = () => {
 				<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'}
 					value={pokemonSearchText} onChange={handlePokemonSearch} autoFocus={true}/>
 				<div className={'list-content'}>
-					{pokemon.search && pokemonListComponentGenerator(pokemon.listShows)}
-					{(!pokemon.search && pokemonList.length !== 1) && pokemonListComponentGenerator(pokemonList)}
-					{/* {pokemon.search && pokemon?.listShows.length ? pokemonListComponentGenerator(pokemon.listShows) : pokemonListComponentGenerator(pokemonList)} */}
+					{
+						easterEggIndex < 0 && (
+							<>
+								{pokemon.search && pokemonListComponentGenerator(pokemon.listShows)}
+								{(!pokemon.search && pokemonList.length !== 1) && pokemonListComponentGenerator(pokemonList)}
+								{/* {pokemon.search && pokemon?.listShows.length ? pokemonListComponentGenerator(pokemon.listShows) : pokemonListComponentGenerator(pokemonList)} */}
+							</>
+						)
+					}
 				</div>
 			</div>
 			<div className={'right'}>
@@ -131,8 +134,12 @@ export const PokemonList = () => {
 					}
 					{pokemon.select
 						? <div className={'pokemon-artwork-holder'}>
-							<LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
-								className={'pokemon-artwork'}/>
+							{
+								easterEggIndex < 0 && (
+									<LazyLoadImage imageGetter={() => getPokemon(pokemon.select).then(getArtwork)}
+										className={'pokemon-artwork'}/>
+								)
+							}
 						</div>
 						: <div className={'pokedex-description'}>
 							<img className={'pokedex-logo'} src={PokemonLogo} alt={'pokedex'}/>
