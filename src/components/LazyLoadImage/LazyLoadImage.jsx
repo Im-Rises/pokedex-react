@@ -16,6 +16,8 @@ const LazyLoadImage = props => {
 				if (entry.isIntersecting) {
 					props.imageGetter().then(icon => {
 						imageRef.current.src = icon;
+					}).catch(() => {
+						imageRef.current.src = defaultIcon;
 					});
 					// load image only if it's visible by users
 					observer.unobserve(imageRef.current);

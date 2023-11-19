@@ -12,14 +12,14 @@ Pokédex made in React using the Poképedia API.
 
 ## To do list
 
-- [ ] Correction requête crash : Quentin et Clément
 - [ ] Changer background en background adaptatif (bien utiliser SCSS avec des mixin et l'intégrer en appel de class
   partout!!!) : Clément et Quentin
 - [ ] Ajouter boutons ou non pour passer d'un poke à un autre depuis la page de pokemon details : Clément Quentin
-- [ ] Correction barre de recherche erreur 404 (ralentis à mort dû au temps d'attente de réponse) : Clément
 
 ## To do list (done)
 
+- [x] Correction barre de recherche erreur 404 (ralentis à mort dû au temps d'attente de réponse) : Clément
+- [x] Correction requête crash : Quentin et Clément
 - [x] Corriger les bugs et crash de easter egg : Quentin
 - [x] Responsive de la page principale (pokemon list) : Clément et Quentin
 - [x] Responsive de la page detail à corriger : Quentin
