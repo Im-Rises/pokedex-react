@@ -17,7 +17,10 @@ const LazyLoadImage = props => {
 					props.imageGetter().then(icon => {
 						imageRef.current.src = icon;
 					}).catch(() => {
-						imageRef.current.src = defaultIcon;
+						// Prevent strange behavior when image is not loaded
+						if (imageRef !== null && imageRef.current !== null) {
+							imageRef.current.src = defaultIcon;
+						}
 					});
 					// load image only if it's visible by users
 					observer.unobserve(imageRef.current);
