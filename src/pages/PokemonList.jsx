@@ -21,10 +21,11 @@ export const PokemonList = () => {
 	const timeoutConstant = 200;
 	const [isPokemonDetailsOpen, setIsPokemonDetailsOpen] = useState(false);
 	const [pokemonList, setPokemonList] = useState(['']);
+	const [pokemonSearchText, setPokemonSearchText] = useState('');
 	const [pokemon, setPokemon] = useState({
 		select: '', search: '', officialArtwork: pokeballLoadingImage, listShows: [''],
 	});
-	// const [easterEggActivated, setEasterEggActivated] = useState(false);
+
 	const [easterEggIndex, setEasterEggIndex] = useState(-1);
 
 	const handlePokemonSelect = select => setPokemon({...pokemon, select});
@@ -33,7 +34,10 @@ export const PokemonList = () => {
 		setIsPokemonDetailsOpen(!isPokemonDetailsOpen);
 	};
 
-	const handlePokemonSearch = event => setPokemon({...pokemon, search: event.target.value});
+	const handlePokemonSearch = event => {
+		setPokemon({...pokemon, search: event.target.value.toLowerCase()});
+		setPokemonSearchText(event.target.value);
+	};
 
 	const handleOfficialArtwork = ({officialArtwork}) => setPokemon({...pokemon, officialArtwork});
 
@@ -64,7 +68,6 @@ export const PokemonList = () => {
 
 		// If one of the Pokémon Easter Egg name is entered
 		if (easterEggPokemonData.some(pkm => pkm.pokemonName === search)) {
-			console.log('Easter Egg found! Or should I say... Easter Pkm Egg?');
 			toast('Easter Egg found! Or should I say... Easter Pkm Egg?', {
 				type: 'success',
 				autoClose: 5000,
@@ -105,7 +108,7 @@ export const PokemonList = () => {
 		<div className={'pokemon-list-panel'}>
 			<div className={'left'}>
 				<input placeholder={'search pokemon...'} type={'search'} className={'search-bar'}
-					value={pokemon.search} onChange={handlePokemonSearch} autoFocus={true}/>
+					value={pokemonSearchText} onChange={handlePokemonSearch} autoFocus={true}/>
 				<div className={'list-content'}>
 					{pokemon.search && pokemonListComponentGenerator(pokemon.listShows)}
 					{(!pokemon.search && pokemonList.length !== 1) && pokemonListComponentGenerator(pokemonList)}

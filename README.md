@@ -17,10 +17,10 @@ Pokédex made in React using the Poképedia API.
   partout!!!) : Clément et Quentin
 - [ ] Ajouter boutons ou non pour passer d'un poke à un autre depuis la page de pokemon details : Clément Quentin
 - [ ] Correction barre de recherche erreur 404 (ralentis à mort dû au temps d'attente de réponse) : Clément
-- [ ] Corriger les bugs et crash de easter egg : Quentin
 
 ## To do list (done)
 
+- [x] Corriger les bugs et crash de easter egg : Quentin
 - [x] Responsive de la page principale (pokemon list) : Clément et Quentin
 - [x] Responsive de la page detail à corriger : Quentin
 - [x] Faire le readme : Clément et Quentin
