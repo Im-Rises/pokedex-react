@@ -166,6 +166,5 @@ export const PokemonList = () => {
 					exitDetailsPage={toggleViewDetails}
 					isEasterEgg={easterEggIndex >= 0}/>)}
 		</>)}
-		<ToastContainer/>
 	</>);
 };

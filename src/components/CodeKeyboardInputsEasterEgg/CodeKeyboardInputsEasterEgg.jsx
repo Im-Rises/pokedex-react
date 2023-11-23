@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export const CodeKeyboardInputsEasterEgg = props => {
 	const [inputValue, setInputValue] = useState('');
@@ -15,14 +13,7 @@ export const CodeKeyboardInputsEasterEgg = props => {
 		let inputString = inputValue;
 
 		if (inputString === props.code) {
-			// alert('You have unlocked the Konami Code!');
-			toast('Easter Egg 1 found! Or should I say... Easter Pkm Egg?', {
-				type: 'success',
-				autoClose: 5000,
-				icon: '🥚',
-				closeOnClick: true,
-				pauseOnHover: false,
-			});
+			props.actionOnEasterEgg();
 		}
 
 		if (inputValue.length >= props.code.length) {
@@ -41,10 +32,10 @@ export const CodeKeyboardInputsEasterEgg = props => {
 	}, [handleKeyDown]);
 
 	return <>
-		<ToastContainer/>
 	</>;
 };
 
 CodeKeyboardInputsEasterEgg.propTypes = {
 	code: PropTypes.string.isRequired,
+	actionOnEasterEgg: PropTypes.func,
 };
