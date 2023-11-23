@@ -1,23 +1,35 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CodeKeyboardInputsEasterEgg = props => {
 	const [inputValue, setInputValue] = useState('');
 
 	const handleKeyDown = event => {
-		if (inputValue.length >= props.code.length) {
-			setInputValue('');
-		} else {
-			const {keyCode} = event;
-			setInputValue(prevValue => prevValue + keyCode);
-		}
+		const {keyCode} = event;
+		setInputValue(inputValue + keyCode);
 	};
 
 	useEffect(() => {
-		if (inputValue === props.code) {
-			alert('You have unlocked the Konami Code!');
-			setInputValue('');
+		let inputString = inputValue;
+
+		if (inputString === props.code) {
+			// alert('You have unlocked the Konami Code!');
+			toast('Easter Egg 1 found! Or should I say... Easter Pkm Egg?', {
+				type: 'success',
+				autoClose: 5000,
+				icon: '🥚',
+				closeOnClick: true,
+				pauseOnHover: false,
+			});
 		}
+
+		if (inputValue.length >= props.code.length) {
+			inputString = inputString.slice(1);
+		}
+
+		setInputValue(inputString);
 	}, [inputValue, props.code]);
 
 	useEffect(() => {
@@ -28,7 +40,9 @@ export const CodeKeyboardInputsEasterEgg = props => {
 		};
 	}, [handleKeyDown]);
 
-	return <></>;
+	return <>
+		<ToastContainer/>
+	</>;
 };
 
 CodeKeyboardInputsEasterEgg.propTypes = {

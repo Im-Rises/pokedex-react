@@ -73,7 +73,7 @@ export const PokemonList = () => {
 
 		// If one of the Pokémon Easter Egg name is entered
 		if (easterEggPokemonData.some(pkm => pkm.pokemonName === search)) {
-			toast('Easter Egg found! Or should I say... Easter Pkm Egg?', {
+			toast('Easter Egg 1 found! Or should I say... Easter Pkm Egg?', {
 				type: 'success',
 				autoClose: 5000,
 				icon: '🥚',
