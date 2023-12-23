@@ -47,6 +47,6 @@ PokemonDetails.propTypes = {
 	name: PropTypes.string.isRequired,
 	exitDetailsPage: PropTypes.func.isRequired,
 	isEasterEgg: PropTypes.bool,
-	pokemonList: PropTypes.arrayOf(PropTypes.string),
+	pokemonList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
