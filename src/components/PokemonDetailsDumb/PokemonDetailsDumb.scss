@@ -175,40 +175,37 @@
       width: 100%;
       height: 20%;
 
-      button {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 0.9375rem;
-        border: 0.0625rem #282c34 solid;
-        width: 30%;
-        font-size: 1.2rem;
-        text-transform: capitalize;
-        height: 3rem;
-
-        &:hover {
-          cursor: pointer;
-          background-color: #ff5447;
-        }
-
-        &:active {
-          background-color: rgba(255, 255, 255, 0.0);
-        }
+      .previous, .next, .share {
+        background-color: white;
+        width:29%;
+        padding:15px;
+        border-radius: 20px;
+        opacity: 0.7;
+        cursor:pointer;
       }
 
-      .button-previsous-pokemon-details {
-
+      .share:hover {
+        background:blue;
+        opacity: 1;
+        color:white;
       }
 
-      .button-next-pokemon-details {
-      }
-
-      .button-exit-details-page {
+      .previous:hover, .next:hover {
+        background: coral;
+        opacity: 1;
+        color:white;
       }
     }
+    .exit {
+      position: absolute;
+      left:5%;
+      font-size: 250%;
+      cursor: pointer;
+      color: black;
+    }
+    .exit:hover {
+      color:red;
+    }
+
   }
 }

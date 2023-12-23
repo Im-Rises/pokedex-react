@@ -3,6 +3,7 @@ import pokemonTypeConstant from '../../constants/pokemon-type-constant.js';
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import './PokemonDetailsDumb.scss';
+import {ArrowBackIos, ArrowForwardIos, Cancel, Close, Share} from '@mui/icons-material';
 
 export const PokemonDetailsDumb = props => {
 	const [pokemonDescription, setPokemonDescription] = useState('');
@@ -15,8 +16,8 @@ export const PokemonDetailsDumb = props => {
 	return (
 		<div className={'pokemon-details-page'}>
 			<div className={'pokemon-details-panel'}>
-
 				<div className={'pokemon-name-logo'}>
+					<Cancel onClick={props.exitDetailsPage} className={'exit'}/>
 					<img src={props.pokemonData.icon} alt={props.pokemonData.pokemonName}/>
 					<h1>{props.pokemonData.pokemonName} #{props.pokemonData.pokemonNumber}</h1>
 				</div>
@@ -63,16 +64,12 @@ export const PokemonDetailsDumb = props => {
 				</div>
 
 				<div className={'pokedex-details-controls'}>
-					<button className={'button-previsous-pokemon-details'}
-						onClick={() => props.changePokemon(-1)}>Previous
-					</button>
-					<button className={'button-exit-details-page'} onClick={props.exitDetailsPage}>Exit</button>
-					<button onClick={() => {
+					<ArrowBackIos onClick={() => props.changePokemon(-1)} className={'previous'}/>
+					<Share onClick={() => {
 						navigator.clipboard.writeText(`${window.location.href}?pokemon=${props.pokemonData.pokemonName}`)
 							.then(() => alert('link copied to clipboard!'));
-					}}>Share</button>
-					<button className={'button-next-pokemon-details'} onClick={() => props.changePokemon(1)}>Next
-					</button>
+					}} className={'share'}/>
+					<ArrowForwardIos onClick={() => props.changePokemon(1)} className={'next'}/>
 				</div>
 
 			</div>
