@@ -64,10 +64,13 @@ export const PokemonDetailsDumb = props => {
 
 				<div className={'pokedex-details-controls'}>
 					<button className={'button-previsous-pokemon-details'}
-						onClick={() => props.changePokemon(-1)}
-					>Previous
+						onClick={() => props.changePokemon(-1)}>Previous
 					</button>
 					<button className={'button-exit-details-page'} onClick={props.exitDetailsPage}>Exit</button>
+					<button onClick={() => {
+						navigator.clipboard.writeText(`${window.location.href}?pokemon=${props.pokemonData.pokemonName}`)
+							.then(() => alert('link copied to clipboard!'));
+					}}>Share</button>
 					<button className={'button-next-pokemon-details'} onClick={() => props.changePokemon(1)}>Next
 					</button>
 				</div>
