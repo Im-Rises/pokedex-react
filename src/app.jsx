@@ -7,18 +7,28 @@ import konamicode from './constants/code-easteregg.js';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {PokemonDetails} from './pages/PokemonDetails.jsx';
+import {getListOfPkmAvailable} from './requests/pokedex-request.js';
+import {MAX_PKM} from './constants/pokedex-constant.js';
+import {pipe, pluck, prop} from 'ramda';
+
+const getAllPokemonName = pipe(prop('results'), pluck('name'));
 
 const App = () => {
 	const [isOpeningClicked, setIsOpeningClicked] = React.useState(false);
 	const [pokemonNameUrl, setPokemonNameUrl] = useState(null);
+	const [pokemonList, setPokemonList] = useState(['']);
 
 	useEffect(() => {
 		const urlParams = new URLSearchParams(window.location.search);
 		setPokemonNameUrl(urlParams.get('pokemon'));
+
+		getListOfPkmAvailable(MAX_PKM)
+			.then(getAllPokemonName)
+			.then(setPokemonList);
 	}, [window.location.search]);
 
 	if (pokemonNameUrl) {
-		return <PokemonDetails exitDetailsPage={() => {}} name={pokemonNameUrl} pokemonList={['']}/>;
+		return <PokemonDetails exitDetailsPage={() => {}} name={pokemonNameUrl} pokemonList={pokemonList}/>;
 	}
 
 	return (
