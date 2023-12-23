@@ -64,13 +64,11 @@ export const PokemonDetailsDumb = props => {
 
 				<div className={'pokedex-details-controls'}>
 					<button className={'button-previsous-pokemon-details'}
-						// onClick={() => setPokemonVersion(pokemonVersion - 1)}
+						onClick={() => props.changePokemon(-1)}
 					>Previous
 					</button>
 					<button className={'button-exit-details-page'} onClick={props.exitDetailsPage}>Exit</button>
-					<button className={'button-next-pokemon-details'}
-						// onClick={() => setPokemonVersion(pokemonVersion + 1)}
-					>Next
+					<button className={'button-next-pokemon-details'} onClick={() => props.changePokemon(1)}>Next
 					</button>
 				</div>
 
@@ -83,4 +81,6 @@ PokemonDetailsDumb.propTypes = {
 	pokemonData: PropTypes.object.isRequired,
 	pokemonOtherInfo: PropTypes.object.isRequired,
 	exitDetailsPage: PropTypes.func.isRequired,
+	changePokemon: PropTypes.func.isRequired,
 };
+

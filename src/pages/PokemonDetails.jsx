@@ -9,21 +9,36 @@ import PropTypes from 'prop-types';
 import {PokemonDetailsDumb} from '../components/PokemonDetailsDumb/PokemonDetailsDumb.jsx';
 
 export const PokemonDetails = props => {
+	const [pokemonName, setPokemonName] = useState(props.name);
 	const [pokemonData, setPokemonData] = useState(pokemonDataModel);
 	const [pokemonOtherInfo, setPokemonOtherInfo] = useState(pokemonDataOtherInfoModel);
 
 	useEffect(() => {
-		getAllFromPokemon(props.name)
+		getAllFromPokemon(pokemonName)
 			.then(setPokemonData);
-		getPokemonOtherInfo(props.name)
+
+		getPokemonOtherInfo(pokemonName)
 			.then(setPokemonOtherInfo);
-	}, [props.name]);
+	}, [pokemonName]);
+
+	const changePokemon = number => {
+		const currentIndex = props.pokemonList.indexOf(pokemonName);
+
+		if (currentIndex + number > props.pokemonList.length - 1) {
+			setPokemonName(props.pokemonList[0]);
+		} else if (currentIndex + number < 0) {
+			setPokemonName(props.pokemonList[props.pokemonList.length - 1]);
+		} else {
+			setPokemonName(props.pokemonList[currentIndex + number]);
+		}
+	};
 
 	return (
 		<PokemonDetailsDumb
 			pokemonData={pokemonData}
 			pokemonOtherInfo={pokemonOtherInfo}
 			exitDetailsPage={props.exitDetailsPage}
+			changePokemon={changePokemon}
 		/>
 	);
 };
@@ -32,5 +47,6 @@ PokemonDetails.propTypes = {
 	name: PropTypes.string.isRequired,
 	exitDetailsPage: PropTypes.func.isRequired,
 	isEasterEgg: PropTypes.bool,
+	pokemonList: PropTypes.arrayOf(PropTypes.string),
 };
 
