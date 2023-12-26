@@ -19,6 +19,9 @@ export const PokemonDetails = props => {
 
 		getPokemonOtherInfo(pokemonName)
 			.then(setPokemonOtherInfo);
+
+		const newUrl = `${window.location.origin}${window.location.pathname}?pokemon=${pokemonName}`;
+		history.pushState(null, null, newUrl);
 	}, [pokemonName]);
 
 	const changePokemon = number => {
@@ -47,6 +50,6 @@ PokemonDetails.propTypes = {
 	name: PropTypes.string.isRequired,
 	exitDetailsPage: PropTypes.func.isRequired,
 	isEasterEgg: PropTypes.bool,
-	pokemonList: PropTypes.arrayOf(PropTypes.string),
+	pokemonList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
