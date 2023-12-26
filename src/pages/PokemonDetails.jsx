@@ -19,6 +19,9 @@ export const PokemonDetails = props => {
 
 		getPokemonOtherInfo(pokemonName)
 			.then(setPokemonOtherInfo);
+
+		const newUrl = `${window.location.origin}${window.location.pathname}?pokemon=${pokemonName}`;
+		history.pushState(null, null, newUrl);
 	}, [pokemonName]);
 
 	const changePokemon = number => {
