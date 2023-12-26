@@ -14,10 +14,10 @@ Pokédex made in React using the Poképedia API.
 
 - [ ] Changer background en background adaptatif (bien utiliser SCSS avec des mixin et l'intégrer en appel de class
   partout!!!) : Clément et Quentin
-- [ ] load a pokemon details using only the url
 
 ## To do list (done)
 
+- [x] load a pokemon details using only the url
 - [x] Correction barre de recherche erreur 404 (ralentis à mort dû au temps d'attente de réponse) : Clément
 - [x] Correction requête crash : Quentin et Clément
 - [x] Corriger les bugs et crash de easter egg : Quentin
