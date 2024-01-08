@@ -8,7 +8,7 @@ import {getAllFromPokemon, getPokemon} from '../requests/index.js';
 import {PokemonDetails} from './PokemonDetails.jsx';
 import {PokemonListComponent} from '../components/PokemonList/PokemonListComponent.jsx';
 import {easterEggPokemonData, easterEggPokemonDataOtherInfo} from '../constants/pokemon-easter-egg-data';
-import {ToastContainer, toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LazyLoadImage from '../components/LazyLoadImage/LazyLoadImage.jsx';
 import {getArtwork} from '../requests/pokemon-request.js';
@@ -164,6 +164,7 @@ export const PokemonList = () => {
 				exitDetailsPage={toggleViewDetails}/>) : (
 				<PokemonDetails name={pokemon.select}
 					exitDetailsPage={toggleViewDetails}
+					pokemonList={pokemonList}
 					isEasterEgg={easterEggIndex >= 0}/>)}
 		</>)}
 	</>);
